@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="jgoodies-looks-2.7">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../jgoodies-looks-2.7.0" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../jgoodies-looks-2.7.0/docs/api" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../jgoodies-looks-2.7.0" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../jgoodies-looks-2.7.0" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../jgoodies-looks-2.7.0" recursive="false" type="SOURCES" />
+  </library>
+</component>
