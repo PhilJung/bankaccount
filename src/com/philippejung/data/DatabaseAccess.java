@@ -1,8 +1,15 @@
 package com.philippejung.data;
 
+import com.philippejung.data.models.RootDAO;
+
 import javax.swing.*;
 import javax.swing.plaf.nimbus.State;
+import javax.xml.transform.Result;
+import java.lang.reflect.Constructor;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
@@ -19,14 +26,16 @@ public class DatabaseAccess {
             null,
             "CREATE TABLE IF NOT EXISTS schema_version (id INTEGER PRIMARY KEY NOT NULL, " +
                     "applicationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
-            "CREATE TABLE account (id INTEGER PRIMARY KEY NOT NULL, name TEXT)",
+            "CREATE TABLE account (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)",
             "ALTER TABLE account ADD COLUMN accountNumber TEXT",
             "CREATE TABLE movement (id INTEGER PRIMARY KEY AUTOINCREMENT, date DATE, type INTEGER NOT NULL, " +
                     "otherAccountId INTEGER, otherTransactionId INTEGER, wayOfPayment INTEGER, amount REAL," +
                     "detail TEXT, comment TEXT)",
             "CREATE TABLE wayOfPayment (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)",
             "INSERT INTO wayOfPayment (name) VALUES ('CB Hellobank'), ('CB LBP'), ('Cheque Hellobank'), " +
-                    "('Cheque LBP'), ('Paypal')"
+                    "('Cheque LBP'), ('Paypal')",
+            "INSERT INTO account VALUES (1, 'LBP', '0000');"
+
     };
 
     public DatabaseAccess(String pathToDB) throws ClassNotFoundException {
@@ -55,6 +64,39 @@ public class DatabaseAccess {
         } catch (SQLException exc) {
             handleException(exc);
         } finally {
+            if (statement!=null) try {
+                statement.close();
+            } catch (SQLException exc) {
+                // Do nothing
+            }
+        }
+        return retVal;
+    }
+
+    public <T extends RootDAO> ArrayList<T> select(String selector, Class<T> objectClass) {
+        Statement statement = null;
+        ArrayList<T> retVal = new ArrayList<T>();
+        ResultSet rs=null;
+        try {
+            statement = connection.createStatement();
+            rs = statement.executeQuery(selector);
+            while (rs.next()) {
+                T obj = objectClass.newInstance();
+                obj.readFromDB(rs);
+                retVal.add(obj);
+            }
+        } catch (SQLException exc) {
+            handleException(exc);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } finally {
+            if (rs!=null) try {
+                rs.close();
+            } catch (SQLException exc) {
+                // Do nothing
+            }
             if (statement!=null) try {
                 statement.close();
             } catch (SQLException exc) {

@@ -7,8 +7,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Tab;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -28,20 +26,18 @@ public class MainApp extends Application {
 
     public MainApp() {
         appInstance = this;
-//        appFrame = new AppFrame();
     }
 
     public static MainApp getInstance() {
         return appInstance;
     }
 
-//    public AppFrame getAppFrame() {
-//        return appFrame;
-//    }
-
-    public AppData getData() {
-        return appData;
+    public static AppData getData() {
+        return getInstance().getAppData();
     }
+
+    private AppData getAppData() { return appData; }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -54,11 +50,11 @@ public class MainApp extends Application {
         FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/res/fxml/appframe.fxml"));
         VBox rootLayout = rootLoader.load();
         mainController = rootLoader.getController();
-        primaryStage.setScene(new Scene(rootLayout, 300, 275));
+        primaryStage.setScene(new Scene(rootLayout, 900, 875));
         primaryStage.show();
 
         // Now load the first tab
-        mainController.selectTabAndCreateItIfRequired("welcome", "/res/fxml/welcome.fxml", "Welcome", false);
+        mainController.selectTabAndCreateItIfRequired("welcome", "/res/fxml/welcome.fxml", "Accueil", false);
     }
 
     @Override
@@ -86,9 +82,5 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-//    public void run() {
-//        getAppFrame().prepareIHM();
-//    }
 
 }

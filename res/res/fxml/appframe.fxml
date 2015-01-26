@@ -10,23 +10,23 @@
    <children>
       <MenuBar>
         <menus>
-          <Menu text="_File">
+          <Menu text="_Fichier">
             <items>
-              <MenuItem fx:id="menuFileExit" onAction="#onMenuFileExit" text="E_xit" />
+              <MenuItem fx:id="menuFileExit" onAction="#onMenuFileExit" text="_Quitter" />
             </items>
           </Menu>
-          <Menu text="_Help">
+          <Menu text="_Aide">
             <items>
-              <MenuItem fx:id="menuHelpAbout" onAction="#onMenuHelpAbout" text="A_bout" />
+              <MenuItem fx:id="menuHelpAbout" onAction="#onMenuHelpAbout" text="_A propos" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
       <ToolBar VBox.vgrow="NEVER">
         <items>
-          <Button mnemonicParsing="false" text="Welcome" />
-            <Button mnemonicParsing="false" text="Accounts"/>
-            <Button mnemonicParsing="false" text="Import"  onAction="#onToolbarImport"/>
+          <Button mnemonicParsing="false" text="Accueil" />
+            <Button mnemonicParsing="false" text="Comptes"/>
+            <Button mnemonicParsing="false" text="Importer"  onAction="#onToolbarImport"/>
             <Button mnemonicParsing="false" text="Budget" onAction="#onToolbarBudget" />
         </items>
          <VBox.margin>
