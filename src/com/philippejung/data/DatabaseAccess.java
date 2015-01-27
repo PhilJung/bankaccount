@@ -1,15 +1,10 @@
 package com.philippejung.data;
 
-import com.philippejung.data.models.RootDAO;
+import com.philippejung.data.models.dao.RootDAO;
 
 import javax.swing.*;
-import javax.swing.plaf.nimbus.State;
-import javax.xml.transform.Result;
-import java.lang.reflect.Constructor;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
@@ -29,7 +24,7 @@ public class DatabaseAccess {
             "CREATE TABLE account (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)",
             "ALTER TABLE account ADD COLUMN accountNumber TEXT",
             "CREATE TABLE movement (id INTEGER PRIMARY KEY AUTOINCREMENT, date DATE, type INTEGER NOT NULL, " +
-                    "otherAccountId INTEGER, otherTransactionId INTEGER, wayOfPayment INTEGER, amount REAL," +
+                    "otherAccountId INTEGER, otherTransactionId INTEGER, wayOfPaymentId INTEGER, amount REAL," +
                     "detail TEXT, comment TEXT)",
             "CREATE TABLE wayOfPayment (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)",
             "INSERT INTO wayOfPayment (name) VALUES ('CB Hellobank'), ('CB LBP'), ('Cheque Hellobank'), " +

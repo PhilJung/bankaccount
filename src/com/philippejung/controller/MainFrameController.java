@@ -1,6 +1,7 @@
 package com.philippejung.controller;
 
 import com.philippejung.main.MainApp;
+import com.philippejung.view.utils.AlertPopup;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +27,7 @@ public class MainFrameController extends GenericController {
     }
 
     public void onMenuHelpAbout(ActionEvent event) {
-        alerte(
+        AlertPopup.alert(
                 Alert.AlertType.INFORMATION, "About", "About BankAccount",
                 "BankAccount v0\n\u00A9 Philippe Jung - 2015"
         );

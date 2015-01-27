@@ -1,6 +1,6 @@
 package com.philippejung.controller;
 
-import com.philippejung.data.models.AccountSummary;
+import com.philippejung.data.models.logical.AccountDTO;
 import com.philippejung.main.MainApp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
  */
 public class AccountSummaryController implements Initializable {
     @FXML
-    private TableView<AccountSummary> tableView;
+    private TableView<AccountDTO> tableView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

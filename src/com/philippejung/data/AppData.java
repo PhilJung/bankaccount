@@ -1,12 +1,10 @@
 package com.philippejung.data;
 
-import com.philippejung.data.models.AccountDAO;
-import com.philippejung.data.models.AccountSummary;
+import com.philippejung.data.models.dao.AccountDAO;
+import com.philippejung.data.models.logical.AccountDTO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,13 +13,20 @@ import java.util.HashMap;
  */
 public class AppData {
     private DatabaseAccess dbAccess = null;
-    private ObservableList<AccountSummary> allAccountSummary;
+    private ObservableList<AccountDTO> allAccountSummary;
     private HashMap<Integer, AccountDAO> allAccounts;
+    private AppPreferences preferences;
 
     public AppData() throws ClassNotFoundException {
+        preferences = new AppPreferences();
+        preferences.loadPreferences();
         dbAccess = new DatabaseAccess("/home/philippe/IdeaProjects/bankaccount/");
         allAccountSummary = FXCollections.observableArrayList();
         readAllAccounts();
+    }
+
+    public AppPreferences getPreferences() {
+        return preferences;
     }
 
     private void readAllAccounts() {
@@ -30,7 +35,7 @@ public class AppData {
         for(AccountDAO account : tmp) {
             System.out.println("Trouvé compte " + account.getName());
             allAccounts.put(account.getId(), account);
-            AccountSummary as = new AccountSummary(account.getName(), 1234.34);
+            AccountDTO as = new AccountDTO(account.getName(), 1234.34, "LBP");
             allAccountSummary.add(as);
         }
     }
@@ -38,9 +43,11 @@ public class AppData {
     public void close() {
         dbAccess.closeDB();
         dbAccess = null;
+        preferences.savePreferences();
+        preferences = null;
     }
 
-    public ObservableList<AccountSummary> getAllAccountSummary() {
+    public ObservableList<AccountDTO> getAllAccountSummary() {
         return allAccountSummary;
     }
 }

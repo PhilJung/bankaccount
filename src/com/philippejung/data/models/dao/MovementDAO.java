@@ -1,4 +1,4 @@
-package com.philippejung.data.models;
+package com.philippejung.data.models.dao;
 
 
 import java.sql.Date;
@@ -13,7 +13,7 @@ public class MovementDAO extends RootDAO {
     private Integer type;
     private Integer otherAccountId;
     private Integer otherTransactionId;
-    private Integer wayOfPayment;
+    private Integer wayOfPaymentId;
     private Double amount;
     private String detail;
     private String comment;
@@ -28,7 +28,7 @@ public class MovementDAO extends RootDAO {
         this.type = rs.getInt("type");
         this.otherAccountId = rs.getInt("otherAccountId");
         this.otherTransactionId = rs.getInt("otherTransactionId");
-        this.wayOfPayment = rs.getInt("wayOfPayment");
+        this.wayOfPaymentId = rs.getInt("wayOfPayment");
         this.amount = rs.getDouble("amount");
         this.detail = rs.getString("detail");
         this.comment = rs.getString("comment");
@@ -65,12 +65,12 @@ public class MovementDAO extends RootDAO {
         this.otherTransactionId = otherTransactionId;
     }
 
-    public Integer getWayOfPayment() {
-        return wayOfPayment;
+    public Integer getWayOfPaymentId() {
+        return wayOfPaymentId;
     }
 
-    public void setWayOfPayment(Integer wayOfPayment) {
-        this.wayOfPayment = wayOfPayment;
+    public void setWayOfPaymentId(Integer wayOfPaymentId) {
+        this.wayOfPaymentId = wayOfPaymentId;
     }
 
     public Double getAmount() {
@@ -95,5 +95,12 @@ public class MovementDAO extends RootDAO {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public final static class MovementType {
+        public final static int INCOME = 1;
+        public final static int EXPENSE = 2;
+        public final static int MOVE_TO = 3;
+        public final static int MOVE_FROM = 4;
     }
 }

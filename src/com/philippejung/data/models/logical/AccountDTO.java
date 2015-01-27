@@ -1,4 +1,4 @@
-package com.philippejung.data.models;
+package com.philippejung.data.models.logical;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -7,13 +7,23 @@ import javafx.beans.property.SimpleStringProperty;
  * Created by philippe on 25/01/15.
  */
 
-public class AccountSummary {
+public class AccountDTO {
     private final SimpleStringProperty name;
     private final SimpleDoubleProperty amount;
+    private final SimpleStringProperty importerFormat;
 
-    public AccountSummary(String name, Double amount) {
+    public AccountDTO(String name, Double amount, String importerFormat) {
         this.name = new SimpleStringProperty(name);
         this.amount = new SimpleDoubleProperty(amount);
+        this.importerFormat = new SimpleStringProperty(importerFormat);
+    }
+
+    public String getImporterFormat() {
+        return importerFormat.get();
+    }
+
+    public void setImporterFormat(String importerFormat) {
+        this.importerFormat.set(importerFormat);
     }
 
     public double getAmount() {

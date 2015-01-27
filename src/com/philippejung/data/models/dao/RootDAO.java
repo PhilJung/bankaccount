@@ -1,4 +1,4 @@
-package com.philippejung.data.models;
+package com.philippejung.data.models.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

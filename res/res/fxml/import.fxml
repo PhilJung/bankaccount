@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -10,6 +11,8 @@
          <children>
             <TextField fx:id="filePath" HBox.hgrow="ALWAYS" />
             <Button fx:id="fileBrowse" mnemonicParsing="false" onAction="#onButtonFileBrowseClicked" text="..." HBox.hgrow="NEVER" />
+            <Label maxHeight="1.7976931348623157E308" text="Importer dans:" HBox.hgrow="NEVER" />
+            <ComboBox fx:id="accountList" />
             <Button mnemonicParsing="false" onAction="#onButtonReadFileClicked" text="Lire le fichier" HBox.hgrow="NEVER" />
          </children>
          <VBox.margin>
