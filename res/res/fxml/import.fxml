@@ -30,7 +30,7 @@
              <cellValueFactory><PropertyValueFactory property="date" />
              </cellValueFactory>
           </TableColumn>
-           <TableColumn fx:id="typeColumn" editable="false" prefWidth="50.0" resizable="false" text="T">
+           <TableColumn fx:id="typeColumn" editable="false" prefWidth="100.0" resizable="false" text="T">
               <cellValueFactory><PropertyValueFactory property="type" />
               </cellValueFactory>
            </TableColumn>

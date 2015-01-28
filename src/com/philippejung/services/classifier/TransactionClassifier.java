@@ -1,15 +1,15 @@
-package com.philippejung.services;
+package com.philippejung.services.classifier;
 
 import com.philippejung.data.models.logical.TransactionDTO;
+import com.philippejung.data.models.logical.TypeOfTransaction;
 import javafx.collections.ObservableList;
 
-import javax.xml.crypto.dsig.TransformService;
 import java.util.ArrayList;
 
 /**
  * Created by philippe on 28/01/15.
  */
-public class MovementClassifier {
+public class TransactionClassifier {
 
     private ObservableList<TransactionDTO> items;
     private ArrayList<Classifier> allClassifiers = new ArrayList<Classifier>();
@@ -32,6 +32,7 @@ public class MovementClassifier {
 
     public void registerAllClassifiers() {
         registerAmountClassifier();
+        registerTransferClassifier();
     }
 
     interface Classifier {
@@ -41,9 +42,21 @@ public class MovementClassifier {
     private void registerAmountClassifier() {
         allClassifiers.add( (dto) -> {
             if (dto.getAmount() > 0)
-                dto.setType(TransactionDTO.INCOME);
+                dto.setType(TypeOfTransaction.INCOME);
             else
-                dto.setType(TransactionDTO.EXPENSE);
+                dto.setType(TypeOfTransaction.EXPENSE);
         });
     }
+
+    private void registerTransferClassifier() {
+        allClassifiers.add( (dto) -> {
+            if (dto.getDetail().contains("VIREMENT")) {
+                if (dto.getAmount() > 0)
+                    dto.setType(TypeOfTransaction.TRANSFER_FROM);
+                else
+                    dto.setType(TypeOfTransaction.TRANSFER_TO);
+            }
+        });
+    }
+
 }

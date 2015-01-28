@@ -1,9 +1,10 @@
 package com.philippejung.controller;
 
 import com.philippejung.data.models.logical.TransactionDTO;
+import com.philippejung.data.models.logical.TypeOfTransaction;
 import com.philippejung.main.MainApp;
 import com.philippejung.services.FileImporter;
-import com.philippejung.services.MovementClassifier;
+import com.philippejung.services.classifier.TransactionClassifier;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,13 +32,17 @@ public class ImportController implements Initializable {
     private ComboBox accountList;
     @FXML
     private TableColumn<TransactionDTO, Boolean> mustBeImportedColumn;
-
+    @FXML
+    private TableColumn<TransactionDTO, String> typeColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mustBeImportedColumn.setCellFactory(
                 (p) -> { return new CheckBoxTableCell<TransactionDTO, Boolean>(); }
         );
+//        typeColumn.setCellValueFactory(
+//                (p) -> { return p.getValue().getType(); }
+//        );
     }
 
     public void onButtonFileBrowseClicked(ActionEvent actionEvent) {
@@ -77,10 +82,9 @@ public class ImportController implements Initializable {
     }
 
     public void onAnalyzeDataButtonClicked(ActionEvent actionEvent) {
-        MovementClassifier movementClassifier = new MovementClassifier();
-        movementClassifier.registerAllClassifiers();
-        movementClassifier.setItems(importTable.getItems());
-        movementClassifier.classify();
-
+        TransactionClassifier transactionClassifier = new TransactionClassifier();
+        transactionClassifier.registerAllClassifiers();
+        transactionClassifier.setItems(importTable.getItems());
+        transactionClassifier.classify();
     }
 }

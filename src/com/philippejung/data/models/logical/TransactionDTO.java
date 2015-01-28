@@ -9,14 +9,9 @@ import java.time.LocalDate;
  */
 public class TransactionDTO {
 
-    public final static Integer INCOME = 1;
-    public final static Integer EXPENSE = 2;
-    public final static Integer MOVE_TO = 3;
-    public final static Integer MOVE_FROM = 4;
-
     private final SimpleBooleanProperty mustBeImported;
     private final SimpleObjectProperty<LocalDate> date;
-    private final SimpleIntegerProperty type;
+    private final SimpleObjectProperty<TypeOfTransaction> type;
     private final SimpleIntegerProperty otherAccountId;
     private final SimpleIntegerProperty otherTransactionId;
     private final SimpleIntegerProperty wayOfPaymentId;
@@ -27,7 +22,7 @@ public class TransactionDTO {
     public TransactionDTO() {
         mustBeImported = new SimpleBooleanProperty(true);
         date = new SimpleObjectProperty<LocalDate>();
-        type = new SimpleIntegerProperty();
+        type = new SimpleObjectProperty<TypeOfTransaction>();
         otherAccountId = new SimpleIntegerProperty();
         otherTransactionId = new SimpleIntegerProperty();
         wayOfPaymentId = new SimpleIntegerProperty();
@@ -60,15 +55,15 @@ public class TransactionDTO {
         this.date.set(date);
     }
 
-    public int getType() {
+    public TypeOfTransaction getType() {
         return type.get();
     }
 
-    public SimpleIntegerProperty typeProperty() {
+    public SimpleObjectProperty<TypeOfTransaction> typeProperty() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(TypeOfTransaction type) {
         this.type.set(type);
     }
 
