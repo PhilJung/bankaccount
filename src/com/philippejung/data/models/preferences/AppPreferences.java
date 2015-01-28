@@ -1,4 +1,4 @@
-package com.philippejung.data;
+package com.philippejung.data.models.preferences;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +15,6 @@ public class AppPreferences {
 
     private final static String K_DATABASE_PATH = "DatabasePath";
     private final static String V_DATABASE_PATH = "/home/philippe/";
-
 
     private Properties propBackend;
 

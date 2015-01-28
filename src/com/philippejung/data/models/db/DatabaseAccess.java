@@ -1,4 +1,4 @@
-package com.philippejung.data;
+package com.philippejung.data.models.db;
 
 import com.philippejung.data.models.dao.RootDAO;
 

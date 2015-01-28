@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /**
  * Created by philippe on 25/01/15.
  */
-public class MovementDAO extends RootDAO {
+public class TransactionDAO extends RootDAO {
     private Date date;
     private Integer type;
     private Integer otherAccountId;
@@ -18,7 +18,7 @@ public class MovementDAO extends RootDAO {
     private String detail;
     private String comment;
 
-    public MovementDAO() {
+    public TransactionDAO() {
         super();
     }
 
@@ -97,10 +97,4 @@ public class MovementDAO extends RootDAO {
         this.comment = comment;
     }
 
-    public final static class MovementType {
-        public final static int INCOME = 1;
-        public final static int EXPENSE = 2;
-        public final static int MOVE_TO = 3;
-        public final static int MOVE_FROM = 4;
-    }
 }

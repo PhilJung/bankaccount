@@ -40,7 +40,8 @@ public class MainApp extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
+        setUserAgentStylesheet(STYLESHEET_MODENA);
         this.primaryStage = primaryStage;
         primaryStage.setTitle("BankAccount");
         initRootLayout();

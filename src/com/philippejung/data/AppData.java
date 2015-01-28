@@ -1,7 +1,9 @@
 package com.philippejung.data;
 
+import com.philippejung.data.models.db.DatabaseAccess;
 import com.philippejung.data.models.dao.AccountDAO;
 import com.philippejung.data.models.logical.AccountDTO;
+import com.philippejung.data.models.preferences.AppPreferences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

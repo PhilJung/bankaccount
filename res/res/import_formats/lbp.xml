@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <format name="lbp">
+    <dateformat>dd/MM/yyyy</dateformat>
     <line>
         <pattern>Numéro Compte   ;(.*)</pattern>
         <sample>Numéro Compte   ;1235400JK33</sample>

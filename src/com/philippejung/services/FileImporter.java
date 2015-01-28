@@ -1,6 +1,6 @@
 package com.philippejung.services;
 
-import com.philippejung.data.models.dao.MovementDAO;
+import com.philippejung.data.models.logical.TransactionDTO;
 import com.philippejung.view.utils.AlertPopup;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -16,7 +16,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -28,15 +29,16 @@ import java.util.regex.PatternSyntaxException;
  */
 public class FileImporter {
     private ArrayList<LineMatcher> allLineMatchers = new ArrayList<LineMatcher>();
+    private DateTimeFormatter dateFormat;
 
     // Imported data
     private String importedAccountNumber;
 
-    public ArrayList<MovementDAO> getAllImportedMovements() {
+    public ArrayList<TransactionDTO> getAllImportedMovements() {
         return allImportedMovements;
     }
 
-    private ArrayList<MovementDAO> allImportedMovements = new ArrayList<MovementDAO>();
+    private ArrayList<TransactionDTO> allImportedMovements = new ArrayList<TransactionDTO>();
 
     /**
      * Constructor
@@ -75,6 +77,8 @@ public class FileImporter {
                             + ".xml.\nThe application will exit.", e
             );            Platform.exit();
         }
+        String df = doc.getElementsByTagName("dateformat").item(0).getTextContent();
+        dateFormat = DateTimeFormatter.ofPattern(df);
         NodeList allMatchersNode= doc.getElementsByTagName("line");
         for (int matcherIndex = 0; matcherIndex < allMatchersNode.getLength(); matcherIndex++) {
             Node matcherNode = allMatchersNode.item(matcherIndex);
@@ -102,19 +106,12 @@ public class FileImporter {
                         if (lineMatcher.getMatchedAccountNumber()!=null) {
                             importedAccountNumber = lineMatcher.getMatchedAccountNumber();
                         } else {
-                            MovementDAO movementDAO = new MovementDAO();
-                            movementDAO.setAmount(lineMatcher.getAmount());
-                            movementDAO.setComment(lineMatcher.getComment());;
-                            movementDAO.setDate(lineMatcher.getDate());;
-                            movementDAO.setDetail(lineMatcher.getDetail());
-                            movementDAO.setOtherAccountId(null);
-                            movementDAO.setOtherTransactionId(null);
-                            if (movementDAO.getAmount() > 0)
-                                movementDAO.setType(MovementDAO.MovementType.INCOME);
-                            else
-                                movementDAO.setType(MovementDAO.MovementType.EXPENSE);
-                            movementDAO.setWayOfPaymentId(null);
-                            allImportedMovements.add(movementDAO);
+                            TransactionDTO transactionDTO = new TransactionDTO();
+                            transactionDTO.setAmount(lineMatcher.getAmount());
+                            transactionDTO.setComment(lineMatcher.getComment());;
+                            transactionDTO.setDate(lineMatcher.getDate());;
+                            transactionDTO.setDetail(lineMatcher.getDetail());
+                            allImportedMovements.add(transactionDTO);
                         }
                     }
                 }
@@ -128,18 +125,17 @@ public class FileImporter {
         }
     }
 
-    protected final static class LineMatcher {
+    protected final class LineMatcher {
         public String pattern;
         private Pattern regexpPattern;
         private Matcher regexpMatcher;
-        public String sample;
-        public String accountNumber;
-        public String date;
-        public String detail;
-        public String comment;
-        public String amount;
+        public String indexOfAccountNumberInRegexp;
+        public String indexOfDateInRegexp;
+        public String indexOfDetailInRegexp;
+        public String indexOfCommentInRegexp;
+        public String indexOfAmountInRegexp;
 
-        private static String getValue(Element parent, String key) {
+        private String getValue(Element parent, String key) {
             NodeList children = parent.getElementsByTagName(key);
             if (children.getLength()==0) return null;
             return children.item(0).getTextContent();
@@ -159,11 +155,10 @@ public class FileImporter {
                 Platform.exit();
             }
             regexpMatcher = null;
-            sample = getValue(matcherElement, "sample");
-            accountNumber = getValue(matcherElement, "accountNumber");
-            date = getValue(matcherElement, "date");
-            detail = getValue(matcherElement, "detail");
-            amount = getValue(matcherElement, "amount");
+            indexOfAccountNumberInRegexp = getValue(matcherElement, "accountNumber");
+            indexOfDateInRegexp = getValue(matcherElement, "date");
+            indexOfDetailInRegexp = getValue(matcherElement, "detail");
+            indexOfAmountInRegexp = getValue(matcherElement, "amount");
         }
 
         public boolean match(String line) {
@@ -178,37 +173,46 @@ public class FileImporter {
 
         public String getMatchedAccountNumber() {
             assert(regexpMatcher!=null);
-            if (accountNumber==null) return null;
-            int index = Integer.parseInt(accountNumber);
+            if (indexOfAccountNumberInRegexp==null) return null;
+            int index = Integer.parseInt(indexOfAccountNumberInRegexp);
             return regexpMatcher.group(index);
         }
 
         public Double getAmount() {
             assert(regexpMatcher!=null);
-            if (amount==null) return null;
-            int index = Integer.parseInt(amount);
+            if (indexOfAmountInRegexp==null) return null;
+            int index = Integer.parseInt(indexOfAmountInRegexp);
             return Double.parseDouble(regexpMatcher.group(index).replace(',', '.'));
         }
 
         public String getComment() {
             assert(regexpMatcher!=null);
-            if (comment==null) return null;
-            int index = Integer.parseInt(comment);
+            if (indexOfCommentInRegexp==null) return null;
+            int index = Integer.parseInt(indexOfCommentInRegexp);
             return regexpMatcher.group(index);
         }
 
         public String getDetail() {
             assert(regexpMatcher!=null);
-            if (detail==null) return null;
-            int index = Integer.parseInt(detail);
+            if (indexOfDetailInRegexp==null) return null;
+            int index = Integer.parseInt(indexOfDetailInRegexp);
             return regexpMatcher.group(index);
         }
 
-        public Date getDate() {
+        public LocalDate getDate() {
             assert(regexpMatcher!=null);
-            if (date==null) return null;
-            int index = Integer.parseInt(date);
-            return Date.valueOf(regexpMatcher.group(index));
+            if (indexOfDateInRegexp==null) return null;
+            int index = Integer.parseInt(indexOfDateInRegexp);
+            LocalDate date = null;
+//            try {
+                date = LocalDate.parse(regexpMatcher.group(index), dateFormat);
+//            } catch (ParseException e) {
+//                AlertPopup.alert(Alert.AlertType.ERROR, "Erreur", "Erreur durant l'import du fichier.",
+//                        "La date " + regexpMatcher.group(index) + " ne peut être analysée correctement.\n" +
+//                        "L'application va quitter.");
+//                Platform.exit();
+//            }
+            return date;
         }
 
     }

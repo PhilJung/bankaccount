@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.controller.ImportController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.controller.ImportController">
    <children>
       <HBox spacing="5.0">
          <children>
@@ -19,17 +20,47 @@
             <Insets />
          </VBox.margin>
       </HBox>
-      <TableView fx:id="importTable" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="importTable" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="mustBeImportedColumn" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" resizable="false" sortable="false" text="Importer">
+                <cellValueFactory><PropertyValueFactory property="mustBeImported" />
+                </cellValueFactory>
+            </TableColumn>
+          <TableColumn fx:id="dateColumn" minWidth="80.0" prefWidth="85.0" resizable="false" text="Date">
+             <cellValueFactory><PropertyValueFactory property="date" />
+             </cellValueFactory>
+          </TableColumn>
+           <TableColumn fx:id="typeColumn" editable="false" prefWidth="50.0" resizable="false" text="T">
+              <cellValueFactory><PropertyValueFactory property="type" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="wayOfPaymentColumn" editable="false" text="Moyen">
+              <cellValueFactory><PropertyValueFactory property="wayOfPaymentId" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="amountColumn" editable="false" minWidth="75.0" prefWidth="75.0" styleClass="amountColumn" text="Montant">
+              <cellValueFactory><PropertyValueFactory property="amount" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="detailColumn" editable="false" prefWidth="400.0" text="Détail">
+              <cellValueFactory><PropertyValueFactory property="detail" />
+              </cellValueFactory>
+           </TableColumn>
+           <TableColumn fx:id="commentColumn" prefWidth="125.0" text="Commentaire">
+              <cellValueFactory><PropertyValueFactory property="comment" />
+              </cellValueFactory>
+           </TableColumn>
         </columns>
       </TableView>
-      <AnchorPane>
+      <HBox alignment="TOP_RIGHT" spacing="5.0" VBox.vgrow="NEVER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onButtonImportDataClicked" text="Importer les données" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" />
+            <Button fx:id="btAnalyserDonnees" mnemonicParsing="false" onAction="#onAnalyzeDataButtonClicked" text="Analyser les données" />
+            <Button mnemonicParsing="false" onAction="#onButtonImportDataClicked" text="Importer les données" />
          </children>
-      </AnchorPane>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
    </children>
    <opaqueInsets>
       <Insets />
