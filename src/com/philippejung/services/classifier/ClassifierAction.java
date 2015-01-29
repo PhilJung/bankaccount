@@ -7,50 +7,69 @@ import com.philippejung.data.models.logical.TypeOfTransaction;
  * Created by philippe on 29/01/15.
  */
 public class ClassifierAction {
-    private TypeOfTransaction setTypeAction = TypeOfTransaction.NONE;
-    private String setWayOfPayment = null;
-    private String setAccount = null;
-    private String setCategory = null;
+    private TypeOfTransaction newTypeValue = TypeOfTransaction.NONE;
+    private String newWayOfPaymentValue = null;
+    private String newOtherAccountValue = null;
+    private String newCategoryValue = null;
+    private boolean stopFurtherClassification = false;
 
-    public ClassifierAction(TypeOfTransaction setTypeAction, String setWayOfPayment, String setAccount, String setCategory) {
-        this.setTypeAction = setTypeAction;
-        this.setWayOfPayment = setWayOfPayment;
-        this.setAccount = setAccount;
-        this.setCategory = setCategory;
+    public ClassifierAction(TypeOfTransaction newTypeValue, String newWayOfPaymentValue, String newOtherAccountValue,
+                            String setCategory, boolean stopFurtherClassification) {
+        this.newTypeValue = newTypeValue;
+        this.newWayOfPaymentValue = newWayOfPaymentValue;
+        this.newOtherAccountValue = newOtherAccountValue;
+        this.newCategoryValue = setCategory;
+        this.stopFurtherClassification = stopFurtherClassification;
     }
 
-    public TypeOfTransaction getSetTypeAction() {
-        return setTypeAction;
+    public boolean isStopFurtherClassification() {
+        return stopFurtherClassification;
     }
 
-    public void setSetTypeAction(TypeOfTransaction setTypeAction) {
-        this.setTypeAction = setTypeAction;
+    public void setStopFurtherClassification(boolean stopFurtherClassification) {
+        this.stopFurtherClassification = stopFurtherClassification;
     }
 
-    public String getSetWayOfPayment() {
-        return setWayOfPayment;
+    public TypeOfTransaction getNewTypeValue() {
+        return newTypeValue;
     }
 
-    public void setSetWayOfPayment(String setWayOfPayment) {
-        this.setWayOfPayment = setWayOfPayment;
+    public void setNewTypeValue(TypeOfTransaction newTypeValue) {
+        this.newTypeValue = newTypeValue;
     }
 
-    public String getSetAccount() {
-        return setAccount;
+    public String getNewWayOfPaymentValue() {
+        return newWayOfPaymentValue;
     }
 
-    public void setSetAccount(String setAccount) {
-        this.setAccount = setAccount;
+    public void setNewWayOfPaymentValue(String newWayOfPaymentValue) {
+        this.newWayOfPaymentValue = newWayOfPaymentValue;
     }
 
-    public String getSetCategory() {
-        return setCategory;
+    public String getNewOtherAccountValue() {
+        return newOtherAccountValue;
     }
 
-    public void setSetCategory(String setCategory) {
-        this.setCategory = setCategory;
+    public void setNewOtherAccountValue(String newOtherAccountValue) {
+        this.newOtherAccountValue = newOtherAccountValue;
+    }
+
+    public String getNewCategoryValue() {
+        return newCategoryValue;
+    }
+
+    public void setNewCategoryValue(String newCategoryValue) {
+        this.newCategoryValue = newCategoryValue;
     }
 
     public void apply(TransactionDTO dto) {
+        if (newTypeValue !=TypeOfTransaction.NONE)
+            dto.setType(newTypeValue);
+        if (newWayOfPaymentValue != null)
+            dto.setWayOfPayment(newWayOfPaymentValue);
+        if (newOtherAccountValue != null)
+            dto.setOtherAccount(newOtherAccountValue);
+        if (newCategoryValue != null)
+            dto.setCategory(newCategoryValue);
     }
 }

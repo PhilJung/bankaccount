@@ -1,8 +1,12 @@
 package com.philippejung.data.models.db;
 
 import com.philippejung.data.models.dao.RootDAO;
+import com.philippejung.view.utils.AlertPopup;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
 
 import javax.swing.*;
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -14,6 +18,7 @@ import static javax.swing.JOptionPane.ERROR_MESSAGE;
 public class DatabaseAccess {
 
     Connection connection = null;
+    private String pathToDB;
 
     // This table contains all requests to be applied from an empty database to create the most
     // up to date database.
@@ -30,14 +35,10 @@ public class DatabaseAccess {
             "INSERT INTO wayOfPayment (name) VALUES ('CB Hellobank'), ('CB LBP'), ('Cheque Hellobank'), " +
                     "('Cheque LBP'), ('Paypal')",
             "INSERT INTO account VALUES (1, 'LBP', '0000');"
-
     };
 
-    public DatabaseAccess(String pathToDB) throws ClassNotFoundException {
-        // load the sqlite-JDBC driver using the current class loader
-        Class.forName("org.sqlite.JDBC");
-        openDB(pathToDB);
-        checkForUpdates();
+    public DatabaseAccess(String pathToDB) {
+        this.pathToDB = pathToDB;
     }
 
     private void handleException(SQLException exc) {
@@ -46,13 +47,32 @@ public class DatabaseAccess {
                 "SQL State: " + exc.getSQLState() + "\n" +
                 "Message: " + exc.getMessage() + "\n" +
                 "Application will quit.";
-        JOptionPane.showMessageDialog(null, msg, "Database error", ERROR_MESSAGE);
-        System.exit(0);
+        AlertPopup.alert(Alert.AlertType.ERROR, "Database error", "Exception occurred during database acces.", msg, exc);
+        closeDB();
+        Platform.exit();
+    }
+
+    private void checkConnection() {
+        if (connection == null) {
+            // load the sqlite-JDBC driver using the current class loader
+            try {
+                Class.forName("org.sqlite.JDBC");
+            } catch (ClassNotFoundException exc) {
+                AlertPopup.alert(
+                        Alert.AlertType.ERROR, "Error", "Something prevents the program to continue",
+                        "Impossible to load JDBC - Sqlite driver. Program will exit.", exc
+                );
+                Platform.exit();
+            }
+            openDB(pathToDB);
+            checkForUpdates();
+        }
     }
 
     private int executeUpdate(String update) {
         int retVal = 0;
         Statement statement = null;
+        checkConnection();
         try {
             statement = connection.createStatement();
             retVal = statement.executeUpdate(update);
@@ -72,6 +92,7 @@ public class DatabaseAccess {
         Statement statement = null;
         ArrayList<T> retVal = new ArrayList<T>();
         ResultSet rs=null;
+        checkConnection();
         try {
             statement = connection.createStatement();
             rs = statement.executeQuery(selector);
@@ -103,6 +124,7 @@ public class DatabaseAccess {
 
     private int selectOneNumber(String request) {
         int retVal = -1;
+        checkConnection();
         try {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
@@ -121,7 +143,7 @@ public class DatabaseAccess {
     private void checkForUpdates() {
         int currentVersion = selectOneNumber("SELECT MAX(id) FROM schema_version");
         System.out.println("Current schema version: " + currentVersion);
-        if (ALL_UPDATES.length > currentVersion) {
+        if (ALL_UPDATES.length > currentVersion + 1) {
             for (int id=currentVersion+1 ; id<ALL_UPDATES.length; id++) {
                 // Apply allUpdates[id]
                 System.out.println("Applying " + ALL_UPDATES[id]);
@@ -132,6 +154,11 @@ public class DatabaseAccess {
     }
 
     private void openDB(String pathToDB) {
+        // Ensure path exists
+        File dir = new File(pathToDB);
+        if (!dir.isDirectory()) {
+            dir.mkdirs();
+        }
         try {
             // create a database connection
             connection = DriverManager.getConnection("jdbc:sqlite:" + pathToDB + "bankaccount.db");

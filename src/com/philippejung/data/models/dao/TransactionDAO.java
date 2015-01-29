@@ -33,6 +33,7 @@ public class TransactionDAO extends RootDAO {
         this.detail = rs.getString("detail");
         this.comment = rs.getString("comment");
     }
+
     public Date getDate() {
         return date;
     }

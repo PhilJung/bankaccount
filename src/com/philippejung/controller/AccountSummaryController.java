@@ -18,6 +18,6 @@ public class AccountSummaryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tableView.setItems(MainApp.getData().getAllAccountSummary());
+        tableView.setItems(MainApp.getData().getAllAccounts());
     }
 }

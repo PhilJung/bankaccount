@@ -3,6 +3,7 @@ package com.philippejung.data;
 import com.philippejung.data.models.db.DatabaseAccess;
 import com.philippejung.data.models.dao.AccountDAO;
 import com.philippejung.data.models.logical.AccountDTO;
+import com.philippejung.data.models.logical.WayOfPaymentDTO;
 import com.philippejung.data.models.preferences.AppPreferences;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,31 +16,32 @@ import java.util.HashMap;
  */
 public class AppData {
     private DatabaseAccess dbAccess = null;
-    private ObservableList<AccountDTO> allAccountSummary;
-    private HashMap<Integer, AccountDAO> allAccounts;
+    private ObservableList<AccountDTO> allAccounts;
+    private ObservableList<WayOfPaymentDTO> allWaysOfPayment;
     private AppPreferences preferences;
 
-    public AppData() throws ClassNotFoundException {
+    public void init() {
         preferences = new AppPreferences();
         preferences.loadPreferences();
-        dbAccess = new DatabaseAccess("/home/philippe/IdeaProjects/bankaccount/");
-        allAccountSummary = FXCollections.observableArrayList();
+        dbAccess = new DatabaseAccess("/home/philippe/.bankaccount/");
         readAllAccounts();
+        readAllWaysOfPayment();
     }
 
     public AppPreferences getPreferences() {
         return preferences;
     }
 
+    public DatabaseAccess getDbAccess() {
+        return dbAccess;
+    }
+
     private void readAllAccounts() {
-        allAccounts = new HashMap<Integer, AccountDAO>();
-        ArrayList<AccountDAO> tmp = dbAccess.select("SELECT * FROM account", AccountDAO.class);
-        for(AccountDAO account : tmp) {
-            System.out.println("Trouvé compte " + account.getName());
-            allAccounts.put(account.getId(), account);
-            AccountDTO as = new AccountDTO(account.getName(), 1234.34, "LBP");
-            allAccountSummary.add(as);
-        }
+        allAccounts = AccountDTO.getAll();
+    }
+
+    private void readAllWaysOfPayment() {
+        allWaysOfPayment = WayOfPaymentDTO.getAll();
     }
 
     public void close() {
@@ -49,7 +51,19 @@ public class AppData {
         preferences = null;
     }
 
-    public ObservableList<AccountDTO> getAllAccountSummary() {
-        return allAccountSummary;
+    public ObservableList<AccountDTO> getAllAccounts() {
+        return allAccounts;
+    }
+
+    public Integer getWayOfPaymentByName(String wayOfPaymentName) {
+        return null;
+    }
+
+    public Integer getAccountByName(String accountName) {
+        return null;
+    }
+
+    public Integer getCategoryByName(String categoryName) {
+        return null;
     }
 }

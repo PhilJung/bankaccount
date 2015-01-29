@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * Created by philippe on 25/01/15.
  */
-public class RootDAO {
+public abstract class RootDAO {
     private Integer id;
 
     public RootDAO() {

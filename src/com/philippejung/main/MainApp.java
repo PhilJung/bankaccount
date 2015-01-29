@@ -18,7 +18,7 @@ import javax.swing.*;
 public class MainApp extends Application {
 
 //    private AppFrame appFrame;
-    private AppData appData;
+    private AppData appData = null;
     private static MainApp appInstance = null;
     private Stage primaryStage;
     private MainFrameController mainController = null;
@@ -36,8 +36,13 @@ public class MainApp extends Application {
         return getInstance().getAppData();
     }
 
-    private AppData getAppData() { return appData; }
-
+    private AppData getAppData() {
+        if (appData == null) {
+            appData = new AppData();
+            appData.init();
+        }
+        return appData;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -61,17 +66,6 @@ public class MainApp extends Application {
     @Override
     public void init() throws Exception {
         super.init();
-        try {
-            appData = new AppData();
-        } catch (ClassNotFoundException exc) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Something prevent the program to continue");
-            alert.setContentText("Impossible to load JDBC - Sqlite driver. Program will exit.");
-            alert.showAndWait();
-            Platform.exit();
-        }
-
     }
 
     @Override

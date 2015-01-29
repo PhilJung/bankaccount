@@ -1,34 +1,37 @@
 package com.philippejung.data.models.logical;
 
+import com.philippejung.main.MainApp;
 import javafx.beans.property.*;
+import sun.applet.Main;
 
 import java.time.LocalDate;
 
 /**
  * Created by philippe on 28/01/15.
  */
-public class TransactionDTO {
+public class TransactionDTO extends RootDTO {
 
-    private final SimpleBooleanProperty mustBeImported;
-    private final SimpleObjectProperty<LocalDate> date;
-    private final SimpleObjectProperty<TypeOfTransaction> type;
-    private final SimpleIntegerProperty otherAccountId;
-    private final SimpleIntegerProperty otherTransactionId;
-    private final SimpleIntegerProperty wayOfPaymentId;
-    private final SimpleDoubleProperty amount;
-    private final SimpleStringProperty detail;
-    private final SimpleStringProperty comment;
+    private final SimpleBooleanProperty mustBeImported = new SimpleBooleanProperty(true);
+    private final SimpleObjectProperty<LocalDate> date = new SimpleObjectProperty<LocalDate>();
+    private final SimpleObjectProperty<TypeOfTransaction> type  = new SimpleObjectProperty<TypeOfTransaction>();
+    private final SimpleIntegerProperty otherAccountId= new SimpleIntegerProperty();
+    private final SimpleIntegerProperty otherTransactionId= new SimpleIntegerProperty();;
+    private final SimpleIntegerProperty wayOfPaymentId= new SimpleIntegerProperty();;
+    private final SimpleDoubleProperty amount = new SimpleDoubleProperty();
+    private final SimpleStringProperty detail= new SimpleStringProperty();
+    private final SimpleStringProperty comment= new SimpleStringProperty();
 
     public TransactionDTO() {
-        mustBeImported = new SimpleBooleanProperty(true);
-        date = new SimpleObjectProperty<LocalDate>();
-        type = new SimpleObjectProperty<TypeOfTransaction>();
-        otherAccountId = new SimpleIntegerProperty();
-        otherTransactionId = new SimpleIntegerProperty();
-        wayOfPaymentId = new SimpleIntegerProperty();
-        amount = new SimpleDoubleProperty();
-        detail = new SimpleStringProperty();
-        comment = new SimpleStringProperty();
+        super(-1);
+        setMustBeImported(true);
+        setDate(LocalDate.MIN);
+        setType(TypeOfTransaction.NONE);
+        setOtherAccountId(-1);
+        setOtherTransactionId(-1);
+        setWayOfPaymentId(-1);
+        setAmount(0.0);
+        setDetail(null);
+        setComment(null);
     }
 
     public boolean getMustBeImported() {
@@ -137,5 +140,23 @@ public class TransactionDTO {
 
     public void setComment(String comment) {
         this.comment.set(comment);
+    }
+
+    public void setWayOfPayment(String wayOfPaymentName) {
+        Integer wopId = MainApp.getData().getWayOfPaymentByName(wayOfPaymentName);
+        if (wopId != -1)
+            setWayOfPaymentId(wopId);
+    }
+
+    public void setOtherAccount(String otherAccountName) {
+        Integer oaId = MainApp.getData().getAccountByName(otherAccountName);
+        if (oaId != -1)
+            setOtherAccountId(oaId);
+    }
+
+    public void setCategory(String categoryName) {
+        Integer catId = MainApp.getData().getCategoryByName(categoryName);
+        if (catId != -1)
+            setOtherAccountId(catId);
     }
 }

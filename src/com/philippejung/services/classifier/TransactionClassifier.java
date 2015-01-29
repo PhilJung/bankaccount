@@ -25,7 +25,9 @@ public class TransactionClassifier {
     public void classify() {
         for(TransactionDTO oneTransaction : getItems()) {
             for(Classifier classifier: allClassifiers) {
-                classifier.classify(oneTransaction);
+                if (!classifier.classify(oneTransaction))
+                    // Classifier has decided we should stop classification on this item
+                    break;
             }
         }
     }
@@ -36,7 +38,9 @@ public class TransactionClassifier {
     }
 
     interface Classifier {
-        public void classify(TransactionDTO dto);
+        // Perform one attempt of classification
+        // Return false to stop further classification of the dto
+        public boolean classify(TransactionDTO dto);
     }
 
     private void registerAmountClassifier() {
@@ -45,6 +49,7 @@ public class TransactionClassifier {
                 dto.setType(TypeOfTransaction.INCOME);
             else
                 dto.setType(TypeOfTransaction.EXPENSE);
+            return true;
         });
     }
 
@@ -56,6 +61,7 @@ public class TransactionClassifier {
                 else
                     dto.setType(TypeOfTransaction.TRANSFER_TO);
             }
+            return true;
         });
     }
 

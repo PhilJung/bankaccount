@@ -5,8 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox fx:id="mainFrame" prefHeight="600.0" fx:controller="com.philippejung.controller.MainFrameController" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="mainFrame" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/res/css/appframe.css" fx:controller="com.philippejung.controller.MainFrameController">
    <children>
       <MenuBar>
         <menus>
@@ -25,9 +24,9 @@
       <ToolBar VBox.vgrow="NEVER">
         <items>
           <Button mnemonicParsing="false" text="Accueil" />
-            <Button mnemonicParsing="false" text="Comptes"/>
-            <Button mnemonicParsing="false" text="Importer"  onAction="#onToolbarImport"/>
-            <Button mnemonicParsing="false" text="Budget" onAction="#onToolbarBudget" />
+            <Button mnemonicParsing="false" text="Comptes" />
+            <Button mnemonicParsing="false" onAction="#onToolbarImport" text="Importer" />
+            <Button mnemonicParsing="false" onAction="#onToolbarBudget" text="Budget" />
         </items>
          <VBox.margin>
             <Insets />
@@ -37,7 +36,7 @@
         <tabs>
         </tabs>
       </TabPane>
-      <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+      <HBox id="statusBar" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
          <children>
             <Pane HBox.hgrow="ALWAYS" />
             <Label text="Label" HBox.hgrow="ALWAYS" />
