@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-
-<VBox fx:id="mainFrame" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/res/css/appframe.css" fx:controller="com.philippejung.controller.MainFrameController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/res/css/appframe.css" fx:controller="com.philippejung.controller.MainFrameController">
    <children>
       <MenuBar>
         <menus>
           <Menu text="_Fichier">
             <items>
-              <MenuItem fx:id="menuFileExit" onAction="#onMenuFileExit" text="_Quitter" />
+              <MenuItem onAction="#onMenuFileExit" text="_Quitter" />
             </items>
           </Menu>
           <Menu text="_Aide">
             <items>
-              <MenuItem fx:id="menuHelpAbout" onAction="#onMenuHelpAbout" text="_A propos" />
+              <MenuItem onAction="#onMenuHelpAbout" text="_A propos" />
             </items>
           </Menu>
         </menus>

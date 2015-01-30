@@ -3,7 +3,6 @@ package com.philippejung.data.models.preferences;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.prefs.Preferences;
 
 /**
  * Created by philippe on 26/01/15.
@@ -22,20 +21,8 @@ public class AppPreferences {
         return propBackend.getProperty(K_DEFAULT_IMPORT_PATH, V_DEFAULT_IMPORT_PATH);
     }
 
-    public void setImportDefaultPath(String importDefaultPath) {
-        assert(false);
-    }
-
     public String getDatabasePath() {
         return propBackend.getProperty(K_DATABASE_PATH, V_DATABASE_PATH);
-    }
-
-    public void setDatabasePath(String databasePath) {
-        assert(false);
-    }
-
-    public void savePreferences() {
-        assert(false);
     }
 
     public void loadPreferences() {

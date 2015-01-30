@@ -1,8 +1,8 @@
 package com.philippejung.data.models.logical;
 
+import com.philippejung.data.models.dao.TransactionDAO;
 import com.philippejung.main.MainApp;
 import javafx.beans.property.*;
-import sun.applet.Main;
 
 import java.time.LocalDate;
 
@@ -12,11 +12,11 @@ import java.time.LocalDate;
 public class TransactionDTO extends RootDTO {
 
     private final SimpleBooleanProperty mustBeImported = new SimpleBooleanProperty(true);
-    private final SimpleObjectProperty<LocalDate> date = new SimpleObjectProperty<LocalDate>();
-    private final SimpleObjectProperty<TypeOfTransaction> type  = new SimpleObjectProperty<TypeOfTransaction>();
-    private final SimpleIntegerProperty otherAccountId= new SimpleIntegerProperty();
-    private final SimpleIntegerProperty otherTransactionId= new SimpleIntegerProperty();;
-    private final SimpleIntegerProperty wayOfPaymentId= new SimpleIntegerProperty();;
+    private final SimpleObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<TypeOfTransaction> type  = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<AccountDTO> otherAccount= new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<WayOfPaymentDTO> wayOfPayment= new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<CategoryDTO> category = new SimpleObjectProperty<>();
     private final SimpleDoubleProperty amount = new SimpleDoubleProperty();
     private final SimpleStringProperty detail= new SimpleStringProperty();
     private final SimpleStringProperty comment= new SimpleStringProperty();
@@ -26,12 +26,37 @@ public class TransactionDTO extends RootDTO {
         setMustBeImported(true);
         setDate(LocalDate.MIN);
         setType(TypeOfTransaction.NONE);
-        setOtherAccountId(-1);
-        setOtherTransactionId(-1);
-        setWayOfPaymentId(-1);
+        setOtherAccount(null);
+        setWayOfPayment(null);
         setAmount(0.0);
         setDetail(null);
         setComment(null);
+        setCategory(null);
+    }
+
+    public TransactionDTO(TransactionDAO dao) {
+        super(dao);
+        setMustBeImported(false);
+        setDate(dao.getDate().toLocalDate());
+        setType(TypeOfTransaction.fromInt(dao.getType()));
+        setOtherAccount(MainApp.getData().getAccountById(dao.getOtherAccountId()));
+        setWayOfPayment(MainApp.getData().getWayOfPaymentById(dao.getWayOfPaymentId()));
+        setCategory(MainApp.getData().getCategoryById(dao.getCategoryId()));
+        setAmount(dao.getAmount());
+        setDetail(dao.getDetail());
+        setComment(dao.getComment());
+    }
+
+    public void toDAO(TransactionDAO dao) {
+        super.toDAO(dao);
+        dao.setDate(new java.sql.Date(getDate().toEpochDay()));
+        dao.setType(getType().toInt());
+        dao.setOtherAccountId(idOf(getOtherAccount()));
+        dao.setWayOfPaymentId(idOf(getWayOfPayment()));
+        dao.setCategoryId(idOf(getCategory()));
+        dao.setAmount(getAmount());
+        dao.setDetail(getDetail());
+        dao.setComment(getComment());
     }
 
     public boolean getMustBeImported() {
@@ -70,40 +95,28 @@ public class TransactionDTO extends RootDTO {
         this.type.set(type);
     }
 
-    public int getOtherAccountId() {
-        return otherAccountId.get();
+    public AccountDTO getOtherAccount() {
+        return otherAccount.get();
     }
 
-    public SimpleIntegerProperty otherAccountIdProperty() {
-        return otherAccountId;
+    public SimpleObjectProperty<AccountDTO> otherAccountProperty() {
+        return otherAccount;
     }
 
-    public void setOtherAccountId(int otherAccountId) {
-        this.otherAccountId.set(otherAccountId);
+    public void setOtherAccount(AccountDTO otherAccount) {
+        this.otherAccount.set(otherAccount);
     }
 
-    public int getOtherTransactionId() {
-        return otherTransactionId.get();
+    public WayOfPaymentDTO getWayOfPayment() {
+        return wayOfPayment.get();
     }
 
-    public SimpleIntegerProperty otherTransactionIdProperty() {
-        return otherTransactionId;
+    public SimpleObjectProperty<WayOfPaymentDTO> wayOfPaymentProperty() {
+        return wayOfPayment;
     }
 
-    public void setOtherTransactionId(int otherTransactionId) {
-        this.otherTransactionId.set(otherTransactionId);
-    }
-
-    public int getWayOfPaymentId() {
-        return wayOfPaymentId.get();
-    }
-
-    public SimpleIntegerProperty wayOfPaymentIdProperty() {
-        return wayOfPaymentId;
-    }
-
-    public void setWayOfPaymentId(int wayOfPaymentId) {
-        this.wayOfPaymentId.set(wayOfPaymentId);
+    public void setWayOfPayment(WayOfPaymentDTO wayOfPayment) {
+        this.wayOfPayment.set(wayOfPayment);
     }
 
     public double getAmount() {
@@ -142,21 +155,15 @@ public class TransactionDTO extends RootDTO {
         this.comment.set(comment);
     }
 
-    public void setWayOfPayment(String wayOfPaymentName) {
-        Integer wopId = MainApp.getData().getWayOfPaymentByName(wayOfPaymentName);
-        if (wopId != -1)
-            setWayOfPaymentId(wopId);
+    public CategoryDTO getCategory() {
+        return category.get();
     }
 
-    public void setOtherAccount(String otherAccountName) {
-        Integer oaId = MainApp.getData().getAccountByName(otherAccountName);
-        if (oaId != -1)
-            setOtherAccountId(oaId);
+    public SimpleObjectProperty<CategoryDTO> categoryProperty() {
+        return category;
     }
 
-    public void setCategory(String categoryName) {
-        Integer catId = MainApp.getData().getCategoryByName(categoryName);
-        if (catId != -1)
-            setOtherAccountId(catId);
+    public void setCategory(CategoryDTO category) {
+        this.category.set(category);
     }
 }

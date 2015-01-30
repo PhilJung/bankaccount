@@ -28,17 +28,20 @@ import java.util.regex.PatternSyntaxException;
  * Created by philippe on 27/01/15.
  */
 public class FileImporter {
-    private ArrayList<LineMatcher> allLineMatchers = new ArrayList<LineMatcher>();
+    private final ArrayList<LineMatcher> allLineMatchers = new ArrayList<>();
     private DateTimeFormatter dateFormat;
-
     // Imported data
     private String importedAccountNumber;
+
+    public String getImportedAccountNumber() {
+        return importedAccountNumber;
+    }
 
     public ArrayList<TransactionDTO> getAllImportedMovements() {
         return allImportedMovements;
     }
 
-    private ArrayList<TransactionDTO> allImportedMovements = new ArrayList<TransactionDTO>();
+    private final ArrayList<TransactionDTO> allImportedMovements = new ArrayList<>();
 
     /**
      * Constructor
@@ -108,8 +111,8 @@ public class FileImporter {
                         } else {
                             TransactionDTO transactionDTO = new TransactionDTO();
                             transactionDTO.setAmount(lineMatcher.getAmount());
-                            transactionDTO.setComment(lineMatcher.getComment());;
-                            transactionDTO.setDate(lineMatcher.getDate());;
+                            transactionDTO.setComment(lineMatcher.getComment());
+                            transactionDTO.setDate(lineMatcher.getDate());
                             transactionDTO.setDetail(lineMatcher.getDetail());
                             allImportedMovements.add(transactionDTO);
                         }
@@ -117,9 +120,6 @@ public class FileImporter {
                 }
             }
             file.close();
-            file = null;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -203,7 +203,7 @@ public class FileImporter {
             assert(regexpMatcher!=null);
             if (indexOfDateInRegexp==null) return null;
             int index = Integer.parseInt(indexOfDateInRegexp);
-            LocalDate date = null;
+            LocalDate date;
 //            try {
                 date = LocalDate.parse(regexpMatcher.group(index), dateFormat);
 //            } catch (ParseException e) {

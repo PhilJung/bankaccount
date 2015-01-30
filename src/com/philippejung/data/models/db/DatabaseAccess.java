@@ -5,36 +5,77 @@ import com.philippejung.view.utils.AlertPopup;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
-import javax.swing.*;
 import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
-
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * Created by philippe on 21/01/15.
  */
 public class DatabaseAccess {
 
-    Connection connection = null;
-    private String pathToDB;
+    private Connection connection = null;
+    private final String pathToDB;
 
     // This table contains all requests to be applied from an empty database to create the most
     // up to date database.
     private final static String[] ALL_UPDATES = new String[]{
             null,
-            "CREATE TABLE IF NOT EXISTS schema_version (id INTEGER PRIMARY KEY NOT NULL, " +
+            "CREATE TABLE IF NOT EXISTS schema_version (" +
+                    "id INTEGER PRIMARY KEY NOT NULL, "  +
                     "applicationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP)",
-            "CREATE TABLE account (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)",
-            "ALTER TABLE account ADD COLUMN accountNumber TEXT",
-            "CREATE TABLE movement (id INTEGER PRIMARY KEY AUTOINCREMENT, date DATE, type INTEGER NOT NULL, " +
-                    "otherAccountId INTEGER, otherTransactionId INTEGER, wayOfPaymentId INTEGER, amount REAL," +
-                    "detail TEXT, comment TEXT)",
-            "CREATE TABLE wayOfPayment (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)",
-            "INSERT INTO wayOfPayment (name) VALUES ('CB Hellobank'), ('CB LBP'), ('Cheque Hellobank'), " +
-                    "('Cheque LBP'), ('Paypal')",
-            "INSERT INTO account VALUES (1, 'LBP', '0000');"
+            "CREATE TABLE account (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "name TEXT," +
+                    "accountNumber TEXT)",
+            "CREATE TABLE movement (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "date DATE, " +
+                    "type INTEGER NOT NULL, " +
+                    "otherAccountId INTEGER, " +
+                    "otherTransactionId INTEGER, " +
+                    "wayOfPaymentId INTEGER," +
+                    "amount REAL," +
+                    "detail TEXT," +
+                    "comment TEXT)",
+            "CREATE TABLE wayOfPayment (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "name TEXT)",
+            "CREATE TABLE category (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "name TEXT," +
+                    "isexpense INTEGER)",
+            "CREATE TABLE classifier (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "detailConditionTest TEXT," +
+                    "detailConditionValue TEXT," +
+                    "amountConditionTest TEXT," +
+                    "amountConditionValue REAL," +
+                    "newTypeId INTEGER," +
+                    "newWayOfPaymentId INTEGER," +
+                    "newOtherAccountId INTEGER," +
+                    "newCategoryId INTEGER, " +
+                    "stopFurtherClassification INTEGER)",
+            "INSERT INTO wayOfPayment VALUES (1, 'CB Hellobank')",
+            "INSERT INTO wayOfPayment VALUES (2, 'CB LBP')",
+            "INSERT INTO wayOfPayment VALUES (3, 'Cheque Hellobank')",
+            "INSERT INTO wayOfPayment VALUES (4, 'Cheque LBP')",
+            "INSERT INTO wayOfPayment VALUES (5, 'Paypal')",
+            "INSERT INTO wayOfPayment VALUES (6, 'Prélèvement LBP')",
+            "INSERT INTO account VALUES (1, 'LBP', '0000');",
+            "INSERT INTO category VALUES (1, 'Salaire', 0)",
+            "INSERT INTO category VALUES (2, 'Divers', 0)",
+            "INSERT INTO category VALUES (3, 'Alimentation', 1)",
+            "INSERT INTO category VALUES (4, 'Facture', 1)",
+            "INSERT INTO category VALUES (5, 'Divers', 1)",
+            "INSERT INTO category VALUES (6, 'Téléphonie', 1)",
+            "INSERT INTO category VALUES (7, 'Impôts sur le revenu', 1)",
+            "INSERT INTO classifier VALUES (1, 'startsWith', 'REMISE DE CHEQUE', null, 0, 1, null, null, 5, 0)",
+            "INSERT INTO classifier VALUES (2, 'startsWith', 'VIREMENT POUR', null, 0, 3, null, null, null, 0)",
+            "INSERT INTO classifier VALUES (3, 'startsWith', 'VIREMENT DE', null, 0, 4, null, null, null, 0)",
+            "INSERT INTO classifier VALUES (4, 'contains', 'VIREMENT DE DRFIP', null, 0, 2, null, null, 1, 0)",
+            "INSERT INTO classifier VALUES (5, 'contains', 'FREE MOBILE', null, 0, 2, 6, null, 6, 0)",
+            "INSERT INTO classifier VALUES (6, 'contains', 'DIRECTION GENERAL', '==', 1503, 2, 6, null, 7, 0)",
     };
 
     public DatabaseAccess(String pathToDB) {
@@ -90,7 +131,7 @@ public class DatabaseAccess {
 
     public <T extends RootDAO> ArrayList<T> select(String selector, Class<T> objectClass) {
         Statement statement = null;
-        ArrayList<T> retVal = new ArrayList<T>();
+        ArrayList<T> retVal = new ArrayList<>();
         ResultSet rs=null;
         checkConnection();
         try {
@@ -103,9 +144,7 @@ public class DatabaseAccess {
             }
         } catch (SQLException exc) {
             handleException(exc);
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         } finally {
             if (rs!=null) try {

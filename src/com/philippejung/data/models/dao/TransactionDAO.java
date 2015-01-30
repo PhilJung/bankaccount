@@ -17,6 +17,7 @@ public class TransactionDAO extends RootDAO {
     private Double amount;
     private String detail;
     private String comment;
+    private Integer categoryId;
 
     public TransactionDAO() {
         super();
@@ -32,6 +33,7 @@ public class TransactionDAO extends RootDAO {
         this.amount = rs.getDouble("amount");
         this.detail = rs.getString("detail");
         this.comment = rs.getString("comment");
+        this.categoryId = rs.getInt("category");
     }
 
     public Date getDate() {
@@ -98,4 +100,11 @@ public class TransactionDAO extends RootDAO {
         this.comment = comment;
     }
 
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 }

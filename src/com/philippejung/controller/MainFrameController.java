@@ -1,16 +1,12 @@
 package com.philippejung.controller;
 
-import com.philippejung.main.MainApp;
 import com.philippejung.view.utils.AlertPopup;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -21,7 +17,7 @@ public class MainFrameController extends GenericController {
     private TabPane tabPane;
 
     // All already open tabs
-    private HashMap<String, Tab> allExistingTabs = new HashMap<String, Tab>();
+    private final HashMap<String, Tab> allExistingTabs = new HashMap<>();
 
     public void onMenuFileExit(ActionEvent event) {
         Platform.exit();

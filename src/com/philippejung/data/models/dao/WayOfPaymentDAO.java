@@ -2,7 +2,6 @@ package com.philippejung.data.models.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  * Created by philippe on 29/01/15.
@@ -22,6 +21,7 @@ public class WayOfPaymentDAO extends RootDAO {
     }
 
     public void readFromDB(ResultSet rs) throws SQLException {
+        super.readFromDB(rs);
         this.name = rs.getString("name");
     }
 }

@@ -34,7 +34,7 @@ public final class AlertPopup {
     public static void alert(javafx.scene.control.Alert.AlertType type, String title, String header, String content, Exception ex) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(type);
         alert.setTitle(title);
-        alert.setHeaderText(title);
+        alert.setHeaderText(header);
         alert.setContentText(content);
         if (ex != null) {
             // Create expandable Exception.

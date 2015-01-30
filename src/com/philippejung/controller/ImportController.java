@@ -1,17 +1,20 @@
 package com.philippejung.controller;
 
 import com.philippejung.data.models.logical.TransactionDTO;
-import com.philippejung.data.models.logical.TypeOfTransaction;
+import com.philippejung.data.models.logical.WayOfPaymentDTO;
 import com.philippejung.main.MainApp;
 import com.philippejung.services.FileImporter;
 import com.philippejung.services.classifier.TransactionClassifier;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.stage.FileChooser;
+import javafx.util.StringConverter;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,15 +37,31 @@ public class ImportController implements Initializable {
     private TableColumn<TransactionDTO, Boolean> mustBeImportedColumn;
     @FXML
     private TableColumn<TransactionDTO, String> typeColumn;
+    @FXML
+    private TableColumn<TransactionDTO, WayOfPaymentDTO> wayOfPaymentColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mustBeImportedColumn.setCellFactory(
-                (p) -> { return new CheckBoxTableCell<TransactionDTO, Boolean>(); }
+                (p) -> new CheckBoxTableCell<>()
         );
-//        typeColumn.setCellValueFactory(
-//                (p) -> { return p.getValue().getType(); }
-//        );
+        final StringConverter<WayOfPaymentDTO> wayOfPaymentStringConverter = new StringConverter<WayOfPaymentDTO>() {
+            @Override
+            public String toString(WayOfPaymentDTO object) {
+                return (object == null) ? "" : object.getName();
+            }
+
+            @Override
+            public WayOfPaymentDTO fromString(String string) {
+                return null;
+            }
+        };
+        wayOfPaymentColumn.setCellValueFactory(
+                (param) -> new ReadOnlyObjectWrapper<>(param.getValue().getWayOfPayment())
+        );
+        wayOfPaymentColumn.setCellFactory(
+                ComboBoxTableCell.forTableColumn(wayOfPaymentStringConverter, MainApp.getData().getAllWaysOfPayment())
+        );
     }
 
     public void onButtonFileBrowseClicked(ActionEvent actionEvent) {
@@ -58,9 +77,8 @@ public class ImportController implements Initializable {
                 new File(MainApp.getData().getPreferences().getImportDefaultPath())
         );
         fileChooser.getExtensionFilters().addAll(
-//                new FileChooser.ExtensionFilter("All Images", "*.*"),
-//                new FileChooser.ExtensionFilter("CSV", "*.csv"),
-                new FileChooser.ExtensionFilter("CSV", "*.csv"));
+                new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("All files", "*.*"));
         File file = fileChooser.showOpenDialog(fileBrowse.getScene().getWindow());
         if (file != null) {
             try {

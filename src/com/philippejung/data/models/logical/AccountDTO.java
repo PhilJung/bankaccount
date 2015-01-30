@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * Created by philippe on 25/01/15.
@@ -28,12 +27,18 @@ public class AccountDTO extends RootDTO {
         setAccountNumber(accountNumber);
     }
 
-    public AccountDTO(AccountDAO dao) {
+    private AccountDTO(AccountDAO dao) {
         super(dao);
         setName(dao.getName());
         setAmount(0);
         setImporterFormat("lbp");
         setAccountNumber(dao.getAccountNumber());
+    }
+
+    public void toDAO(AccountDAO dao) {
+        super.toDAO(dao);
+        dao.setName(getName());
+        dao.setAccountNumber(getAccountNumber());
     }
 
     public String getAccountNumber() {
@@ -74,7 +79,7 @@ public class AccountDTO extends RootDTO {
 
     public static ObservableList<AccountDTO> getAll() {
         ArrayList<AccountDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM account", AccountDAO.class);
-        ArrayList<AccountDTO> retVal = new ArrayList<AccountDTO>();
+        ArrayList<AccountDTO> retVal = new ArrayList<>();
         for(AccountDAO accountDAO : queryResult) {
             System.out.println("Trouvé compte " + accountDAO.getName());
             retVal.add(new AccountDTO(accountDAO));

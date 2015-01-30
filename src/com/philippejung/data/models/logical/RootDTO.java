@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  * Created by philippe on 29/01/15.
  */
 public class RootDTO {
-    private SimpleIntegerProperty id = new SimpleIntegerProperty(-1);
+    private final SimpleIntegerProperty id = new SimpleIntegerProperty(-1);
 
     public RootDTO(Integer id) {
         setId(id);
@@ -17,8 +17,19 @@ public class RootDTO {
         setId(dao.getId());
     }
 
+    public void toDAO(RootDAO dao) {
+        dao.setId(getId());
+    }
+
     public int getId() {
         return id.get();
+    }
+
+    public static Integer idOf(RootDTO object) {
+        if (object == null)
+            return -1;
+        else
+            return object.getId();
     }
 
     public SimpleIntegerProperty idProperty() {

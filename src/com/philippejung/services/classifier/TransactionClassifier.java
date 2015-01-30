@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class TransactionClassifier {
 
     private ObservableList<TransactionDTO> items;
-    private ArrayList<Classifier> allClassifiers = new ArrayList<Classifier>();
+    private final ArrayList<Classifier> allClassifiers = new ArrayList<>();
 
     public void setItems(ObservableList<TransactionDTO> items) {
         this.items = items;
@@ -25,7 +25,7 @@ public class TransactionClassifier {
     public void classify() {
         for(TransactionDTO oneTransaction : getItems()) {
             for(Classifier classifier: allClassifiers) {
-                if (!classifier.classify(oneTransaction))
+                if (classifier.classifyAndTellIfWeShouldStop(oneTransaction))
                     // Classifier has decided we should stop classification on this item
                     break;
             }
@@ -40,7 +40,7 @@ public class TransactionClassifier {
     interface Classifier {
         // Perform one attempt of classification
         // Return false to stop further classification of the dto
-        public boolean classify(TransactionDTO dto);
+        public boolean classifyAndTellIfWeShouldStop(TransactionDTO dto);
     }
 
     private void registerAmountClassifier() {
@@ -49,7 +49,7 @@ public class TransactionClassifier {
                 dto.setType(TypeOfTransaction.INCOME);
             else
                 dto.setType(TypeOfTransaction.EXPENSE);
-            return true;
+            return false;
         });
     }
 
@@ -61,7 +61,7 @@ public class TransactionClassifier {
                 else
                     dto.setType(TypeOfTransaction.TRANSFER_TO);
             }
-            return true;
+            return false;
         });
     }
 

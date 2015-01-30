@@ -12,16 +12,21 @@ import java.util.ArrayList;
  * Created by philippe on 29/01/15.
  */
 public class WayOfPaymentDTO extends RootDTO {
-    private SimpleStringProperty name = new SimpleStringProperty();
+    private final SimpleStringProperty name = new SimpleStringProperty();
 
     public WayOfPaymentDTO(Integer id, String name) {
         super(id);
         setName(name);
     }
 
-    public WayOfPaymentDTO(WayOfPaymentDAO dao) {
+    private WayOfPaymentDTO(WayOfPaymentDAO dao) {
         super(dao);
         setName(dao.getName());
+    }
+
+    public void toDAO(WayOfPaymentDAO dao) {
+        super.toDAO(dao);
+        dao.setName(getName());
     }
 
     public String getName() {
@@ -36,17 +41,18 @@ public class WayOfPaymentDTO extends RootDTO {
         this.name.set(name);
     }
 
-    public void toDAO(WayOfPaymentDAO dao) {
-        assert (false);
-    }
-
     public static ObservableList<WayOfPaymentDTO> getAll() {
         ArrayList<WayOfPaymentDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM wayOfPayment", WayOfPaymentDAO.class);
-        ArrayList<WayOfPaymentDTO> retVal = new ArrayList<WayOfPaymentDTO>();
+        ArrayList<WayOfPaymentDTO> retVal = new ArrayList<>();
         for(WayOfPaymentDAO wayOfPaymentDAO : queryResult) {
-            System.out.println("Trouvé compte " + wayOfPaymentDAO.getName());
+            System.out.println("Trouvé moyen de paiement " + wayOfPaymentDAO.getName());
             retVal.add(new WayOfPaymentDTO(wayOfPaymentDAO));
         }
         return FXCollections.observableArrayList(retVal);
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

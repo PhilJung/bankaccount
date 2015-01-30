@@ -10,10 +10,24 @@ public enum TypeOfTransaction {
     TRANSFER_TO( 3 ),
     TRANSFER_FROM( 4 );
 
-    private int value;
+    private final int value;
 
     private TypeOfTransaction(int value) {
         this.value = value;
+    }
+
+    public static TypeOfTransaction fromInt(int value) {
+        switch (value) {
+            case 1: return INCOME;
+            case 2: return EXPENSE;
+            case 3: return TRANSFER_TO;
+            case 4: return TRANSFER_FROM;
+            default: return NONE;
+        }
+    }
+
+    public Integer toInt() {
+        return value;
     }
 
     @Override

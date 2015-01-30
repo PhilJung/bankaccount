@@ -51,37 +51,4 @@ public class ClassifierCondition {
         this.amountConditionValue = amountConditionValue;
     }
 
-    public boolean isVerified(TransactionDTO dto) {
-        return isVerifiedDetail(dto.getDetail()) && isVerifiedAmount(dto.getAmount());
-    }
-
-    private boolean isVerifiedDetail(String detail) {
-        // When no condition, always true
-        if (detailConditionTest == null)
-            return true;
-        // We do everything case insensitive
-        switch(detailConditionTest) {
-            case "startsWith": return detail.toUpperCase().startsWith(detailConditionValue.toUpperCase());
-            case "endsWith": return detail.toUpperCase().endsWith(detailConditionValue.toUpperCase());
-            case "equals": return detail.toUpperCase().equals(detailConditionValue.toUpperCase());
-            case "contains": return detail.toUpperCase().contains(detailConditionValue.toUpperCase());
-            case "matches": return detail.toUpperCase().matches(detailConditionValue.toUpperCase());
-        }
-        // Not implemented operator => false
-        return false;
-    }
-
-    private boolean isVerifiedAmount(double amount) {
-        if (amountConditionTest==null) return true;
-        switch (amountConditionTest) {
-            case "==": return amount == amountConditionValue;
-            case "!=": return amount != amountConditionValue;
-            case ">": return amount > amountConditionValue;
-            case ">=": return amount >= amountConditionValue;
-            case "<": return amount < amountConditionValue;
-            case "<=": return amount <= amountConditionValue;
-        }
-        // Not implemented operator => false
-        return false;
-    }
 }
