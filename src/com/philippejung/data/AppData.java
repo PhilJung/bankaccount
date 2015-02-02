@@ -3,8 +3,10 @@ package com.philippejung.data;
 import com.philippejung.data.models.db.DatabaseAccess;
 import com.philippejung.data.models.logical.AccountDTO;
 import com.philippejung.data.models.logical.CategoryDTO;
+import com.philippejung.data.models.logical.ClassifierDTO;
 import com.philippejung.data.models.logical.WayOfPaymentDTO;
 import com.philippejung.data.models.preferences.AppPreferences;
+import com.philippejung.services.classifier.ClassifierService;
 import javafx.collections.ObservableList;
 
 /**
@@ -14,7 +16,7 @@ public class AppData {
     private DatabaseAccess dbAccess = null;
     private ObservableList<AccountDTO> allAccounts;
     private ObservableList<WayOfPaymentDTO> allWaysOfPayment;
-
+    private ObservableList<ClassifierDTO> allClassifiers;
     private ObservableList<CategoryDTO> allCategories;
     private AppPreferences preferences;
 
@@ -25,6 +27,7 @@ public class AppData {
         readAllAccounts();
         readAllWaysOfPayment();
         readAllCategories();
+        readAllClassifiers();
     }
 
     public AppPreferences getPreferences() {
@@ -47,6 +50,10 @@ public class AppData {
         allCategories = CategoryDTO.getAll();
     }
 
+    private void readAllClassifiers() {
+        allClassifiers = ClassifierDTO.getAll();
+    }
+
     public void close() {
         dbAccess.closeDB();
         dbAccess = null;
@@ -64,6 +71,8 @@ public class AppData {
     public ObservableList<WayOfPaymentDTO> getAllWaysOfPayment() {
         return allWaysOfPayment;
     }
+
+    public ObservableList<ClassifierDTO> getAllClassifiers() { return allClassifiers; }
 
     public WayOfPaymentDTO getWayOfPaymentByName(String wayOfPaymentName) {
         int index = allWaysOfPayment.indexOf(wayOfPaymentName);

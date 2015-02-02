@@ -21,10 +21,11 @@
       </MenuBar>
       <ToolBar VBox.vgrow="NEVER">
         <items>
-          <Button mnemonicParsing="false" text="Accueil" />
+          <Button mnemonicParsing="false" onAction="#onToolbarWelcome" text="Accueil" />
             <Button mnemonicParsing="false" text="Comptes" />
             <Button mnemonicParsing="false" onAction="#onToolbarImport" text="Importer" />
             <Button mnemonicParsing="false" onAction="#onToolbarBudget" text="Budget" />
+            <Button mnemonicParsing="false" onAction="#onToolbarClassifier" text="Classement automatique" />
         </items>
          <VBox.margin>
             <Insets />

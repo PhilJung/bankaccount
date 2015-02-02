@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class WayOfPaymentDTO extends RootDTO {
     private final SimpleStringProperty name = new SimpleStringProperty();
 
-    public WayOfPaymentDTO(Integer id, String name) {
-        super(id);
-        setName(name);
+    public WayOfPaymentDTO() {
+        super();
+        setName(null);
     }
 
     private WayOfPaymentDTO(WayOfPaymentDAO dao) {

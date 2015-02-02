@@ -9,8 +9,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class RootDTO {
     private final SimpleIntegerProperty id = new SimpleIntegerProperty(-1);
 
-    public RootDTO(Integer id) {
-        setId(id);
+    public RootDTO() {
+        setId(-1);
     }
 
     public RootDTO(RootDAO dao) {

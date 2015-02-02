@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
+
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.controller.ImportController">
    <children>
       <HBox spacing="5.0">
@@ -18,7 +21,7 @@
             <Insets />
          </VBox.margin>
       </HBox>
-      <TableView fx:id="importTable" VBox.vgrow="ALWAYS">
+      <TableView fx:id="importTable" editable="true" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="mustBeImportedColumn" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" resizable="false" sortable="false" text="Importer">
                 <cellValueFactory><PropertyValueFactory property="mustBeImported" />
@@ -28,15 +31,15 @@
              <cellValueFactory><PropertyValueFactory property="date" />
              </cellValueFactory>
           </TableColumn>
-           <TableColumn fx:id="typeColumn" editable="true" prefWidth="100.0" resizable="false" text="T">
+           <TableColumn fx:id="typeColumn" editable="true" prefWidth="100.0" resizable="true" text="Type">
               <cellValueFactory><PropertyValueFactory property="type" />
               </cellValueFactory>
            </TableColumn>
-           <TableColumn fx:id="wayOfPaymentColumn" editable="true" text="Moyen">
+           <TableColumn fx:id="wayOfPaymentColumn" prefWidth="120.0" editable="true" text="Moyen">
               <cellValueFactory><PropertyValueFactory property="wayOfPaymentId" />
               </cellValueFactory>
            </TableColumn>
-            <TableColumn editable="true" minWidth="75.0" prefWidth="150.0" styleClass="amountColumn" text="Catégorie">
+            <TableColumn fx:id="categoryColumn" editable="true" minWidth="75.0" prefWidth="150.0" text="Catégorie">
                 <cellValueFactory><PropertyValueFactory property="category" />
                 </cellValueFactory>
             </TableColumn>
@@ -48,7 +51,7 @@
               <cellValueFactory><PropertyValueFactory property="detail" />
               </cellValueFactory>
            </TableColumn>
-           <TableColumn editable="true" prefWidth="125.0" text="Commentaire">
+           <TableColumn fx:id="commentColumn" editable="true" prefWidth="125.0" text="Commentaire">
               <cellValueFactory><PropertyValueFactory property="comment" />
               </cellValueFactory>
            </TableColumn>

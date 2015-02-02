@@ -19,12 +19,12 @@ public class AccountDTO extends RootDTO {
     private final SimpleStringProperty importerFormat = new SimpleStringProperty();
     private final SimpleStringProperty accountNumber = new SimpleStringProperty();
 
-    public AccountDTO(Integer id, String name, Double amount, String importerFormat, String accountNumber) {
-        super(id);
-        setName(name);
-        setAmount(amount);
-        setImporterFormat(importerFormat);
-        setAccountNumber(accountNumber);
+    public AccountDTO() {
+        super();
+        setName(null);
+        setAmount(0.0);
+        setImporterFormat(null);
+        setAccountNumber(null);
     }
 
     private AccountDTO(AccountDAO dao) {

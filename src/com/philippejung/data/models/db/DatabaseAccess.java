@@ -70,12 +70,14 @@ public class DatabaseAccess {
             "INSERT INTO category VALUES (5, 'Divers', 1)",
             "INSERT INTO category VALUES (6, 'Téléphonie', 1)",
             "INSERT INTO category VALUES (7, 'Impôts sur le revenu', 1)",
-            "INSERT INTO classifier VALUES (1, 'startsWith', 'REMISE DE CHEQUE', null, 0, 1, null, null, 5, 0)",
-            "INSERT INTO classifier VALUES (2, 'startsWith', 'VIREMENT POUR', null, 0, 3, null, null, null, 0)",
-            "INSERT INTO classifier VALUES (3, 'startsWith', 'VIREMENT DE', null, 0, 4, null, null, null, 0)",
-            "INSERT INTO classifier VALUES (4, 'contains', 'VIREMENT DE DRFIP', null, 0, 2, null, null, 1, 0)",
-            "INSERT INTO classifier VALUES (5, 'contains', 'FREE MOBILE', null, 0, 2, 6, null, 6, 0)",
-            "INSERT INTO classifier VALUES (6, 'contains', 'DIRECTION GENERAL', '==', 1503, 2, 6, null, 7, 0)",
+            "INSERT INTO classifier VALUES (1, null, null, '>', 0, 1, null, null, null, 0)",
+            "INSERT INTO classifier VALUES (2, null, null, '<', 0, 2, null, null, null, 0)",
+            "INSERT INTO classifier VALUES (3, 'startsWith', 'REMISE DE CHEQUE', null, 0, 1, null, null, 5, 0)",
+            "INSERT INTO classifier VALUES (4, 'startsWith', 'VIREMENT POUR', null, 0, 3, null, null, null, 0)",
+            "INSERT INTO classifier VALUES (5, 'startsWith', 'VIREMENT DE', null, 0, 4, null, null, null, 0)",
+            "INSERT INTO classifier VALUES (6, 'contains', 'VIREMENT DE DRFIP', null, 0, 1, null, null, 1, 0)",
+            "INSERT INTO classifier VALUES (7, 'contains', 'FREE MOBILE', null, 0, 2, 6, null, 6, 0)",
+            "INSERT INTO classifier VALUES (8, 'contains', 'DIRECTION GENERAL', '==', 1503, 2, 6, null, 7, 0)",
     };
 
     public DatabaseAccess(String pathToDB) {

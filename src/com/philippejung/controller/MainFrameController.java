@@ -52,4 +52,12 @@ public class MainFrameController extends GenericController {
     public void onToolbarImport(ActionEvent actionEvent) {
         selectTabAndCreateItIfRequired("import", "/res/fxml/import.fxml", "Importer", true);
     }
+
+    public void onToolbarWelcome(ActionEvent actionEvent) {
+        selectTabAndCreateItIfRequired("welcome", "/res/fxml/welcome.fxml", "Accueil", false);
+    }
+
+    public void onToolbarClassifier(ActionEvent actionEvent) {
+        selectTabAndCreateItIfRequired("classifier", "/res/fxml/classifier.fxml", "Classement automatique", true);
+    }
 }

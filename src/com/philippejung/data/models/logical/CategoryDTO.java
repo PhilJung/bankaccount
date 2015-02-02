@@ -16,10 +16,10 @@ public class CategoryDTO extends RootDTO {
     private final SimpleStringProperty name = new SimpleStringProperty();
     private final SimpleBooleanProperty expense = new SimpleBooleanProperty();
 
-    public CategoryDTO(Integer id, String name, boolean expense) {
-        super(id);
-        setName(name);
-        setExpense(expense);
+    public CategoryDTO() {
+        super();
+        setName(null);
+        setExpense(false);
     }
 
     private CategoryDTO(CategoryDAO dao) {

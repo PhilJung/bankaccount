@@ -22,7 +22,7 @@ public class TransactionDTO extends RootDTO {
     private final SimpleStringProperty comment= new SimpleStringProperty();
 
     public TransactionDTO() {
-        super(-1);
+        super();
         setMustBeImported(true);
         setDate(LocalDate.MIN);
         setType(TypeOfTransaction.NONE);
