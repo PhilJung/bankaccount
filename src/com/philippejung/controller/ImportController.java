@@ -6,15 +6,13 @@ import com.philippejung.data.models.logical.WayOfPaymentDTO;
 import com.philippejung.main.MainApp;
 import com.philippejung.services.FileImporter;
 import com.philippejung.services.classifier.TransactionClassifier;
+import com.philippejung.view.utils.SearchableComboBoxTableCell;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
-import javafx.scene.control.cell.ComboBoxTableCell;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.*;
 import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
@@ -73,8 +71,11 @@ public class ImportController implements Initializable {
                 new PropertyValueFactory<TransactionDTO, WayOfPaymentDTO>("wayOfPayment")
         );
         // Category, based on CategoryDTO
+//        categoryColumn.setCellFactory(
+//                ComboBoxTableCell.forTableColumn(new ObjectStringConverter<CategoryDTO>(), MainApp.getData().getAllCategories())
+//        );
         categoryColumn.setCellFactory(
-                ComboBoxTableCell.forTableColumn(new ObjectStringConverter<CategoryDTO>(), MainApp.getData().getAllCategories())
+                tableCol -> { return new SearchableComboBoxTableCell<>(new ObjectStringConverter<CategoryDTO>(), MainApp.getData().getAllCategories()); }
         );
         categoryColumn.setCellValueFactory(
                 new PropertyValueFactory<TransactionDTO, CategoryDTO>("category")
