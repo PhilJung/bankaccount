@@ -1,64 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0"
-      stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.philippejung.controller.ClassifierController">
+<?import javafx.scene.layout.HBox?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.controller.ClassifierController">
     <children>
-        <TableView fx:id="classifierTable" VBox.vgrow="ALWAYS">
+        <HBox spacing="5.0" VBox.vgrow="NEVER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onNewClassifierRule" text="Nouveau" />
+                <Button mnemonicParsing="false" onAction="#onDeleteClassierRule" text="Supprimer" />
+            </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </VBox.margin>
+        </HBox>
+        <TableView fx:id="classifierTable" editable="true" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn prefWidth="75.0" text="Si ces tests sont vrais">
+                <TableColumn editable="true" prefWidth="75.0" text="Si ces tests sont vrais">
                     <columns>
-                        <TableColumn fx:id="detailConditionTestColumn" text="Test détail">
+                        <TableColumn fx:id="detailConditionTestColumn" editable="true" text="Test détail">
                             <cellValueFactory>
-                                <PropertyValueFactory property="detailConditionTest"/>
+                                <PropertyValueFactory property="detailConditionTest" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="detailConditionValueColumn" text="Valeur détail">
+                        <TableColumn fx:id="detailConditionValueColumn" editable="true" text="Valeur détail">
                             <cellValueFactory>
-                                <PropertyValueFactory property="detailConditionValue"/>
+                                <PropertyValueFactory property="detailConditionValue" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="amountConditionTestColumn" text="Test montant">
+                        <TableColumn fx:id="amountConditionTestColumn" editable="true" text="Test montant">
                             <cellValueFactory>
-                                <PropertyValueFactory property="amountConditionTest"/>
+                                <PropertyValueFactory property="amountConditionTest" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="amountConditionValueColumn" text="Valeur montant">
+                        <TableColumn fx:id="amountConditionValueColumn" editable="true" text="Valeur montant">
                             <cellValueFactory>
-                                <PropertyValueFactory property="amountConditionValue"/>
+                                <PropertyValueFactory property="amountConditionValue" />
                             </cellValueFactory>
                         </TableColumn>
                     </columns>
                 </TableColumn>
-                <TableColumn prefWidth="75.0" text="Alors forcer les valeurs suivantes">
+                <TableColumn editable="true" prefWidth="75.0" text="Alors forcer les valeurs suivantes">
                     <columns>
-                        <TableColumn editable="false" text="Type">
+                        <TableColumn editable="true" text="Type">
                             <cellValueFactory>
-                                <PropertyValueFactory property="newType"/>
+                                <PropertyValueFactory property="newType" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn editable="true" text="Catégorie">
+                        <TableColumn fx:id="categoryColumn" editable="true" text="Catégorie">
                             <cellValueFactory>
-                                <PropertyValueFactory property="newCategory"/>
+                                <PropertyValueFactory property="newCategory" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn editable="false" text="Moyen">
+                        <TableColumn fx:id="wayOfPaymentColumn" editable="true" text="Moyen">
                             <cellValueFactory>
-                                <PropertyValueFactory property="newWayOfPayment"/>
+                                <PropertyValueFactory property="newWayOfPayment" />
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn editable="true" text="Compte">
                             <cellValueFactory>
-                                <PropertyValueFactory property="newAccount"/>
+                                <PropertyValueFactory property="newAccount" />
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn prefWidth="75.0" text="Arrêter">
                             <cellValueFactory>
-                                <PropertyValueFactory property="stopFurtherClassification"/>
+                                <PropertyValueFactory property="stopFurtherClassification" />
                             </cellValueFactory>
                         </TableColumn>
 
@@ -68,9 +83,9 @@
         </TableView>
     </children>
     <opaqueInsets>
-        <Insets/>
+        <Insets />
     </opaqueInsets>
     <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
     </padding>
 </VBox>

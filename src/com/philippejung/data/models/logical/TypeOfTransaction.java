@@ -37,6 +37,7 @@ public enum TypeOfTransaction {
             case INCOME: return "Recette";
             case TRANSFER_FROM: return "Virement de";
             case TRANSFER_TO: return "Virement vers";
+            case NONE: return "";
         }
         return super.toString();
     }

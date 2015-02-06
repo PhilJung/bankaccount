@@ -2,11 +2,15 @@ package com.philippejung.controller;
 
 import com.philippejung.data.models.logical.CategoryDTO;
 import com.philippejung.data.models.logical.TransactionDTO;
+import com.philippejung.data.models.logical.TypeOfTransaction;
 import com.philippejung.data.models.logical.WayOfPaymentDTO;
 import com.philippejung.main.MainApp;
 import com.philippejung.services.FileImporter;
 import com.philippejung.services.classifier.TransactionClassifier;
+import com.philippejung.view.utils.CategoryColumn;
+import com.philippejung.view.utils.ObjectStringConverter;
 import com.philippejung.view.utils.SearchableComboBoxTableCell;
+import com.philippejung.view.utils.WayOfPaymentColumn;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,12 +18,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.*;
 import javafx.stage.FileChooser;
-import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -37,7 +41,7 @@ public class ImportController implements Initializable {
     @FXML
     private TableColumn<TransactionDTO, Boolean> mustBeImportedColumn;
     @FXML
-    private TableColumn<TransactionDTO, String> typeColumn;
+    private TableColumn<TransactionDTO, TypeOfTransaction> typeColumn;
     @FXML
     private TableColumn<TransactionDTO, CategoryDTO> categoryColumn;
     @FXML
@@ -45,41 +49,20 @@ public class ImportController implements Initializable {
     @FXML
     private TableColumn<TransactionDTO, String> commentColumn;
 
-    final class ObjectStringConverter<T> extends StringConverter<T> {
-        @Override
-        public String toString(T object) {
-            return (object == null) ? "" : object.toString();
-        }
-
-        @Override
-        public T fromString(String string) {
-            return null;
-        }
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ArrayList<TypeOfTransaction> typeOfTransactions = new ArrayList<>();
+        typeOfTransactions.add(TypeOfTransaction.EXPENSE);
+        typeOfTransactions.add(TypeOfTransaction.INCOME);
+        typeOfTransactions.add(TypeOfTransaction.TRANSFER_FROM);
+        typeOfTransactions.add(TypeOfTransaction.TRANSFER_TO);
+        typeColumn.setCellFactory(ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList(typeOfTransactions)));
         // Must be imported : checkbox
         mustBeImportedColumn.setCellFactory(
                 (p) -> new CheckBoxTableCell<>()
         );
-        // Way of payment, based on WayOfPaymentDTO
-        wayOfPaymentColumn.setCellFactory(
-                ComboBoxTableCell.forTableColumn(new ObjectStringConverter<WayOfPaymentDTO>(), MainApp.getData().getAllWaysOfPayment())
-        );
-        wayOfPaymentColumn.setCellValueFactory(
-                new PropertyValueFactory<TransactionDTO, WayOfPaymentDTO>("wayOfPayment")
-        );
-        // Category, based on CategoryDTO
-//        categoryColumn.setCellFactory(
-//                ComboBoxTableCell.forTableColumn(new ObjectStringConverter<CategoryDTO>(), MainApp.getData().getAllCategories())
-//        );
-        categoryColumn.setCellFactory(
-                tableCol -> { return new SearchableComboBoxTableCell<>(new ObjectStringConverter<CategoryDTO>(), MainApp.getData().getAllCategories()); }
-        );
-        categoryColumn.setCellValueFactory(
-                new PropertyValueFactory<TransactionDTO, CategoryDTO>("category")
-        );
+        WayOfPaymentColumn.inject(wayOfPaymentColumn);
+        CategoryColumn.inject(categoryColumn);
         commentColumn.setCellFactory(
                 TextFieldTableCell.forTableColumn(new DefaultStringConverter())
         );

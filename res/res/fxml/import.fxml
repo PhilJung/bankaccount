@@ -13,9 +13,6 @@
          <children>
             <TextField fx:id="filePath" HBox.hgrow="ALWAYS" />
             <Button fx:id="fileBrowse" mnemonicParsing="false" onAction="#onButtonFileBrowseClicked" text="..." HBox.hgrow="NEVER" />
-            <Label maxHeight="1.7976931348623157E308" text="Importer dans:" HBox.hgrow="NEVER" />
-            <ComboBox fx:id="accountList" />
-            <Button mnemonicParsing="false" onAction="#onButtonReadFileClicked" text="Lire le fichier" HBox.hgrow="NEVER" />
          </children>
          <VBox.margin>
             <Insets />
@@ -59,12 +56,11 @@
       </TableView>
       <HBox alignment="TOP_RIGHT" spacing="5.0" VBox.vgrow="NEVER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onAnalyzeDataButtonClicked" text="Analyser les données" />
+            <Button mnemonicParsing="false" onAction="#onAnalyzeDataButtonClicked" text="Relancer l'analyse des données" />
+             <Label maxHeight="1.7976931348623157E308" text="Importer dans:" HBox.hgrow="NEVER" />
+             <ComboBox fx:id="accountList" HBox.hgrow="ALWAYS" maxWidth="200"/>
             <Button mnemonicParsing="false" onAction="#onButtonImportDataClicked" text="Importer les données" />
          </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
       </HBox>
    </children>
    <opaqueInsets>
