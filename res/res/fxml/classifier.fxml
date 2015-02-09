@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.controller.ClassifierController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.ClassifierController">
     <children>
         <HBox spacing="5.0" VBox.vgrow="NEVER">
             <children>
@@ -51,27 +51,27 @@
                 </TableColumn>
                 <TableColumn editable="true" prefWidth="75.0" text="Alors forcer les valeurs suivantes">
                     <columns>
-                        <TableColumn editable="true" text="Type">
+                        <TableColumn fx:id="typeColumn" editable="true" text="Type">
                             <cellValueFactory>
-                                <PropertyValueFactory property="newType" />
+                                <PropertyValueFactory property="type" />
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="categoryColumn" editable="true" text="Catégorie">
                             <cellValueFactory>
-                                <PropertyValueFactory property="newCategory" />
+                                <PropertyValueFactory property="category" />
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="wayOfPaymentColumn" editable="true" text="Moyen">
                             <cellValueFactory>
-                                <PropertyValueFactory property="newWayOfPayment" />
+                                <PropertyValueFactory property="wayOfPayment" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn editable="true" text="Compte">
+                        <TableColumn fx:id="accountColumn" editable="true" text="Compte">
                             <cellValueFactory>
-                                <PropertyValueFactory property="newAccount" />
+                                <PropertyValueFactory property="account" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Arrêter">
+                        <TableColumn fx:id="stopFurtherClassificationColumn" prefWidth="75.0" text="Arrêter">
                             <cellValueFactory>
                                 <PropertyValueFactory property="stopFurtherClassification" />
                             </cellValueFactory>
