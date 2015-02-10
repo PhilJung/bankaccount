@@ -2,6 +2,7 @@ package com.philippejung.bankaccount.models.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 /**
  * Created by philippe on 30/01/15.
@@ -12,9 +13,9 @@ public class ClassifierDAO extends RootDAO {
     private String amountConditionTest;
     private Double amountConditionValue;
     private Integer newTypeId;
-    private Integer newWayOfPaymentId;
-    private Integer newOtherAccountId;
-    private Integer newCategoryId;
+    private Long newWayOfPaymentId;
+    private Long newOtherAccountId;
+    private Long newCategoryId;
     private Boolean stopFurtherClassification;
 
     public ClassifierDAO() {
@@ -60,27 +61,27 @@ public class ClassifierDAO extends RootDAO {
         this.newTypeId = newTypeId;
     }
 
-    public Integer getNewWayOfPaymentId() {
+    public Long getNewWayOfPaymentId() {
         return newWayOfPaymentId;
     }
 
-    public void setNewWayOfPaymentId(Integer newWayOfPaymentId) {
+    public void setNewWayOfPaymentId(Long newWayOfPaymentId) {
         this.newWayOfPaymentId = newWayOfPaymentId;
     }
 
-    public Integer getNewOtherAccountId() {
+    public Long getNewOtherAccountId() {
         return newOtherAccountId;
     }
 
-    public void setNewOtherAccountId(Integer newOtherAccountId) {
+    public void setNewOtherAccountId(Long newOtherAccountId) {
         this.newOtherAccountId = newOtherAccountId;
     }
 
-    public Integer getNewCategoryId() {
+    public Long getNewCategoryId() {
         return newCategoryId;
     }
 
-    public void setNewCategoryId(Integer newCategoryId) {
+    public void setNewCategoryId(Long newCategoryId) {
         this.newCategoryId = newCategoryId;
     }
 
@@ -99,10 +100,28 @@ public class ClassifierDAO extends RootDAO {
         this.setAmountConditionTest(rs.getString("amountConditionTest"));
         this.setAmountConditionValue(rs.getDouble("amountConditionValue"));
         this.setNewTypeId(rs.getInt("newTypeId"));
-        this.setNewWayOfPaymentId(rs.getInt("newWayOfPaymentId"));
-        this.setNewOtherAccountId(rs.getInt("newOtherAccountId"));
-        this.setNewCategoryId(rs.getInt("newCategoryId"));
+        this.setNewWayOfPaymentId(rs.getLong("newWayOfPaymentId"));
+        this.setNewOtherAccountId(rs.getLong("newOtherAccountId"));
+        this.setNewCategoryId(rs.getLong("newCategoryId"));
         this.setStopFurtherClassification(rs.getBoolean("stopFurtherClassification"));
+    }
+
+    @Override
+    protected String getTableName() {
+        return "Classifier";
+    }
+
+    @Override
+    protected void setQueryParams(Map<String, Object> params) {
+        params.put("detailConditionTest", getDetailConditionTest());
+        params.put("detailConditionValue", getDetailConditionValue());
+        params.put("amountConditionTest", getAmountConditionTest());
+        params.put("amountConditionValue", getAmountConditionValue());
+        params.put("newTypeId", getNewTypeId());
+        params.put("newWayOfPaymentId", getNewWayOfPaymentId());
+        params.put("newOtherAccountId", getNewOtherAccountId());
+        params.put("newCategoryId", getNewCategoryId());
+        params.put("stopFurtherClassification", getStopFurtherClassification());
     }
 
 }

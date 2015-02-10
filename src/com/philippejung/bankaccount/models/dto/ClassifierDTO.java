@@ -181,4 +181,24 @@ public class ClassifierDTO extends RootDTO {
         return FXCollections.observableArrayList(retVal);
     }
 
+    public void writeToDB() {
+        ClassifierDAO dao = new ClassifierDAO();
+        toDAO(dao);
+        dao.writeToDB();
+    }
+
+    @Override
+    public String toString() {
+        return "ClassifierDTO{" +
+                "detailConditionTest=" + detailConditionTest +
+                ", detailConditionValue=" + detailConditionValue +
+                ", amountConditionTest=" + amountConditionTest +
+                ", amountConditionValue=" + amountConditionValue +
+                ", type=" + type.toString() +
+                ", wayOfPayment=" + wayOfPayment.toString() +
+                ", account=" + account.toString() +
+                ", category=" + category.toString() +
+                ", stopFurtherClassification=" + stopFurtherClassification.toString() +
+                '}';
+    }
 }

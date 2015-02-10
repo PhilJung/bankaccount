@@ -2,6 +2,7 @@ package com.philippejung.bankaccount.models.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 /**
  * Created by philippe on 29/01/15.
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 public class CategoryDAO extends RootDAO {
     private String name;
     // True if the category is an expense, false if it is incoming money
-    private boolean expense;
+    private Boolean expense;
 
     public CategoryDAO() {
         setName("");
@@ -24,11 +25,11 @@ public class CategoryDAO extends RootDAO {
         this.name = name;
     }
 
-    public boolean isExpense() {
+    public Boolean isExpense() {
         return expense;
     }
 
-    public void setExpense(boolean expense) {
+    public void setExpense(Boolean expense) {
         this.expense = expense;
     }
 
@@ -37,4 +38,16 @@ public class CategoryDAO extends RootDAO {
         this.name = rs.getString("name");
         this.expense = rs.getBoolean("isexpense");
     }
+
+    @Override
+    protected void setQueryParams(Map<String, Object> params) {
+        params.put("name", getName());
+        params.put("expense", isExpense());
+    }
+
+    @Override
+    protected String getTableName() {
+        return "Category";
+    }
+
 }

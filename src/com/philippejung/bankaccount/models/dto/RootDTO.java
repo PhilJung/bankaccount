@@ -1,16 +1,16 @@
 package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.models.dao.RootDAO;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
 
 /**
  * Created by philippe on 29/01/15.
  */
 public class RootDTO {
-    private final SimpleIntegerProperty id = new SimpleIntegerProperty(-1);
+    private final SimpleLongProperty id = new SimpleLongProperty(-1L);
 
     public RootDTO() {
-        setId(-1);
+        setId(-1L);
     }
 
     public RootDTO(RootDAO dao) {
@@ -21,22 +21,22 @@ public class RootDTO {
         dao.setId(getId());
     }
 
-    public int getId() {
+    public Long getId() {
         return id.get();
     }
 
-    public static Integer idOf(RootDTO object) {
+    public static Long idOf(RootDTO object) {
         if (object == null)
-            return -1;
+            return -1L;
         else
             return object.getId();
     }
 
-    public SimpleIntegerProperty idProperty() {
+    public SimpleLongProperty idProperty() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id.set(id);
     }
 

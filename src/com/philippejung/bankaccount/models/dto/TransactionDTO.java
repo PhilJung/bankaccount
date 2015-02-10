@@ -166,4 +166,25 @@ public class TransactionDTO extends RootDTO {
     public void setCategory(CategoryDTO category) {
         this.category.set(category);
     }
+
+    public void writeToDB() {
+        TransactionDAO dao = new TransactionDAO();
+        toDAO(dao);
+        dao.writeToDB();
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionDTO{" +
+                "mustBeImported=" + mustBeImported +
+                ", date=" + date +
+                ", type=" + type +
+                ", otherAccount=" + otherAccount +
+                ", wayOfPayment=" + wayOfPayment +
+                ", category=" + category +
+                ", amount=" + amount +
+                ", detail=" + detail +
+                ", comment=" + comment +
+                '}';
+    }
 }

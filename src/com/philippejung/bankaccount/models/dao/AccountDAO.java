@@ -43,15 +43,14 @@ public class AccountDAO extends RootDAO {
         this.accountNumber = accountNumber;
     }
 
-    public void writeToDB() {
-        Map<String, Object> allVals = new HashMap<>();
-        allVals.put("name", getName());
-        allVals.put("accountNumber", getAccountNumber());
-        if (getId() == -1) {
-            Integer id = MainApp.getData().getDbAccess().insert("Account", allVals);
-        } else {
-            MainApp.getData().getDbAccess().update("Account", getId(), allVals);
-        }
+    @Override
+    protected String getTableName() {
+        return "Account";
     }
 
+    @Override
+    protected void setQueryParams(Map<String, Object> params) {
+        params.put("name", getName());
+        params.put("accountNumber", getAccountNumber());
+    }
 }

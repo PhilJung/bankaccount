@@ -3,6 +3,7 @@ package com.philippejung.bankaccount.view.column;
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dto.WayOfPaymentDTO;
 import com.philippejung.bankaccount.view.utils.ObjectStringConverter;
+import javafx.event.Event;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;

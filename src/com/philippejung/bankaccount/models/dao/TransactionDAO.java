@@ -4,6 +4,7 @@ package com.philippejung.bankaccount.models.dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 /**
  * Created by philippe on 25/01/15.
@@ -11,13 +12,13 @@ import java.sql.SQLException;
 public class TransactionDAO extends RootDAO {
     private Date date;
     private Integer type;
-    private Integer otherAccountId;
-    private Integer otherTransactionId;
-    private Integer wayOfPaymentId;
+    private Long otherAccountId;
+    private Long otherTransactionId;
+    private Long wayOfPaymentId;
     private Double amount;
     private String detail;
     private String comment;
-    private Integer categoryId;
+    private Long categoryId;
 
     public TransactionDAO() {
         super();
@@ -27,13 +28,18 @@ public class TransactionDAO extends RootDAO {
         super.readFromDB(rs);
         this.date = rs.getDate("date");
         this.type = rs.getInt("type");
-        this.otherAccountId = rs.getInt("otherAccountId");
-        this.otherTransactionId = rs.getInt("otherTransactionId");
-        this.wayOfPaymentId = rs.getInt("wayOfPayment");
+        this.otherAccountId = rs.getLong("otherAccountId");
+        this.otherTransactionId = rs.getLong("otherTransactionId");
+        this.wayOfPaymentId = rs.getLong("wayOfPayment");
         this.amount = rs.getDouble("amount");
         this.detail = rs.getString("detail");
         this.comment = rs.getString("comment");
-        this.categoryId = rs.getInt("category");
+        this.categoryId = rs.getLong("category");
+    }
+
+    @Override
+    public void writeToDB() {
+
     }
 
     public Date getDate() {
@@ -52,27 +58,27 @@ public class TransactionDAO extends RootDAO {
         this.type = type;
     }
 
-    public Integer getOtherAccountId() {
+    public Long getOtherAccountId() {
         return otherAccountId;
     }
 
-    public void setOtherAccountId(Integer otherAccountId) {
+    public void setOtherAccountId(Long otherAccountId) {
         this.otherAccountId = otherAccountId;
     }
 
-    public Integer getOtherTransactionId() {
+    public Long getOtherTransactionId() {
         return otherTransactionId;
     }
 
-    public void setOtherTransactionId(Integer otherTransactionId) {
+    public void setOtherTransactionId(Long otherTransactionId) {
         this.otherTransactionId = otherTransactionId;
     }
 
-    public Integer getWayOfPaymentId() {
+    public Long getWayOfPaymentId() {
         return wayOfPaymentId;
     }
 
-    public void setWayOfPaymentId(Integer wayOfPaymentId) {
+    public void setWayOfPaymentId(Long wayOfPaymentId) {
         this.wayOfPaymentId = wayOfPaymentId;
     }
 
@@ -100,11 +106,31 @@ public class TransactionDAO extends RootDAO {
         this.comment = comment;
     }
 
-    public Integer getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
     }
+
+    @Override
+    protected String getTableName() {
+        return "Transaction";
+    }
+
+    @Override
+    protected void setQueryParams(Map<String, Object> params) {
+        params.put("date", getDate());
+        params.put("type", getType());
+        params.put("otherAccountId", getOtherAccountId());
+        params.put("otherTransactionId", getOtherTransactionId());
+        params.put("wayOfPaymentId", getWayOfPaymentId());
+        params.put("amount", getAmount());
+        params.put("detail", getDetail());
+        params.put("comment", getComment());
+        params.put("categoryId", getCategoryId());
+    }
+
+
 }

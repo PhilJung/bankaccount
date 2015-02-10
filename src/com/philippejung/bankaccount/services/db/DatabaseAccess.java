@@ -261,14 +261,17 @@ public class DatabaseAccess {
         Integer index = 1;
         for (Object entry : values) {
             switch (entry.getClass().getName()) {
-                case "String":
+                case "java.lang.String":
                     statement.setString(index, (String)entry);
                     break;
-                case "Integer":
+                case "java.lang.Integer":
                     statement.setInt(index, (Integer) entry);
                     break;
-                case "Long":
+                case "java.lang.Long":
                     statement.setLong(index, (Long) entry);
+                    break;
+                case "java.sql.Date":
+                    statement.setDate(index, (Date) entry);
                     break;
                 default:
                     System.err.println(entry.getClass().getName());
@@ -278,7 +281,29 @@ public class DatabaseAccess {
         }
     }
 
-    public void update(String tableName, Integer id, Map<String, Object> allVals) {
-
+    public void update(String tableName, Long id, Map<String, Object> fieldValues) {
+        String request =
+                "UPDATE " + tableName + " SET " +
+                        Joiner.join("=?,", fieldValues.keySet(), false) +
+                        "=? WHERE id=" +
+                        Long.toString(id);
+        PreparedStatement statement = null;
+        checkConnection();
+        try {
+            statement = connection.prepareStatement(request);
+            addParams(statement, fieldValues.values());
+            int affectedRows = statement.executeUpdate();
+            if (affectedRows==0) {
+                throw new SQLException("UPDATE statement failed. No row modified.");
+            }
+        } catch (SQLException exc) {
+            handleException(exc);
+        } finally {
+            if (statement!=null) try {
+                statement.close();
+            } catch (SQLException exc) {
+                // Do nothing
+            }
+        }
     }
 }

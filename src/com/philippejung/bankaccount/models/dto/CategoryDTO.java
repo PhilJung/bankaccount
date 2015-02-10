@@ -68,6 +68,12 @@ public class CategoryDTO extends RootDTO {
         return FXCollections.observableArrayList(retVal);
     }
 
+    public void writeToDB() {
+        CategoryDAO dao = new CategoryDAO();
+        toDAO(dao);
+        dao.writeToDB();
+    }
+
     @Override
     public String toString() {
         return getName();

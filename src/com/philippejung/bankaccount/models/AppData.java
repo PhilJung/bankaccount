@@ -97,7 +97,7 @@ public class AppData {
             return allCategories.get(index);
     }
 
-    public AccountDTO getAccountById(Integer accountId) {
+    public AccountDTO getAccountById(Long accountId) {
         if (accountId == -1) return null;
         for (AccountDTO dto : getAllAccounts()) {
             if (dto.getId() == accountId)
@@ -106,7 +106,7 @@ public class AppData {
         return null;
     }
 
-    public WayOfPaymentDTO getWayOfPaymentById(Integer wayOfPaymentId) {
+    public WayOfPaymentDTO getWayOfPaymentById(Long wayOfPaymentId) {
         if (wayOfPaymentId == -1) return null;
         for (WayOfPaymentDTO dto : getAllWaysOfPayment()) {
             if (dto.getId() == wayOfPaymentId)
@@ -115,7 +115,7 @@ public class AppData {
         return null;
     }
 
-    public CategoryDTO getCategoryById(Integer categoryId) {
+    public CategoryDTO getCategoryById(Long categoryId) {
         if (categoryId == -1) return null;
         for (CategoryDTO dto : getAllCategories()) {
             if (dto.getId() == categoryId)
