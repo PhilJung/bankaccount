@@ -5,7 +5,11 @@ import com.philippejung.bankaccount.models.dto.TransactionDTO;
 import javafx.collections.ObservableList;
 
 /**
- * Created by philippe on 28/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 28/01/15.
  */
 public class TransactionClassifier {
 

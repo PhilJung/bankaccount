@@ -5,14 +5,18 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Created by philippe on 07/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 07/02/15.
  */
 public class AmountConditionTestColumn {
 
-    private static String[] possibleValues = {"<", ">", "<=", ">=", "==", "!="};
+    private static final String[] possibleValues = {"<", ">", "<=", ">=", "==", "!="};
 
     public static <T> void inject(TableColumn<T, String> tc) {
         tc.setCellFactory(ComboBoxTableCell.forTableColumn(possibleValues));
-        tc.setCellValueFactory(new PropertyValueFactory<T, String>("amountConditionTest"));
+        tc.setCellValueFactory(new PropertyValueFactory<>("amountConditionTest"));
     }
 }

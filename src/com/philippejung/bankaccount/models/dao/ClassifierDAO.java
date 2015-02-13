@@ -5,7 +5,11 @@ import java.sql.SQLException;
 import java.util.Map;
 
 /**
- * Created by philippe on 30/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 30/01/15.
  */
 public class ClassifierDAO extends RootDAO {
     private String detailConditionTest;

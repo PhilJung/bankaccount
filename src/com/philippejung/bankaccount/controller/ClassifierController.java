@@ -14,7 +14,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by philippe on 02/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 02/02/15.
  */
 public class ClassifierController implements Initializable {
 

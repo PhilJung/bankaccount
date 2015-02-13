@@ -9,7 +9,11 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 /**
- * Created by philippe on 25/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 25/01/15.
  */
 public class GenericController {
 

@@ -9,7 +9,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * Created by philippe on 19/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 19/01/15.
  */
 public class MainApp extends Application {
 

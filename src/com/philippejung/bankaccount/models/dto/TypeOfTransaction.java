@@ -1,7 +1,11 @@
 package com.philippejung.bankaccount.models.dto;
 
 /**
- * Created by philippe on 29/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 29/01/15.
  */
 public enum TypeOfTransaction {
     NONE ( 0 ),

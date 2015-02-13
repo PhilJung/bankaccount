@@ -8,18 +8,22 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Created by philippe on 07/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 07/02/15.
  */
 public class AccountColumn {
     public static <S> void inject(TableColumn<S, AccountDTO> tc) {
         // Way of payment, based on WayOfPaymentDTO
         tc.setCellFactory(
                 ComboBoxTableCell.forTableColumn(
-                        new ObjectStringConverter<AccountDTO>(), MainApp.getData().getAllAccounts()
+                        new ObjectStringConverter<>(), MainApp.getData().getAllAccounts()
                 )
         );
         tc.setCellValueFactory(
-                new PropertyValueFactory<S, AccountDTO>("account")
+                new PropertyValueFactory<>("account")
         );
     }
 }

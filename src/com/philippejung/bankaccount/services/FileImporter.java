@@ -24,7 +24,11 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * Created by philippe on 27/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 27/01/15.
  */
 public class FileImporter {
     private final ArrayList<LineMatcher> allLineMatchers = new ArrayList<>();
@@ -64,6 +68,7 @@ public class FileImporter {
         }
         Document doc = null;
         try {
+            assert dBuilder != null;
             doc = dBuilder.parse(getClass().getResourceAsStream("/res/import_formats/" + formatName + ".xml"));
         } catch (SAXException e) {
             AlertPopup.alert(
@@ -79,6 +84,7 @@ public class FileImporter {
                             + ".xml.\nThe application will exit.", e
             );            Platform.exit();
         }
+        assert doc != null;
         String df = doc.getElementsByTagName("dateformat").item(0).getTextContent();
         dateFormat = DateTimeFormatter.ofPattern(df);
         NodeList allMatchersNode= doc.getElementsByTagName("line");

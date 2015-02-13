@@ -4,7 +4,11 @@ import com.philippejung.bankaccount.models.dao.RootDAO;
 import javafx.beans.property.SimpleLongProperty;
 
 /**
- * Created by philippe on 29/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 29/01/15.
  */
 public class RootDTO {
     private final SimpleLongProperty id = new SimpleLongProperty(-1L);

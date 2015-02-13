@@ -10,7 +10,11 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 /**
- * Created by philippe on 29/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 29/01/15.
  */
 public class CategoryDTO extends RootDTO {
     private final SimpleStringProperty name = new SimpleStringProperty();

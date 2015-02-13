@@ -5,7 +5,11 @@ import com.philippejung.bankaccount.models.dto.TransactionDTO;
 import com.philippejung.bankaccount.models.dto.TypeOfTransaction;
 
 /**
- * Created by philippe on 29/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 29/01/15.
  */
 public class ClassifierService {
 

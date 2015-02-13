@@ -1,11 +1,11 @@
 package com.philippejung.bankaccount.view.utils;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-
-import java.util.List;
-
 /**
- * Created by philippe on 07/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 07/02/15.
  */
 public class Joiner {
     public static <T> String join(String separator, Iterable<T> items, Boolean surroundStringWithQuotes) {

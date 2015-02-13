@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.util.Map;
 
 /**
- * Created by philippe on 25/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 25/01/15.
  */
 public class TransactionDAO extends RootDAO {
     private Date date;

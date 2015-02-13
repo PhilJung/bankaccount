@@ -12,7 +12,11 @@ import javafx.collections.ObservableList;
 import java.util.ArrayList;
 
 /**
- * Created by philippe on 30/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 30/01/15.
  */
 public class ClassifierDTO extends RootDTO {
     private final SimpleStringProperty detailConditionTest = new SimpleStringProperty ();

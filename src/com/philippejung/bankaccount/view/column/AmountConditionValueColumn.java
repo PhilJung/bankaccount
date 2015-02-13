@@ -6,7 +6,11 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.DoubleStringConverter;
 
 /**
- * Created by philippe on 07/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 07/02/15.
  */
 public class AmountConditionValueColumn {
     public static <T> void inject(TableColumn<T, Double> tc) {
@@ -16,7 +20,7 @@ public class AmountConditionValueColumn {
                 )
         );
         tc.setCellValueFactory(
-                new PropertyValueFactory<T, Double>("amountConditionValue")
+                new PropertyValueFactory<>("amountConditionValue")
         );
     }
 }

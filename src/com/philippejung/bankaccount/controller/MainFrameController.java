@@ -10,7 +10,11 @@ import javafx.scene.layout.Pane;
 import java.util.HashMap;
 
 /**
- * Created by philippe on 21/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 21/01/15.
  */
 public class MainFrameController extends GenericController {
     @FXML

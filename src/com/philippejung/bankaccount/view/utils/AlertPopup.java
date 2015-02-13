@@ -9,7 +9,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * Created by philippe on 27/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 27/01/15.
  */
 public final class AlertPopup {
     /**

@@ -9,7 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by philippe on 25/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 25/01/15.
  */
 public abstract class RootDAO {
     private Long id = -1L;

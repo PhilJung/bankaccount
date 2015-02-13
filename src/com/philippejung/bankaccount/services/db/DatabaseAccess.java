@@ -13,7 +13,11 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * Created by philippe on 21/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 21/01/15.
  */
 public class DatabaseAccess {
 

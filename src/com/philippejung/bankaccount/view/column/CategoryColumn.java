@@ -8,18 +8,22 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Created by philippe on 06/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 06/02/15.
  */
 public final class CategoryColumn {
 
     public static <S> void inject(TableColumn<S, CategoryDTO> tc) {
         tc.setCellFactory(
                 ComboBoxTableCell.forTableColumn(
-                        new ObjectStringConverter<CategoryDTO>(), MainApp.getData().getAllCategories()
+                        new ObjectStringConverter<>(), MainApp.getData().getAllCategories()
                 )
         );
         tc.setCellValueFactory(
-                new PropertyValueFactory<S, CategoryDTO>("category")
+                new PropertyValueFactory<>("category")
         );
     }
 

@@ -9,7 +9,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.ArrayList;
 
 /**
- * Created by philippe on 07/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 07/02/15.
  */
 public class TypeColumn {
 
@@ -23,7 +27,7 @@ public class TypeColumn {
         tc.setCellFactory(ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList(typeOfTransactions)));
 
         tc.setCellValueFactory(
-                new PropertyValueFactory<S, TypeOfTransaction>("type")
+                new PropertyValueFactory<>("type")
         );
     }
 }

@@ -9,7 +9,11 @@ import com.philippejung.bankaccount.models.preferences.AppPreferences;
 import javafx.collections.ObservableList;
 
 /**
- * Created by philippe on 19/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 19/01/15.
  */
 public class AppData {
     private DatabaseAccess dbAccess = null;
@@ -74,6 +78,7 @@ public class AppData {
     public ObservableList<ClassifierDTO> getAllClassifiers() { return allClassifiers; }
 
     public WayOfPaymentDTO getWayOfPaymentByName(String wayOfPaymentName) {
+        @SuppressWarnings("SuspiciousMethodCalls")
         int index = allWaysOfPayment.indexOf(wayOfPaymentName);
         if (index == -1)
             return null;
@@ -82,6 +87,7 @@ public class AppData {
     }
 
     public AccountDTO getAccountByName(String accountName) {
+        @SuppressWarnings("SuspiciousMethodCalls")
         int index = allAccounts.indexOf(accountName);
         if (index == -1)
             return null;
@@ -90,6 +96,7 @@ public class AppData {
     }
 
     public CategoryDTO getCategoryByName(String categoryName) {
+        @SuppressWarnings("SuspiciousMethodCalls")
         int index = allCategories.indexOf(categoryName);
         if (index == -1)
             return null;
@@ -100,7 +107,7 @@ public class AppData {
     public AccountDTO getAccountById(Long accountId) {
         if (accountId == -1) return null;
         for (AccountDTO dto : getAllAccounts()) {
-            if (dto.getId() == accountId)
+            if (dto.getId().equals(accountId))
                 return dto;
         }
         return null;
@@ -109,7 +116,7 @@ public class AppData {
     public WayOfPaymentDTO getWayOfPaymentById(Long wayOfPaymentId) {
         if (wayOfPaymentId == -1) return null;
         for (WayOfPaymentDTO dto : getAllWaysOfPayment()) {
-            if (dto.getId() == wayOfPaymentId)
+            if (dto.getId().equals(wayOfPaymentId))
                 return dto;
         }
         return null;
@@ -118,7 +125,7 @@ public class AppData {
     public CategoryDTO getCategoryById(Long categoryId) {
         if (categoryId == -1) return null;
         for (CategoryDTO dto : getAllCategories()) {
-            if (dto.getId() == categoryId)
+            if (dto.getId().equals(categoryId))
                 return dto;
         }
         return null;

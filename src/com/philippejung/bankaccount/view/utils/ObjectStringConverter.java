@@ -3,7 +3,11 @@ package com.philippejung.bankaccount.view.utils;
 import javafx.util.StringConverter;
 
 /**
- * Created by philippe on 06/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 06/02/15.
  */
 public final class ObjectStringConverter<T> extends StringConverter<T> {
     @Override

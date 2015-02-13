@@ -5,7 +5,11 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Created by philippe on 26/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 26/01/15.
  */
 public class AppPreferences {
 

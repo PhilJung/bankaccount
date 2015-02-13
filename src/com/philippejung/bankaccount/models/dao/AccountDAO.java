@@ -1,17 +1,15 @@
 package com.philippejung.bankaccount.models.dao;
 
-import com.philippejung.bankaccount.main.MainApp;
-import javafx.util.Pair;
-import sun.applet.Main;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by philippe on 25/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 25/01/15.
  */
 public class AccountDAO extends RootDAO {
     private String name;

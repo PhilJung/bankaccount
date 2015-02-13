@@ -7,7 +7,11 @@ import javafx.beans.property.*;
 import java.time.LocalDate;
 
 /**
- * Created by philippe on 28/01/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 28/01/15.
  */
 public class TransactionDTO extends RootDTO {
 
