@@ -14,6 +14,8 @@ import java.io.IOException;
  * =================================================
  *
  * v0 Created by philippe on 25/01/15.
+ *
+ * Generic controller: parent of all controllers. Implements some shared behaviours.
  */
 public class GenericController {
 

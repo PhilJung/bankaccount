@@ -27,9 +27,9 @@ public class AppData {
         preferences = new AppPreferences();
         preferences.loadPreferences();
         dbAccess = new DatabaseAccess("/home/philippe/.bankaccount/");
-        readAllAccounts();
         readAllWaysOfPayment();
         readAllCategories();
+        readAllAccounts();
         readAllClassifiers();
     }
 
@@ -43,6 +43,9 @@ public class AppData {
 
     private void readAllAccounts() {
         allAccounts = AccountDTO.getAll();
+        for(AccountDTO accountDTO : allAccounts) {
+            accountDTO.loadTransactions();
+        }
     }
 
     private void readAllWaysOfPayment() {

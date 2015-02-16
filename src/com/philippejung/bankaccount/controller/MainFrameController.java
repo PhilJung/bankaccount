@@ -35,18 +35,27 @@ public class MainFrameController extends GenericController {
         Platform.exit();
     }
 
-    public void selectTabAndCreateItIfRequired(String key, String templatePath, String title, Boolean canClose) {
-        Tab theTab = allExistingTabs.get(key);
+    public void selectTabAndCreateItIfRequired(String tabKey, String templatePath, String title, Boolean canClose) {
+        Tab theTab = allExistingTabs.get(tabKey);
         if (theTab==null) {
             Pane newPane = loadPane(templatePath);
             theTab = new Tab();
             theTab.setText(title);
             theTab.setClosable(canClose);
             theTab.setContent(newPane);
-            allExistingTabs.put(key, theTab);
+            allExistingTabs.put(tabKey, theTab);
             tabPane.getTabs().add(theTab);
         }
         tabPane.getSelectionModel().select(theTab);
+    }
+
+    private void closeTabAndDestroy(String tabKey) {
+        Tab theTab = allExistingTabs.get(tabKey);
+        if (theTab!=null) {
+            tabPane.getTabs().removeAll(theTab);
+            allExistingTabs.remove(tabKey);
+            theTab = null;
+        }
     }
 
     public void onToolbarBudget(ActionEvent event) {
@@ -63,5 +72,9 @@ public class MainFrameController extends GenericController {
 
     public void onToolbarClassifier(ActionEvent actionEvent) {
         selectTabAndCreateItIfRequired("classifier", "/res/fxml/classifier.fxml", "Classement automatique", true);
+    }
+
+    public void closeImportTab() {
+        closeTabAndDestroy("import");
     }
 }

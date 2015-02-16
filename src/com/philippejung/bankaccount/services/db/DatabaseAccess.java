@@ -34,13 +34,16 @@ public class DatabaseAccess {
             "CREATE TABLE account (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "name TEXT," +
+                    "initialBalance REAL," +
                     "accountNumber TEXT)",
-            "CREATE TABLE movement (" +
+            "CREATE TABLE [transaction] (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "date DATE, " +
                     "type INTEGER NOT NULL, " +
+                    "accountId INTEGER, " +
                     "otherAccountId INTEGER, " +
                     "otherTransactionId INTEGER, " +
+                    "categoryId INTEGER, " +
                     "wayOfPaymentId INTEGER," +
                     "amount REAL," +
                     "detail TEXT," +
@@ -69,7 +72,7 @@ public class DatabaseAccess {
             "INSERT INTO wayOfPayment VALUES (4, 'Cheque LBP')",
             "INSERT INTO wayOfPayment VALUES (5, 'Paypal')",
             "INSERT INTO wayOfPayment VALUES (6, 'Prélèvement LBP')",
-            "INSERT INTO account VALUES (1, 'LBP', '0000');",
+            "INSERT INTO account VALUES (1, 'LBP', 12.34, '0000');",
             "INSERT INTO category VALUES (1, 'Salaire', 0)",
             "INSERT INTO category VALUES (2, 'Divers', 0)",
             "INSERT INTO category VALUES (3, 'Alimentation', 1)",
@@ -192,12 +195,14 @@ public class DatabaseAccess {
         int currentVersion = selectOneNumber("SELECT MAX(id) FROM schema_version");
         System.out.println("Current schema version: " + currentVersion);
         if (ALL_UPDATES.length > currentVersion + 1) {
+            beginTransaction();
             for (int id=currentVersion+1 ; id<ALL_UPDATES.length; id++) {
                 // Apply allUpdates[id]
                 System.out.println("Applying " + ALL_UPDATES[id]);
                 executeUpdate(ALL_UPDATES[id]);
                 executeUpdate("INSERT INTO schema_version (id) VALUES (" + Integer.toString(id) + ")");
             }
+            commitTransaction();
         }
     }
 
@@ -264,22 +269,29 @@ public class DatabaseAccess {
     private void addParams(PreparedStatement statement, Collection<Object> values) throws SQLException {
         Integer index = 1;
         for (Object entry : values) {
-            switch (entry.getClass().getName()) {
-                case "java.lang.String":
-                    statement.setString(index, (String)entry);
-                    break;
-                case "java.lang.Integer":
-                    statement.setInt(index, (Integer) entry);
-                    break;
-                case "java.lang.Long":
-                    statement.setLong(index, (Long) entry);
-                    break;
-                case "java.sql.Date":
-                    statement.setDate(index, (Date) entry);
-                    break;
-                default:
-                    System.err.println(entry.getClass().getName());
-                    assert(false);
+            if (entry==null) {
+                statement.setObject(index, entry);
+            } else {
+                switch (entry.getClass().getName()) {
+                    case "java.lang.String":
+                        statement.setString(index, (String) entry);
+                        break;
+                    case "java.lang.Integer":
+                        statement.setInt(index, (Integer) entry);
+                        break;
+                    case "java.lang.Long":
+                        statement.setLong(index, (Long) entry);
+                        break;
+                    case "java.lang.Double":
+                        statement.setDouble(index, (Double) entry);
+                        break;
+                    case "java.sql.Date":
+                        statement.setDate(index, (Date) entry);
+                        break;
+                    default:
+                        System.err.println(entry.getClass().getName());
+                        assert (false);
+                }
             }
             index++;
         }
@@ -308,6 +320,26 @@ public class DatabaseAccess {
             } catch (SQLException exc) {
                 // Do nothing
             }
+        }
+    }
+
+    public void beginTransaction() {
+        checkConnection();
+        try {
+            connection.setAutoCommit(false);
+        } catch (SQLException exc) {
+            handleException(exc);
+        }
+
+
+    }
+
+    public void commitTransaction() {
+        try {
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException exc) {
+            handleException(exc);
         }
     }
 }

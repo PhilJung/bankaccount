@@ -14,6 +14,7 @@ import java.util.Map;
 public class AccountDAO extends RootDAO {
     private String name;
     private String accountNumber;
+    private Double initialBalance;
 
     public AccountDAO() {
         super();
@@ -23,6 +24,7 @@ public class AccountDAO extends RootDAO {
         super.readFromDB(rs);
         this.name = rs.getString("name");
         this.accountNumber = rs.getString("accountNumber");
+        this.initialBalance = rs.getDouble("initialBalance");
     }
 
     public String getName() {
@@ -41,6 +43,14 @@ public class AccountDAO extends RootDAO {
         this.accountNumber = accountNumber;
     }
 
+    public Double getInitialBalance() {
+        return initialBalance;
+    }
+
+    public void setInitialBalance(Double initialBalance) {
+        this.initialBalance = initialBalance;
+    }
+
     @Override
     protected String getTableName() {
         return "Account";
@@ -50,5 +60,6 @@ public class AccountDAO extends RootDAO {
     protected void setQueryParams(Map<String, Object> params) {
         params.put("name", getName());
         params.put("accountNumber", getAccountNumber());
+        params.put("initialBalance", getInitialBalance());
     }
 }

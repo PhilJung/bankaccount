@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
  * =================================================
  *
  * v0 Created by philippe on 02/02/15.
+ *
+ * Controller for the classifiers administration screen.
  */
 public class ClassifierController implements Initializable {
 

@@ -55,7 +55,7 @@ public class WayOfPaymentDTO extends RootDTO {
         return FXCollections.observableArrayList(retVal);
     }
 
-
+    @Override
     public void writeToDB() {
         WayOfPaymentDAO dao = new WayOfPaymentDAO();
         toDAO(dao);

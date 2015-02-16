@@ -185,6 +185,7 @@ public class ClassifierDTO extends RootDTO {
         return FXCollections.observableArrayList(retVal);
     }
 
+    @Override
     public void writeToDB() {
         ClassifierDAO dao = new ClassifierDAO();
         toDAO(dao);

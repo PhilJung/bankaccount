@@ -18,6 +18,7 @@ public class TransactionDTO extends RootDTO {
     private final SimpleBooleanProperty mustBeImported = new SimpleBooleanProperty(true);
     private final SimpleObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<TypeOfTransaction> type  = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<AccountDTO> account= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<AccountDTO> otherAccount= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<WayOfPaymentDTO> wayOfPayment= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<CategoryDTO> category = new SimpleObjectProperty<>();
@@ -30,6 +31,7 @@ public class TransactionDTO extends RootDTO {
         setMustBeImported(true);
         setDate(LocalDate.MIN);
         setType(TypeOfTransaction.NONE);
+        setAccount(null);
         setOtherAccount(null);
         setWayOfPayment(null);
         setAmount(0.0);
@@ -43,6 +45,7 @@ public class TransactionDTO extends RootDTO {
         setMustBeImported(false);
         setDate(dao.getDate().toLocalDate());
         setType(TypeOfTransaction.fromInt(dao.getType()));
+        setAccount(MainApp.getData().getAccountById(dao.getAccountId()));
         setOtherAccount(MainApp.getData().getAccountById(dao.getOtherAccountId()));
         setWayOfPayment(MainApp.getData().getWayOfPaymentById(dao.getWayOfPaymentId()));
         setCategory(MainApp.getData().getCategoryById(dao.getCategoryId()));
@@ -55,6 +58,7 @@ public class TransactionDTO extends RootDTO {
         super.toDAO(dao);
         dao.setDate(new java.sql.Date(getDate().toEpochDay()));
         dao.setType(getType().toInt());
+        dao.setAccountId(idOf(getAccount()));
         dao.setOtherAccountId(idOf(getOtherAccount()));
         dao.setWayOfPaymentId(idOf(getWayOfPayment()));
         dao.setCategoryId(idOf(getCategory()));
@@ -97,6 +101,18 @@ public class TransactionDTO extends RootDTO {
 
     public void setType(TypeOfTransaction type) {
         this.type.set(type);
+    }
+
+    public AccountDTO getAccount() {
+        return account.get();
+    }
+
+    public SimpleObjectProperty<AccountDTO> accountProperty() {
+        return account;
+    }
+
+    public void setAccount(AccountDTO account) {
+        this.account.set(account);
     }
 
     public AccountDTO getOtherAccount() {
@@ -171,6 +187,7 @@ public class TransactionDTO extends RootDTO {
         this.category.set(category);
     }
 
+    @Override
     public void writeToDB() {
         TransactionDAO dao = new TransactionDAO();
         toDAO(dao);
@@ -183,6 +200,7 @@ public class TransactionDTO extends RootDTO {
                 "mustBeImported=" + mustBeImported +
                 ", date=" + date +
                 ", type=" + type +
+                ", account=" + account +
                 ", otherAccount=" + otherAccount +
                 ", wayOfPayment=" + wayOfPayment +
                 ", category=" + category +

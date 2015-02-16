@@ -6,55 +6,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c677c8bd-1d99-40cf-90da-fa3a52c6b808" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/AutoCompleteComboBoxListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/CellUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/ComboBoxSearchable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/Searchable.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/WildcardSupport.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AccountColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AccountColumn.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/AccountDAO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/AccountDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/AccountDTO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/AccountDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/AccountSummaryController.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/AccountSummaryController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/AlertPopup.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/AlertPopup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AmountConditionTestColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AmountConditionTestColumn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AmountConditionValueColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AmountConditionValueColumn.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/AppData.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/AppData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/preferences/AppPreferences.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/preferences/AppPreferences.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/BooleanColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/BooleanColumn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/CategoryColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/CategoryColumn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/CategoryDAO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/CategoryDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/CategoryDTO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/CategoryDTO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ClassifierController.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ClassifierController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/ClassifierDAO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/ClassifierDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/ClassifierDTO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/ClassifierDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/classifier/ClassifierService.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/classifier/ClassifierService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/db/DatabaseAccess.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/db/DatabaseAccess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/DetailConditionTestColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/DetailConditionTestColumn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/DetailConditionValueColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/DetailConditionValueColumn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/FileImporter.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/FileImporter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/GenericController.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/GenericController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ImportController.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ImportController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/Joiner.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/Joiner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/main/MainApp.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/main/MainApp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/MainFrameController.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/MainFrameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/ObjectStringConverter.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/ObjectStringConverter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/RootDAO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/RootDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/RootDTO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/RootDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/SearchableComboBoxTableCell.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/SearchableComboBoxTableCell.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/classifier/TransactionClassifier.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/classifier/TransactionClassifier.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/TransactionDAO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/TransactionDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TransactionDTO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TransactionDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/TypeColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/TypeColumn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TypeOfTransaction.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TypeOfTransaction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/WayOfPaymentColumn.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/WayOfPaymentColumn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/WayOfPaymentDAO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/WayOfPaymentDAO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/WayOfPaymentDTO.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/WayOfPaymentDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/WelcomeController.java" afterPath="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/WelcomeController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/res/fxml/accountsummary.fxml" afterPath="$PROJECT_DIR$/res/res/fxml/accountsummary.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/res/fxml/classifier.fxml" afterPath="$PROJECT_DIR$/res/res/fxml/classifier.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/res/fxml/import.fxml" afterPath="$PROJECT_DIR$/res/res/fxml/import.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/philippe.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/philippe.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/res/fxml/welcome.fxml" afterPath="$PROJECT_DIR$/res/res/fxml/welcome.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bankaccount.iws" />
@@ -91,7 +58,89 @@
     <favorites_list name="bankaccount" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="AccountDTO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/AccountDTO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1380">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding>
+                <element signature="method#getAll#0;class#AccountDTO#0" expanded="false" />
+                <element signature="method#writeToDB#0;class#AccountDTO#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppData.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/AppData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.53677934" vertical-offset="0" max-vertical-offset="1020">
+              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+              <folding>
+                <element signature="docComment;class#AppData#0" expanded="false" />
+                <element signature="method#close#0;class#AppData#0" expanded="false" />
+                <element signature="method#getAllClassifiers#0;class#AppData#0" expanded="false" />
+                <element signature="method#getWayOfPaymentByName#0;class#AppData#0" expanded="false" />
+                <element signature="method#getAccountByName#0;class#AppData#0" expanded="false" />
+                <element signature="method#getCategoryByName#0;class#AppData#0" expanded="false" />
+                <element signature="method#getAccountById#0;class#AppData#0" expanded="false" />
+                <element signature="method#getWayOfPaymentById#0;class#AppData#0" expanded="false" />
+                <element signature="method#getCategoryById#0;class#AppData#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatabaseAccess.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/services/db/DatabaseAccess.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="5085">
+              <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/AccountDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="855">
+              <caret line="62" column="40" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
+              <folding>
+                <element signature="e#1120#1121#0" expanded="true" />
+                <element signature="e#1157#1158#0" expanded="true" />
+                <element signature="e#1217#1218#0" expanded="true" />
+                <element signature="e#1269#1270#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/CategoryDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="765">
+              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TransactionDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/TransactionDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="1605">
+              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+              <folding>
+                <element signature="e#2981#2982#0" expanded="true" />
+                <element signature="e#3019#3020#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -99,10 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/res/res/fxml/import.fxml" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/data/models/logical/TypeOfClassifier.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/view/utils/DetailConditionTestColumn.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/view/utils/AutoCompleteComboBox.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/view/utils/CategoryColumn.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/view/utils/WayOfPaymentColumn.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/data/models/logical/ClassifierDTO.java" />
@@ -123,32 +168,36 @@
         <option value="$PROJECT_DIR$/src/com/philippejung/view/column/AccountColumn.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/models/AppData.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/Joiner.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/RootDTO.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/CategoryDTO.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TransactionDTO.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/WayOfPaymentDTO.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/CategoryDAO.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/ClassifierDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/TransactionDAO.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/WayOfPaymentDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/db/DatabaseAccess.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/RootDAO.java" />
         <option value="$PROJECT_DIR$/test/com/philippejung/bankaccount/services/db/DatabaseAccessTest.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ClassifierController.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/ClassifierDTO.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/WayOfPaymentColumn.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/CellUtils.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/SearchableComboBoxTableCell.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/DetailConditionTestColumn.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/AccountDAO.java" />
-        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/AccountDTO.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/AccountSummaryController.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/AlertPopup.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AmountConditionTestColumn.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AmountConditionValueColumn.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AccountColumn.java" />
-        <option value="$PROJECT_DIR$/res/res/fxml/accountsummary.fxml" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/FileImporter.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ClassifierController.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/RootDTO.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/ClassifierDTO.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/CategoryDTO.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/WayOfPaymentDTO.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TransactionDTO.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/GenericController.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/main/MainApp.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ImportController.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/MainFrameController.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/AccountDTO.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/AccountDAO.java" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/services/db/DatabaseAccess.java" />
+        <option value="$PROJECT_DIR$/res/res/fxml/accountsummary.fxml" />
+        <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/TransactionDAO.java" />
         <option value="$PROJECT_DIR$/src/com/philippejung/bankaccount/models/AppData.java" />
       </list>
     </option>
@@ -220,6 +269,58 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Problems" />
+        <subPane subId="Production">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="bankaccount">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Changed Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="bankaccount">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT=".idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="bankaccount">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Default">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Tests" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -299,40 +400,6 @@
               <option name="myItemId" value="bankaccount" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bankaccount" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bankaccount" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bankaccount" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="column" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -399,6 +466,10 @@
               <option name="myItemId" value="bankaccount" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -418,7 +489,51 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bankaccount" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bankaccount" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bankaccount" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bankaccount" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fxml" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -505,58 +620,6 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Problems" />
-        <subPane subId="Production">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="bankaccount">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Changed Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="bankaccount">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT=".idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="bankaccount">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Default">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Tests" />
       </pane>
     </panes>
   </component>
@@ -895,31 +958,60 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35392535" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31827956" sideWeight="0.4107143" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.57179487" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31788933" sideWeight="0.58928573" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2821229" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2821229" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32820514" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4092664" sideWeight="0.74464285" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.6215278" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22820513" sideWeight="0.74464285" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3551282" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31794873" sideWeight="0.58928573" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.57179487" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3529762" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32820514" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31827956" sideWeight="0.4107143" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.6215278" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4092664" sideWeight="0.74464285" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35392535" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.57179487" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31788933" sideWeight="0.58928573" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3529762" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32947233" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2821229" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32820514" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -948,19 +1040,25 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TransactionDTO.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/AccountDTO.java</url>
-          <line>41</line>
+          <line>44</line>
           <properties />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/philippejung/bankaccount/services/db/DatabaseAccess.java</url>
+          <line>236</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/AppData.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="26" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -969,45 +1067,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AccountColumn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="138" max-vertical-offset="450">
-          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/MainFrameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="930">
-          <caret line="60" column="74" selection-start-line="60" selection-start-column="74" selection-end-line="60" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/res/fxml/welcome.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2920354" vertical-offset="0" max-vertical-offset="565">
-          <caret line="11" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/WelcomeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19769357" vertical-offset="0" max-vertical-offset="607">
-          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/GenericController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17298187" vertical-offset="0" max-vertical-offset="607">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/res/css/import.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07413509" vertical-offset="0" max-vertical-offset="607">
@@ -1105,44 +1164,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/RootDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4183267" vertical-offset="0" max-vertical-offset="753">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TypeOfTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/WayOfPaymentDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6374502" vertical-offset="0" max-vertical-offset="753">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TransactionDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="2130">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/CategoryDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="705">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/com/philippejung/bankaccount/services/classifier/ClassifierServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="2973" max-vertical-offset="3660">
@@ -1154,13 +1175,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25565216" vertical-offset="183" max-vertical-offset="1020">
           <caret line="33" column="111" selection-start-line="33" selection-start-column="111" selection-end-line="33" selection-end-column="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/RootDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33913043" vertical-offset="0" max-vertical-offset="575">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1185,24 +1199,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/TransactionDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78782606" vertical-offset="777" max-vertical-offset="1530">
-          <caret line="122" column="13" selection-start-line="122" selection-start-column="13" selection-end-line="122" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/CategoryDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#2278#2279#0" expanded="true" />
-            <element signature="e#2310#2311#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/view/utils/ObjectStringConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
@@ -1219,26 +1215,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ClassifierController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="900">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/view/column/AmountConditionTestColumn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8306189" vertical-offset="0" max-vertical-offset="390">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/AccountDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19543974" vertical-offset="0" max-vertical-offset="690">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1248,35 +1228,6 @@
         <state vertical-scroll-proportion="0.19543974" vertical-offset="0" max-vertical-offset="1065">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/AccountSummaryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19543974" vertical-offset="0" max-vertical-offset="390">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/AccountDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19543974" vertical-offset="0" max-vertical-offset="1395">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#1481#1482#0" expanded="true" />
-            <element signature="e#1523#1524#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
-            <element signature="e#1729#1730#0" expanded="true" />
-            <element signature="e#1873#1874#0" expanded="true" />
-            <element signature="e#1928#1929#0" expanded="true" />
-            <element signature="e#2040#2041#0" expanded="true" />
-            <element signature="e#2079#2080#0" expanded="true" />
-            <element signature="e#2110#2111#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
-            <element signature="e#2183#2184#0" expanded="true" />
-            <element signature="e#2218#2219#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1293,7 +1244,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1302,44 +1253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48979592" vertical-offset="36" max-vertical-offset="330">
           <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/res/fxml/accountsummary.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33207548" vertical-offset="17" max-vertical-offset="570">
-          <caret line="7" column="165" selection-start-line="7" selection-start-column="165" selection-end-line="7" selection-end-column="165" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/ClassifierDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33224756" vertical-offset="1473" max-vertical-offset="1830">
-          <caret line="181" column="42" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#ClassifierDTO#1;class#ClassifierDTO#0" expanded="false" />
-            <element signature="method#toDAO#0;class#ClassifierDTO#0" expanded="false" />
-            <element signature="method#setDetailConditionTest#0;class#ClassifierDTO#0" expanded="false" />
-            <element signature="method#setDetailConditionValue#0;class#ClassifierDTO#0" expanded="false" />
-            <element signature="method#setAmountConditionTest#0;class#ClassifierDTO#0" expanded="false" />
-            <element signature="method#setAmountConditionValue#0;class#ClassifierDTO#0" expanded="false" />
-            <element signature="method#setStopFurtherClassification#0;class#ClassifierDTO#0" expanded="false" />
-            <element signature="method#writeToDB#0;class#ClassifierDTO#0" expanded="false" />
-            <element signature="method#toString#0;class#ClassifierDTO#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/AppData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90228015" vertical-offset="908" max-vertical-offset="1725">
-          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1355,22 +1268,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/services/db/DatabaseAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8208469" vertical-offset="1623" max-vertical-offset="4605">
-          <caret line="137" column="21" selection-start-line="137" selection-start-column="21" selection-end-line="137" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ImportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33224756" vertical-offset="1023" max-vertical-offset="1365">
-          <caret line="98" column="4" selection-start-line="98" selection-start-column="4" selection-end-line="98" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/services/FileImporter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.048859935" vertical-offset="450" max-vertical-offset="3060">
@@ -1384,7 +1281,7 @@
         <state vertical-scroll-proportion="0.33224756" vertical-offset="333" max-vertical-offset="645">
           <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1394,6 +1291,249 @@
         <state vertical-scroll-proportion="0.33224756" vertical-offset="138" max-vertical-offset="450">
           <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ClassifierController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/WayOfPaymentDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5408163" vertical-offset="410" max-vertical-offset="945">
+          <caret line="57" column="13" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
+          <folding>
+            <element signature="e#1896#1897#0" expanded="true" />
+            <element signature="e#1928#1929#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TypeOfTransaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.029821074" vertical-offset="60" max-vertical-offset="750">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/CategoryDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94035786" vertical-offset="322" max-vertical-offset="885">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding>
+            <element signature="method#toDAO#0;class#CategoryDTO#0" expanded="false" />
+            <element signature="method#getAll#0;class#CategoryDTO#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/ClassifierDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6938776" vertical-offset="1340" max-vertical-offset="1905">
+          <caret line="188" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ClassifierDTO#1;class#ClassifierDTO#0" expanded="false" />
+            <element signature="method#toDAO#0;class#ClassifierDTO#0" expanded="false" />
+            <element signature="method#setDetailConditionTest#0;class#ClassifierDTO#0" expanded="false" />
+            <element signature="method#setDetailConditionValue#0;class#ClassifierDTO#0" expanded="false" />
+            <element signature="method#setAmountConditionTest#0;class#ClassifierDTO#0" expanded="false" />
+            <element signature="method#setAmountConditionValue#0;class#ClassifierDTO#0" expanded="false" />
+            <element signature="method#setStopFurtherClassification#0;class#ClassifierDTO#0" expanded="false" />
+            <element signature="method#toString#0;class#ClassifierDTO#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/RootDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8807157" vertical-offset="112" max-vertical-offset="675">
+          <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+          <folding>
+            <element signature="e#662#663#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#892#893#0" expanded="true" />
+            <element signature="e#917#918#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///opt/java/jdk1.8.0_40/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09107143" vertical-offset="24519" max-vertical-offset="50715">
+          <caret line="1759" column="9" selection-start-line="1759" selection-start-column="9" selection-end-line="1759" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/MainFrameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7986111" vertical-offset="315" max-vertical-offset="1155">
+          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+          <folding>
+            <element signature="e#2544#2545#0" expanded="true" />
+            <element signature="e#2588#2589#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/GenericController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9212963" vertical-offset="37" max-vertical-offset="555">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/ImportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6782407" vertical-offset="1012" max-vertical-offset="1545">
+          <caret line="109" column="36" selection-start-line="109" selection-start-column="36" selection-end-line="109" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/TransactionDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1068" max-vertical-offset="1500">
+          <caret line="193" column="24" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
+          <folding>
+            <element signature="docComment;class#TransactionDTO#0" expanded="false" />
+            <element signature="method#TransactionDTO#0;class#TransactionDTO#0" expanded="false" />
+            <element signature="method#TransactionDTO#1;class#TransactionDTO#0" expanded="false" />
+            <element signature="method#toDAO#0;class#TransactionDTO#0" expanded="false" />
+            <element signature="method#toString#0;class#TransactionDTO#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/RootDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="795">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#703#704#0" expanded="true" />
+            <element signature="e#1147#1148#0" expanded="true" />
+            <element signature="e#1205#1206#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/WelcomeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="555">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/main/MainApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35785288" vertical-offset="0" max-vertical-offset="765">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#MainApp#0" expanded="false" />
+            <element signature="method#setMainController#0;class#MainApp#0" expanded="false" />
+            <element signature="e#1085#1086#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+            <element signature="method#getAppData#0;class#MainApp#0" expanded="false" />
+            <element signature="method#start#0;class#MainApp#0" expanded="false" />
+            <element signature="method#stop#0;class#MainApp#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/services/db/DatabaseAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="5085">
+          <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/AccountDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="855">
+          <caret line="62" column="40" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
+          <folding>
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1157#1158#0" expanded="true" />
+            <element signature="e#1217#1218#0" expanded="true" />
+            <element signature="e#1269#1270#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/res/fxml/accountsummary.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45553145" vertical-offset="0" max-vertical-offset="570">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/CategoryDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="765">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dao/TransactionDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="1605">
+          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding>
+            <element signature="e#2981#2982#0" expanded="true" />
+            <element signature="e#3019#3020#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/controller/AccountSummaryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50695825" vertical-offset="0" max-vertical-offset="503">
+          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/dto/AccountDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1380">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="method#getAll#0;class#AccountDTO#0" expanded="false" />
+            <element signature="method#writeToDB#0;class#AccountDTO#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/philippejung/bankaccount/models/AppData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53677934" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding>
+            <element signature="docComment;class#AppData#0" expanded="false" />
+            <element signature="method#close#0;class#AppData#0" expanded="false" />
+            <element signature="method#getAllClassifiers#0;class#AppData#0" expanded="false" />
+            <element signature="method#getWayOfPaymentByName#0;class#AppData#0" expanded="false" />
+            <element signature="method#getAccountByName#0;class#AppData#0" expanded="false" />
+            <element signature="method#getCategoryByName#0;class#AppData#0" expanded="false" />
+            <element signature="method#getAccountById#0;class#AppData#0" expanded="false" />
+            <element signature="method#getWayOfPaymentById#0;class#AppData#0" expanded="false" />
+            <element signature="method#getCategoryById#0;class#AppData#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

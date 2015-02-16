@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleLongProperty;
  *
  * v0 Created by philippe on 29/01/15.
  */
-public class RootDTO {
+public abstract class RootDTO {
     private final SimpleLongProperty id = new SimpleLongProperty(-1L);
 
     public RootDTO() {
@@ -44,4 +44,5 @@ public class RootDTO {
         this.id.set(id);
     }
 
+    public abstract void writeToDB();
 }

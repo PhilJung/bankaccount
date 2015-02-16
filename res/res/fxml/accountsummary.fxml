@@ -14,7 +14,7 @@
                </cellValueFactory>
             </TableColumn>
             <TableColumn prefWidth="75.0" text="Solde">
-               <cellValueFactory><PropertyValueFactory property="amount" />
+               <cellValueFactory><PropertyValueFactory property="balance" />
                </cellValueFactory>
             </TableColumn>
          </columns>

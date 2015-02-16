@@ -21,7 +21,15 @@ public class MainApp extends Application {
     private AppData appData = null;
     private static MainApp appInstance = null;
     private Stage primaryStage;
+    private static MainFrameController mainController;
 
+    public static MainFrameController getMainController() {
+        return mainController;
+    }
+
+    private static void setMainController(MainFrameController mainController) {
+        MainApp.mainController = mainController;
+    }
 
     public MainApp() {
         appInstance = this;
@@ -50,12 +58,12 @@ public class MainApp extends Application {
     private void initRootLayout() throws java.io.IOException {
         FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/res/fxml/appframe.fxml"));
         VBox rootLayout = rootLoader.load();
-        MainFrameController mainController = rootLoader.getController();
+        setMainController(rootLoader.getController());
         primaryStage.setScene(new Scene(rootLayout, 900, 875));
         primaryStage.show();
 
         // Now load the first tab
-        mainController.selectTabAndCreateItIfRequired("welcome", "/res/fxml/welcome.fxml", "Accueil", false);
+        getMainController().selectTabAndCreateItIfRequired("welcome", "/res/fxml/welcome.fxml", "Accueil", false);
     }
 
     @Override
