@@ -1,5 +1,8 @@
 package com.philippejung.bankaccount.models.dao;
 
+import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.services.db.DatabaseAccess;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -15,7 +18,7 @@ public class ClassifierDAO extends RootDAO {
     private String detailConditionTest;
     private String detailConditionValue;
     private String amountConditionTest;
-    private Double amountConditionValue;
+    private Long amountConditionValue;
     private Integer newTypeId;
     private Long newWayOfPaymentId;
     private Long newOtherAccountId;
@@ -49,11 +52,11 @@ public class ClassifierDAO extends RootDAO {
         this.amountConditionTest = amountConditionTest;
     }
 
-    public Double getAmountConditionValue() {
+    public Long getAmountConditionValue() {
         return amountConditionValue;
     }
 
-    public void setAmountConditionValue(Double amountConditionValue) {
+    public void setAmountConditionValue(Long amountConditionValue) {
         this.amountConditionValue = amountConditionValue;
     }
 
@@ -102,7 +105,7 @@ public class ClassifierDAO extends RootDAO {
         this.setDetailConditionTest(rs.getString("detailConditionTest"));
         this.setDetailConditionValue(rs.getString("detailConditionValue"));
         this.setAmountConditionTest(rs.getString("amountConditionTest"));
-        this.setAmountConditionValue(rs.getDouble("amountConditionValue"));
+        this.setAmountConditionValue(rs.getLong("amountConditionValue"));
         this.setNewTypeId(rs.getInt("newTypeId"));
         this.setNewWayOfPaymentId(rs.getLong("newWayOfPaymentId"));
         this.setNewOtherAccountId(rs.getLong("newOtherAccountId"));
@@ -111,7 +114,7 @@ public class ClassifierDAO extends RootDAO {
     }
 
     @Override
-    protected String getTableName() {
+    public String getTableName() {
         return "Classifier";
     }
 
@@ -128,4 +131,11 @@ public class ClassifierDAO extends RootDAO {
         params.put("stopFurtherClassification", getStopFurtherClassification());
     }
 
+    public static ClassifierDAO byId(long id) {
+        return byId(id, MainApp.getData().getDbAccess());
+    }
+
+    public static ClassifierDAO byId(long id, DatabaseAccess dbAccess) {
+        return dbAccess.findById(id, ClassifierDAO.class);
+    }
 }

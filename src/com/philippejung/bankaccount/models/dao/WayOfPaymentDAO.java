@@ -1,5 +1,8 @@
 package com.philippejung.bankaccount.models.dao;
 
+import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.services.db.DatabaseAccess;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -31,7 +34,7 @@ public class WayOfPaymentDAO extends RootDAO {
     }
 
     @Override
-    protected String getTableName() {
+    public String getTableName() {
         return "WayOfPayment";
     }
 
@@ -39,4 +42,14 @@ public class WayOfPaymentDAO extends RootDAO {
     protected void setQueryParams(Map<String, Object> params) {
         params.put("name", getName());
     }
+
+    public static WayOfPaymentDAO byId(long id) {
+        return byId(id, MainApp.getData().getDbAccess());
+    }
+
+    public static WayOfPaymentDAO byId(long id, DatabaseAccess dbAccess) {
+        return dbAccess.findById(id, WayOfPaymentDAO.class);
+    }
+
+
 }

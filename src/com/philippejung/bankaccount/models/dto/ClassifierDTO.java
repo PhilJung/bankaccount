@@ -2,8 +2,9 @@ package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dao.ClassifierDAO;
+import com.philippejung.bankaccount.models.dao.RootDAO;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -22,7 +23,7 @@ public class ClassifierDTO extends RootDTO {
     private final SimpleStringProperty detailConditionTest = new SimpleStringProperty ();
     private final SimpleStringProperty detailConditionValue = new SimpleStringProperty ();
     private final SimpleStringProperty amountConditionTest = new SimpleStringProperty ();
-    private final SimpleDoubleProperty amountConditionValue = new SimpleDoubleProperty ();
+    private final SimpleLongProperty amountConditionValue = new SimpleLongProperty ();
     private final SimpleObjectProperty<TypeOfTransaction> type = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<WayOfPaymentDTO> wayOfPayment = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<AccountDTO> account = new SimpleObjectProperty<>();
@@ -34,7 +35,7 @@ public class ClassifierDTO extends RootDTO {
         setDetailConditionTest(null);
         setDetailConditionValue(null);
         setAmountConditionTest(null);
-        setAmountConditionValue(0.0);
+        setAmountConditionValue(0);
         setType(TypeOfTransaction.NONE);
         setWayOfPayment(null);
         setAccount(null);
@@ -55,17 +56,18 @@ public class ClassifierDTO extends RootDTO {
         setStopFurtherClassification(dao.getStopFurtherClassification());
     }
 
-    public void toDAO(ClassifierDAO dao) {
+    public void toDAO(RootDAO dao) {
         super.toDAO(dao);
-        dao.setDetailConditionTest(getDetailConditionTest());
-        dao.setDetailConditionValue(getDetailConditionValue());
-        dao.setAmountConditionTest(getAmountConditionTest());
-        dao.setAmountConditionValue(getAmountConditionValue());
-        dao.setNewTypeId(getType().toInt());
-        dao.setNewWayOfPaymentId(idOf(getWayOfPayment()));
-        dao.setNewOtherAccountId(idOf(getAccount()));
-        dao.setNewCategoryId(idOf(getCategory()));
-        dao.setStopFurtherClassification(getStopFurtherClassification());
+        ClassifierDAO classifierDAO = (ClassifierDAO)dao;
+        classifierDAO.setDetailConditionTest(getDetailConditionTest());
+        classifierDAO.setDetailConditionValue(getDetailConditionValue());
+        classifierDAO.setAmountConditionTest(getAmountConditionTest());
+        classifierDAO.setAmountConditionValue(getAmountConditionValue());
+        classifierDAO.setNewTypeId(getType().toInt());
+        classifierDAO.setNewWayOfPaymentId(idOf(getWayOfPayment()));
+        classifierDAO.setNewOtherAccountId(idOf(getAccount()));
+        classifierDAO.setNewCategoryId(idOf(getCategory()));
+        classifierDAO.setStopFurtherClassification(getStopFurtherClassification());
     }
 
     public String getDetailConditionTest() {
@@ -104,15 +106,15 @@ public class ClassifierDTO extends RootDTO {
         this.amountConditionTest.set(amountConditionTest);
     }
 
-    public double getAmountConditionValue() {
+    public Long getAmountConditionValue() {
         return amountConditionValue.get();
     }
 
-    public SimpleDoubleProperty amountConditionValueProperty() {
+    public SimpleLongProperty amountConditionValueProperty() {
         return amountConditionValue;
     }
 
-    public void setAmountConditionValue(double amountConditionValue) {
+    public void setAmountConditionValue(long amountConditionValue) {
         this.amountConditionValue.set(amountConditionValue);
     }
 
@@ -186,10 +188,8 @@ public class ClassifierDTO extends RootDTO {
     }
 
     @Override
-    public void writeToDB() {
-        ClassifierDAO dao = new ClassifierDAO();
-        toDAO(dao);
-        dao.writeToDB();
+    public RootDAO newDAO() {
+        return new ClassifierDAO();
     }
 
     @Override

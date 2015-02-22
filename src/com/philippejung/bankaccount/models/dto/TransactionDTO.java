@@ -1,8 +1,12 @@
 package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.dao.RootDAO;
 import com.philippejung.bankaccount.models.dao.TransactionDAO;
-import javafx.beans.property.*;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.time.LocalDate;
 
@@ -22,7 +26,7 @@ public class TransactionDTO extends RootDTO {
     private final SimpleObjectProperty<AccountDTO> otherAccount= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<WayOfPaymentDTO> wayOfPayment= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<CategoryDTO> category = new SimpleObjectProperty<>();
-    private final SimpleDoubleProperty amount = new SimpleDoubleProperty();
+    private final SimpleLongProperty amount = new SimpleLongProperty();
     private final SimpleStringProperty detail= new SimpleStringProperty();
     private final SimpleStringProperty comment= new SimpleStringProperty();
 
@@ -34,7 +38,7 @@ public class TransactionDTO extends RootDTO {
         setAccount(null);
         setOtherAccount(null);
         setWayOfPayment(null);
-        setAmount(0.0);
+        setAmount(0L);
         setDetail(null);
         setComment(null);
         setCategory(null);
@@ -54,17 +58,18 @@ public class TransactionDTO extends RootDTO {
         setComment(dao.getComment());
     }
 
-    public void toDAO(TransactionDAO dao) {
+    public void toDAO(RootDAO dao) {
         super.toDAO(dao);
-        dao.setDate(new java.sql.Date(getDate().toEpochDay()));
-        dao.setType(getType().toInt());
-        dao.setAccountId(idOf(getAccount()));
-        dao.setOtherAccountId(idOf(getOtherAccount()));
-        dao.setWayOfPaymentId(idOf(getWayOfPayment()));
-        dao.setCategoryId(idOf(getCategory()));
-        dao.setAmount(getAmount());
-        dao.setDetail(getDetail());
-        dao.setComment(getComment());
+        TransactionDAO transactionDAO = (TransactionDAO)dao;
+        transactionDAO.setDate(java.sql.Date.valueOf(getDate()));
+        transactionDAO.setType(getType().toInt());
+        transactionDAO.setAccountId(idOf(getAccount()));
+        transactionDAO.setOtherAccountId(idOf(getOtherAccount()));
+        transactionDAO.setWayOfPaymentId(idOf(getWayOfPayment()));
+        transactionDAO.setCategoryId(idOf(getCategory()));
+        transactionDAO.setAmount(getAmount());
+        transactionDAO.setDetail(getDetail());
+        transactionDAO.setComment(getComment());
     }
 
     public boolean getMustBeImported() {
@@ -139,15 +144,15 @@ public class TransactionDTO extends RootDTO {
         this.wayOfPayment.set(wayOfPayment);
     }
 
-    public double getAmount() {
+    public Long getAmount() {
         return amount.get();
     }
 
-    public SimpleDoubleProperty amountProperty() {
+    public SimpleLongProperty amountProperty() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(long amount) {
         this.amount.set(amount);
     }
 
@@ -188,10 +193,8 @@ public class TransactionDTO extends RootDTO {
     }
 
     @Override
-    public void writeToDB() {
-        TransactionDAO dao = new TransactionDAO();
-        toDAO(dao);
-        dao.writeToDB();
+    public RootDAO newDAO() {
+        return new TransactionDAO();
     }
 
     @Override

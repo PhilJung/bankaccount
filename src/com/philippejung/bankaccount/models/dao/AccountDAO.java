@@ -1,5 +1,8 @@
 package com.philippejung.bankaccount.models.dao;
 
+import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.services.db.DatabaseAccess;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -14,17 +17,23 @@ import java.util.Map;
 public class AccountDAO extends RootDAO {
     private String name;
     private String accountNumber;
-    private Double initialBalance;
+    private String importerFormat;
+    private Long initialBalance;
 
     public AccountDAO() {
         super();
+        setName("Undefined");
+        setAccountNumber(null);
+        setImporterFormat(null);
+        setInitialBalance(0L);
     }
 
     public void readFromDB(ResultSet rs) throws SQLException {
         super.readFromDB(rs);
         this.name = rs.getString("name");
         this.accountNumber = rs.getString("accountNumber");
-        this.initialBalance = rs.getDouble("initialBalance");
+        this.initialBalance = rs.getLong("initialBalance");
+        this.importerFormat = rs.getString("importerFormat");
     }
 
     public String getName() {
@@ -43,16 +52,24 @@ public class AccountDAO extends RootDAO {
         this.accountNumber = accountNumber;
     }
 
-    public Double getInitialBalance() {
+    public Long getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(Double initialBalance) {
+    public void setInitialBalance(Long initialBalance) {
         this.initialBalance = initialBalance;
     }
 
+    public String getImporterFormat() {
+        return importerFormat;
+    }
+
+    public void setImporterFormat(String importerFormat) {
+        this.importerFormat = importerFormat;
+    }
+
     @Override
-    protected String getTableName() {
+    public String getTableName() {
         return "Account";
     }
 
@@ -61,5 +78,14 @@ public class AccountDAO extends RootDAO {
         params.put("name", getName());
         params.put("accountNumber", getAccountNumber());
         params.put("initialBalance", getInitialBalance());
+        params.put("importerFormat", getImporterFormat());
+    }
+
+    public static AccountDAO byId(long id) {
+        return byId(id, MainApp.getData().getDbAccess());
+    }
+
+    public static AccountDAO byId(long id, DatabaseAccess dbAccess) {
+        return dbAccess.findById(id, AccountDAO.class);
     }
 }

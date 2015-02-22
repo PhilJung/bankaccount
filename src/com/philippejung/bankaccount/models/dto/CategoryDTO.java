@@ -2,6 +2,7 @@ package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dao.CategoryDAO;
+import com.philippejung.bankaccount.models.dao.RootDAO;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -56,10 +57,11 @@ public class CategoryDTO extends RootDTO {
         this.expense.set(expense);
     }
 
-    public void toDAO(CategoryDAO dao) {
+    public void toDAO(RootDAO dao) {
         super.toDAO(dao);
-        dao.setName(getName());
-        dao.setExpense(getExpense());
+        CategoryDAO categoryDAO = (CategoryDAO)dao;
+        categoryDAO.setName(getName());
+        categoryDAO.setExpense(getExpense());
     }
 
     public static ObservableList<CategoryDTO> getAll() {
@@ -73,10 +75,8 @@ public class CategoryDTO extends RootDTO {
     }
 
     @Override
-    public void writeToDB() {
-        CategoryDAO dao = new CategoryDAO();
-        toDAO(dao);
-        dao.writeToDB();
+    public RootDAO newDAO() {
+        return new CategoryDAO();
     }
 
     @Override

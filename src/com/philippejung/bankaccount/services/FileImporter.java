@@ -13,8 +13,9 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -101,32 +102,26 @@ public class FileImporter {
 
     /**
      * Import the file based on the model previously loaded
-     * @param filePath the path to the data file
+     * @param inputStream the stream with the data to analyse
      */
-    public void importFile(String filePath) {
-        try {
-            FileInputStream file = new FileInputStream(filePath);
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                for(LineMatcher lineMatcher : allLineMatchers) {
-                    if (lineMatcher.match(line)) {
-                        if (lineMatcher.getMatchedAccountNumber()!=null) {
-                            importedAccountNumber = lineMatcher.getMatchedAccountNumber();
-                        } else {
-                            TransactionDTO transactionDTO = new TransactionDTO();
-                            transactionDTO.setAmount(lineMatcher.getAmount());
-                            transactionDTO.setComment(lineMatcher.getComment());
-                            transactionDTO.setDate(lineMatcher.getDate());
-                            transactionDTO.setDetail(lineMatcher.getDetail());
-                            allImportedMovements.add(transactionDTO);
-                        }
+    public void importFile(InputStream inputStream) {
+        Scanner scanner = new Scanner(inputStream);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            for(LineMatcher lineMatcher : allLineMatchers) {
+                if (lineMatcher.match(line)) {
+                    if (lineMatcher.getMatchedAccountNumber()!=null) {
+                        importedAccountNumber = lineMatcher.getMatchedAccountNumber();
+                    } else {
+                        TransactionDTO transactionDTO = new TransactionDTO();
+                        transactionDTO.setAmount(lineMatcher.getAmount());
+                        transactionDTO.setComment(lineMatcher.getComment());
+                        transactionDTO.setDate(lineMatcher.getDate());
+                        transactionDTO.setDetail(lineMatcher.getDetail());
+                        allImportedMovements.add(transactionDTO);
                     }
                 }
             }
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -183,11 +178,13 @@ public class FileImporter {
             return regexpMatcher.group(index);
         }
 
-        public Double getAmount() {
+        public Long getAmount() {
             assert(regexpMatcher!=null);
             if (indexOfAmountInRegexp==null) return null;
             int index = Integer.parseInt(indexOfAmountInRegexp);
-            return Double.parseDouble(regexpMatcher.group(index).replace(',', '.'));
+            BigDecimal bigDecimalAmount = new BigDecimal(regexpMatcher.group(index).replace(',', '.'));
+            // Amounts are internally stocked as amount x 100
+            return bigDecimalAmount.multiply(new BigDecimal(100)).longValue();
         }
 
         public String getComment() {
@@ -209,17 +206,8 @@ public class FileImporter {
             if (indexOfDateInRegexp==null) return null;
             int index = Integer.parseInt(indexOfDateInRegexp);
             LocalDate date;
-//            try {
-                date = LocalDate.parse(regexpMatcher.group(index), dateFormat);
-//            } catch (ParseException e) {
-//                AlertPopup.alert(Alert.AlertType.ERROR, "Erreur", "Erreur durant l'import du fichier.",
-//                        "La date " + regexpMatcher.group(index) + " ne peut être analysée correctement.\n" +
-//                        "L'application va quitter.");
-//                Platform.exit();
-//            }
+            date = LocalDate.parse(regexpMatcher.group(index), dateFormat);
             return date;
         }
-
     }
-
 }

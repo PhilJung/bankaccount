@@ -3,13 +3,13 @@
     <dateformat>dd/MM/yyyy</dateformat>
     <line>
         <pattern>Numéro Compte   ;(.*)</pattern>
-        <sample>Numéro Compte   ;1235400JK33</sample>
+        <sample>Numéro Compte   ;1235400JK12</sample>
         <accountNumber>1</accountNumber>
     </line>
     <line>
         <pattern>([^;]+);"([^"]*)";([0-9\.,\-]+);.*</pattern>
-        <sample>23/01/2015;"PRELEVEMENT DE ELRES REF : D000799516 PRLV CANTINES Bussy-Saint-George IDENT : FR30ZZZ313653";-110,25;-723,19</sample>
-        <sample>16/01/2015;"VIREMENT DE MME JUNG VERONIQUE REFERENCE : 0181016500538649  ";1000,00;6559,57</sample>
+        <sample>23/01/2015;"PRELEVEMENT DE XXXXX : DU TEXTE IDENT : FR1234567";-110,25;-723,19</sample>
+        <sample>16/01/2015;"VIREMENT DE MME REFERENCE : 32432434252  ";1000,00;6559,57</sample>
         <date>1</date>
         <detail>2</detail>
         <amount>3</amount>

@@ -1,6 +1,7 @@
 package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.dao.RootDAO;
 import com.philippejung.bankaccount.models.dao.WayOfPaymentDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -28,9 +29,10 @@ public class WayOfPaymentDTO extends RootDTO {
         setName(dao.getName());
     }
 
-    public void toDAO(WayOfPaymentDAO dao) {
+    public void toDAO(RootDAO dao) {
         super.toDAO(dao);
-        dao.setName(getName());
+        WayOfPaymentDAO wayOfPaymentDAO =(WayOfPaymentDAO)dao;
+        wayOfPaymentDAO.setName(getName());
     }
 
     public String getName() {
@@ -56,10 +58,8 @@ public class WayOfPaymentDTO extends RootDTO {
     }
 
     @Override
-    public void writeToDB() {
-        WayOfPaymentDAO dao = new WayOfPaymentDAO();
-        toDAO(dao);
-        dao.writeToDB();
+    public RootDAO newDAO() {
+        return new WayOfPaymentDAO();
     }
 
     @Override

@@ -7,6 +7,8 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,6 +37,7 @@ public class DatabaseAccess {
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "name TEXT," +
                     "initialBalance REAL," +
+                    "importerFormat TEXT," +
                     "accountNumber TEXT)",
             "CREATE TABLE [transaction] (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -72,7 +75,8 @@ public class DatabaseAccess {
             "INSERT INTO wayOfPayment VALUES (4, 'Cheque LBP')",
             "INSERT INTO wayOfPayment VALUES (5, 'Paypal')",
             "INSERT INTO wayOfPayment VALUES (6, 'Prélèvement LBP')",
-            "INSERT INTO account VALUES (1, 'LBP', 12.34, '0000');",
+            "INSERT INTO account VALUES (1, 'Compte courant La Banque Postale', 0.0, 'lbp', '0000');",
+            "INSERT INTO account VALUES (2, 'Compte courant Hellobank', 0.0, 'lbp', '0000');",
             "INSERT INTO category VALUES (1, 'Salaire', 0)",
             "INSERT INTO category VALUES (2, 'Divers', 0)",
             "INSERT INTO category VALUES (3, 'Alimentation', 1)",
@@ -169,6 +173,44 @@ public class DatabaseAccess {
             } catch (SQLException exc) {
                 // Do nothing
             }
+        }
+        return retVal;
+    }
+
+    public <T extends RootDAO> T findById(long id, Class<T> objectClass) {
+        Statement statement = null;
+        ResultSet rs=null;
+        checkConnection();
+        T retVal = null;
+        try {
+            retVal = objectClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        try {
+            statement = connection.createStatement();
+            Method method = null;
+            String tableName = null;
+            method = objectClass.getMethod("getTableName", null);
+            tableName = (String) method.invoke(retVal);
+            rs = statement.executeQuery("SELECT * FROM " + tableName + " WHERE id=" + id);
+            if (rs.next()) {
+                retVal.readFromDB(rs);
+            }
+        }
+        catch (NoSuchMethodException ignored) { retVal = null; }
+        catch (InvocationTargetException ignored) { retVal = null; }
+        catch (IllegalAccessException ignored) { retVal = null; }
+        catch (SQLException exc) {
+            handleException(exc);
+            retVal = null;
+        } finally {
+            if (rs!=null) try {
+                rs.close();
+            } catch (SQLException ignored) {}
+            if (statement!=null) try {
+                statement.close();
+            } catch (SQLException ignored) {}
         }
         return retVal;
     }
@@ -276,6 +318,9 @@ public class DatabaseAccess {
                     case "java.lang.String":
                         statement.setString(index, (String) entry);
                         break;
+                    case "java.lang.Boolean":
+                        statement.setBoolean(index, (Boolean) entry);
+                        break;
                     case "java.lang.Integer":
                         statement.setInt(index, (Integer) entry);
                         break;
@@ -289,7 +334,7 @@ public class DatabaseAccess {
                         statement.setDate(index, (Date) entry);
                         break;
                     default:
-                        System.err.println(entry.getClass().getName());
+                        System.err.println("DatabaseAccess, unsupported type " + entry.getClass().getName());
                         assert (false);
                 }
             }

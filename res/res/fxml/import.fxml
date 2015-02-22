@@ -8,6 +8,8 @@
    <children>
       <HBox spacing="5.0">
          <children>
+            <Label maxHeight="1.7976931348623157E308" text="Importer dans:" HBox.hgrow="NEVER" />
+            <ComboBox fx:id="accountList" onAction="#onAccountListAction" promptText="Sélectionnez un compte..." HBox.hgrow="ALWAYS" />
             <TextField fx:id="filePath" HBox.hgrow="ALWAYS" />
             <Button fx:id="fileBrowse" mnemonicParsing="false" onAction="#onButtonFileBrowseClicked" text="..." HBox.hgrow="NEVER" />
          </children>
@@ -29,7 +31,7 @@
               <cellValueFactory><PropertyValueFactory property="type" />
               </cellValueFactory>
            </TableColumn>
-           <TableColumn fx:id="wayOfPaymentColumn" prefWidth="120.0" editable="true" text="Moyen">
+           <TableColumn fx:id="wayOfPaymentColumn" editable="true" prefWidth="120.0" text="Moyen">
               <cellValueFactory><PropertyValueFactory property="wayOfPaymentId" />
               </cellValueFactory>
            </TableColumn>
@@ -54,9 +56,7 @@
       <HBox alignment="TOP_RIGHT" spacing="5.0" VBox.vgrow="NEVER">
          <children>
             <Button mnemonicParsing="false" onAction="#onAnalyzeDataButtonClicked" text="Relancer l'analyse des données" />
-             <Label maxHeight="1.7976931348623157E308" text="Importer dans:" HBox.hgrow="NEVER" />
-             <ComboBox fx:id="accountList" HBox.hgrow="ALWAYS" maxWidth="200"/>
-            <Button mnemonicParsing="false" onAction="#onButtonImportDataClicked" text="Importer les données" />
+            <Button mnemonicParsing="false" fx:id="importData" onAction="#onButtonImportDataClicked" text="Importer les données" />
          </children>
       </HBox>
    </children>

@@ -2,12 +2,16 @@ package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dao.AccountDAO;
+import com.philippejung.bankaccount.models.dao.RootDAO;
 import com.philippejung.bankaccount.models.dao.TransactionDAO;
-import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 /**
@@ -22,30 +26,38 @@ public class AccountDTO extends RootDTO {
     private final SimpleStringProperty importerFormat = new SimpleStringProperty();
     private final SimpleStringProperty accountNumber = new SimpleStringProperty();
     private final ObservableList<TransactionDTO> allTransactions = FXCollections.observableArrayList();
-    private final SimpleDoubleProperty balance = new SimpleDoubleProperty();
-    private final SimpleDoubleProperty initialBalance = new SimpleDoubleProperty();
+    private final SimpleLongProperty balance = new SimpleLongProperty();
+    private final SimpleLongProperty initialBalance = new SimpleLongProperty();
 
     public AccountDTO() {
         super();
         setName(null);
-        setInitialBalance(0.0);
+        setInitialBalance(0);
         setImporterFormat(null);
         setAccountNumber(null);
+        setBalance(0);
+    }
+
+    @Override
+    public RootDAO newDAO() {
+        return new AccountDAO();
     }
 
     private AccountDTO(AccountDAO dao) {
         super(dao);
         setName(dao.getName());
         setInitialBalance(dao.getInitialBalance());
-        setImporterFormat("lbp");
+        setImporterFormat(dao.getImporterFormat());
         setAccountNumber(dao.getAccountNumber());
     }
 
-    public void toDAO(AccountDAO dao) {
+    public void toDAO(RootDAO dao) {
         super.toDAO(dao);
-        dao.setName(getName());
-        dao.setAccountNumber(getAccountNumber());
-        dao.setInitialBalance(getInitialBalance());
+        AccountDAO accountDAO = (AccountDAO)dao;
+        accountDAO.setName(getName());
+        accountDAO.setAccountNumber(getAccountNumber());
+        accountDAO.setInitialBalance(getInitialBalance());
+        accountDAO.setImporterFormat(getImporterFormat());
     }
 
     public String getAccountNumber() {
@@ -76,27 +88,27 @@ public class AccountDTO extends RootDTO {
         this.name.set(name);
     }
 
-    public double getBalance() {
+    public long getBalance() {
         return balance.get();
     }
 
-    public SimpleDoubleProperty balanceProperty() {
+    public SimpleLongProperty balanceProperty() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(long balance) {
         this.balance.set(balance);
     }
 
-    public double getInitialBalance() {
+    public Long getInitialBalance() {
         return initialBalance.get();
     }
 
-    public SimpleDoubleProperty initialBalanceProperty() {
+    public SimpleLongProperty initialBalanceProperty() {
         return initialBalance;
     }
 
-    public void setInitialBalance(double initialBalance) {
+    public void setInitialBalance(long initialBalance) {
         this.initialBalance.set(initialBalance);
     }
 
@@ -111,13 +123,6 @@ public class AccountDTO extends RootDTO {
     }
 
     @Override
-    public void writeToDB() {
-        AccountDAO dao = new AccountDAO();
-        toDAO(dao);
-        dao.writeToDB();
-    }
-
-    @Override
     public String toString() {
         return getName();
     }
@@ -125,11 +130,47 @@ public class AccountDTO extends RootDTO {
     public void loadTransactions() {
         setBalance(getInitialBalance());
         ArrayList<TransactionDAO> queryResult = MainApp.getData().getDbAccess().select(
-                "SELECT * FROM [transaction] WHERE accountId=" + getId().toString(), TransactionDAO.class
+                "SELECT * FROM [transaction] WHERE accountId=" + getId().toString() + " ORDER BY date ASC",
+                TransactionDAO.class
         );
         for (TransactionDAO dao : queryResult) {
-            allTransactions.add(new TransactionDTO(dao));
-            setBalance(getBalance() + dao.getAmount());
+            addTransaction(new TransactionDTO(dao));
         }
+    }
+
+    /**
+     * Compute previous values of balance starting at (now) and going back by steps of 1 week.
+     * Values are the account balance at the end of the given day.
+     *
+     * @return
+     */
+    public XYChart.Series getBalanceHistoryByWeeks() {
+        XYChart.Series series = new XYChart.Series();
+        series.setName(getName());
+
+        LocalDate now = LocalDate.now();
+        LocalDate fromData = LocalDate.now().minusMonths(6);
+        Long[] values = new Long[30];
+        for (int i=0; i<30; i++) {
+            values[i] = 0L;
+        }
+        int maxSlot = 0;
+        for(TransactionDTO dto : allTransactions) {
+            if (dto.getDate().isAfter(fromData)) {
+                int slot = (int) ChronoUnit.WEEKS.between(dto.getDate(), now);
+                values[slot] += dto.getAmount();
+                if (slot>maxSlot) maxSlot = slot;
+            }
+        }
+        for (int i=maxSlot; i>=0; i--) {
+            String index = (i==0) ? "0" : ("-" + Integer.toString(i));
+            series.getData().add(new XYChart.Data(index, values[i] / 100.0));
+        }
+        return series;
+    }
+
+    public void addTransaction(TransactionDTO transaction) {
+        allTransactions.add(transaction);
+        setBalance(getBalance() + transaction.getAmount());
     }
 }

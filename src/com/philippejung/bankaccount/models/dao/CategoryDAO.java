@@ -1,5 +1,8 @@
 package com.philippejung.bankaccount.models.dao;
 
+import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.services.db.DatabaseAccess;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -17,6 +20,7 @@ public class CategoryDAO extends RootDAO {
     private Boolean expense;
 
     public CategoryDAO() {
+        super();
         setName("");
         setExpense(false);
     }
@@ -46,12 +50,19 @@ public class CategoryDAO extends RootDAO {
     @Override
     protected void setQueryParams(Map<String, Object> params) {
         params.put("name", getName());
-        params.put("expense", isExpense());
+        params.put("isexpense", isExpense());
     }
 
     @Override
-    protected String getTableName() {
+    public String getTableName() {
         return "Category";
     }
 
+    public static CategoryDAO byId(long id) {
+        return byId(id, MainApp.getData().getDbAccess());
+    }
+
+    public static CategoryDAO byId(long id, DatabaseAccess dbAccess) {
+        return dbAccess.findById(id, CategoryDAO.class);
+    }
 }

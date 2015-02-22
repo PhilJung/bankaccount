@@ -64,7 +64,7 @@ public class ClassifierService {
         return false;
     }
 
-    private boolean isVerifiedAmount(String amountConditionTest, double amountConditionValue, double amount) {
+    private boolean isVerifiedAmount(String amountConditionTest, long amountConditionValue, long amount) {
         if (amountConditionTest==null) return true;
         switch (amountConditionTest) {
             case "==": return amount == amountConditionValue;

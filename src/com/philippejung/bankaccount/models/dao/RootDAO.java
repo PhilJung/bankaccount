@@ -1,6 +1,5 @@
 package com.philippejung.bankaccount.models.dao;
 
-import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
 
 import java.sql.ResultSet;
@@ -33,22 +32,20 @@ public abstract class RootDAO {
         this.id = id;
     }
 
-    public void writeToDB(DatabaseAccess dbAccess) {
+    public Long writeToDB(DatabaseAccess dbAccess) {
         Map<String, Object> params = new HashMap<>();
         setQueryParams(params);
         if (getId() == -1L) {
             Long id = dbAccess.insert(getTableName(), params);
             setId(id);
+            return id;
         } else {
             dbAccess.update(getTableName(), getId(), params);
+            return null;
         }
     }
 
-    public void writeToDB() {
-        writeToDB(MainApp.getData().getDbAccess());
-    }
-
-    protected abstract String getTableName();
+    public abstract String getTableName();
 
     protected abstract void setQueryParams(Map<String, Object> params);
 

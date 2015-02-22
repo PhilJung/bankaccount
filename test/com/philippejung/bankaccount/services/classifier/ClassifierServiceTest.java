@@ -100,16 +100,16 @@ public class ClassifierServiceTest {
         ClassifierDTO cond1 = new ClassifierDTO();
         cs.setClassifierDTO(cond1);
         cond1.setAmountConditionTest("==");
-        cond1.setAmountConditionValue(10.1);
+        cond1.setAmountConditionValue(1010);
         TransactionDTO dto = new TransactionDTO();
         cs.setTransactionDTO(dto);
         //   ==
         cond1.setAmountConditionTest("==");
-        dto.setAmount(10.0);
+        dto.setAmount(1000);
         Assert.assertFalse(cs.isVerified());
-        dto.setAmount(10.1);
+        dto.setAmount(1010);
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(10.2);
+        dto.setAmount(1020);
         Assert.assertFalse(cs.isVerified());
     }
 
@@ -118,15 +118,15 @@ public class ClassifierServiceTest {
         ClassifierService cs = new ClassifierService();
         ClassifierDTO cond1 = new ClassifierDTO();
         cs.setClassifierDTO(cond1);
-        cond1.setAmountConditionValue(10.1);
+        cond1.setAmountConditionValue(1010);
         TransactionDTO dto = new TransactionDTO();
         cs.setTransactionDTO(dto);
         cond1.setAmountConditionTest("!=");
-        dto.setAmount(10.0);
+        dto.setAmount(1000);
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(10.1);
+        dto.setAmount(1010);
         Assert.assertFalse(cs.isVerified());
-        dto.setAmount(10.2);
+        dto.setAmount(1020);
         Assert.assertTrue(cs.isVerified());
     }
 
@@ -135,15 +135,15 @@ public class ClassifierServiceTest {
         ClassifierService cs = new ClassifierService();
         ClassifierDTO cond1 = new ClassifierDTO();
         cs.setClassifierDTO(cond1);
-        cond1.setAmountConditionValue(10.1);
+        cond1.setAmountConditionValue(1010);
         TransactionDTO dto = new TransactionDTO();
         cs.setTransactionDTO(dto);
         cond1.setAmountConditionTest(">");
-        dto.setAmount(10.0);
+        dto.setAmount(1000);
         Assert.assertFalse(cs.isVerified());
-        dto.setAmount(10.1);
+        dto.setAmount(1010);
         Assert.assertFalse(cs.isVerified());
-        dto.setAmount(10.2);
+        dto.setAmount(1020);
         Assert.assertTrue(cs.isVerified());
     }
 
@@ -152,15 +152,15 @@ public class ClassifierServiceTest {
         ClassifierService cs = new ClassifierService();
         ClassifierDTO cond1 = new ClassifierDTO();
         cs.setClassifierDTO(cond1);
-        cond1.setAmountConditionValue(10.1);
+        cond1.setAmountConditionValue(1010);
         TransactionDTO dto = new TransactionDTO();
         cs.setTransactionDTO(dto);
         cond1.setAmountConditionTest(">=");
-        dto.setAmount(10.0);
+        dto.setAmount(1000);
         Assert.assertFalse(cs.isVerified());
-        dto.setAmount(10.1);
+        dto.setAmount(1010);
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(10.2);
+        dto.setAmount(1020);
         Assert.assertTrue(cs.isVerified());
     }
 
@@ -169,15 +169,15 @@ public class ClassifierServiceTest {
         ClassifierService cs = new ClassifierService();
         ClassifierDTO cond1 = new ClassifierDTO();
         cs.setClassifierDTO(cond1);
-        cond1.setAmountConditionValue(10.1);
+        cond1.setAmountConditionValue(1010);
         TransactionDTO dto = new TransactionDTO();
         cs.setTransactionDTO(dto);
         cond1.setAmountConditionTest("<");
-        dto.setAmount(10.0);
+        dto.setAmount(1000);
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(10.1);
+        dto.setAmount(1010);
         Assert.assertFalse(cs.isVerified());
-        dto.setAmount(10.2);
+        dto.setAmount(1020);
         Assert.assertFalse(cs.isVerified());
     }
 
@@ -186,15 +186,15 @@ public class ClassifierServiceTest {
         ClassifierService cs = new ClassifierService();
         ClassifierDTO cond1 = new ClassifierDTO();
         cs.setClassifierDTO(cond1);
-        cond1.setAmountConditionValue(10.1);
+        cond1.setAmountConditionValue(1010);
         TransactionDTO dto = new TransactionDTO();
         cs.setTransactionDTO(dto);
         cond1.setAmountConditionTest("<=");
-        dto.setAmount(10.0);
+        dto.setAmount(1000);
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(10.1);
+        dto.setAmount(1010);
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(10.2);
+        dto.setAmount(1020);
         Assert.assertFalse(cs.isVerified());
     }
 
@@ -208,9 +208,9 @@ public class ClassifierServiceTest {
         dto.setDetail("A");
         dto.setAmount(0);
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(1);
+        dto.setAmount(100);
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(-1);
+        dto.setAmount(-100);
         Assert.assertTrue(cs.isVerified());
     }
 
@@ -222,19 +222,19 @@ public class ClassifierServiceTest {
         cond1.setDetailConditionTest("endsWith");
         cond1.setDetailConditionValue("A");
         cond1.setAmountConditionTest("==");
-        cond1.setAmountConditionValue(1.0);
+        cond1.setAmountConditionValue(100);
         TransactionDTO dto = new TransactionDTO();
         cs.setTransactionDTO(dto);
-        dto.setAmount(1);
+        dto.setAmount(100);
         dto.setDetail("ba");
         Assert.assertTrue(cs.isVerified());
-        dto.setAmount(2);
+        dto.setAmount(200);
         dto.setDetail("ba");
         Assert.assertFalse(cs.isVerified());
-        dto.setAmount(1);
+        dto.setAmount(100);
         dto.setDetail("ab");
         Assert.assertFalse(cs.isVerified());
-        dto.setAmount(2);
+        dto.setAmount(200);
         dto.setDetail("ab");
         Assert.assertFalse(cs.isVerified());
     }

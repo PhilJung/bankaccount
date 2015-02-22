@@ -1,6 +1,8 @@
 package com.philippejung.bankaccount.models.dto;
 
+import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dao.RootDAO;
+import com.philippejung.bankaccount.services.db.DatabaseAccess;
 import javafx.beans.property.SimpleLongProperty;
 
 /**
@@ -44,5 +46,18 @@ public abstract class RootDTO {
         this.id.set(id);
     }
 
-    public abstract void writeToDB();
+    public void writeToDB() {
+        writeToDB(MainApp.getData().getDbAccess());
+    }
+
+    public void writeToDB(DatabaseAccess dbAccess) {
+        RootDAO dao = newDAO();
+        toDAO(dao);
+        Long newId = dao.writeToDB(dbAccess);
+        if (newId != null) {
+            setId(newId);
+        }
+    }
+
+    public abstract RootDAO newDAO();
 }

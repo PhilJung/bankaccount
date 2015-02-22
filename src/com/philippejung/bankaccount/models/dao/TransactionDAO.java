@@ -1,6 +1,9 @@
 package com.philippejung.bankaccount.models.dao;
 
 
+import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.services.db.DatabaseAccess;
+
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +23,7 @@ public class TransactionDAO extends RootDAO {
     private Long otherAccountId;
     private Long otherTransactionId;
     private Long wayOfPaymentId;
-    private Double amount;
+    private Long amount;
     private String detail;
     private String comment;
     private Long categoryId;
@@ -37,7 +40,7 @@ public class TransactionDAO extends RootDAO {
         this.otherAccountId = rs.getLong("otherAccountId");
         this.otherTransactionId = rs.getLong("otherTransactionId");
         this.wayOfPaymentId = rs.getLong("wayOfPaymentId");
-        this.amount = rs.getDouble("amount");
+        this.amount = rs.getLong("amount");
         this.detail = rs.getString("detail");
         this.comment = rs.getString("comment");
         this.categoryId = rs.getLong("categoryId");
@@ -91,11 +94,11 @@ public class TransactionDAO extends RootDAO {
         this.wayOfPaymentId = wayOfPaymentId;
     }
 
-    public Double getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 
@@ -124,7 +127,7 @@ public class TransactionDAO extends RootDAO {
     }
 
     @Override
-    protected String getTableName() {
+    public String getTableName() {
         return "[transaction]";
     }
 
@@ -142,5 +145,11 @@ public class TransactionDAO extends RootDAO {
         params.put("categoryId", getCategoryId());
     }
 
+    public static TransactionDAO byId(long id) {
+        return byId(id, MainApp.getData().getDbAccess());
+    }
 
+    public static TransactionDAO byId(long id, DatabaseAccess dbAccess) {
+        return dbAccess.findById(id, TransactionDAO.class);
+    }
 }

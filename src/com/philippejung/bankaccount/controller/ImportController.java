@@ -4,7 +4,6 @@ import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dto.*;
 import com.philippejung.bankaccount.services.FileImporter;
 import com.philippejung.bankaccount.services.classifier.TransactionClassifier;
-import com.philippejung.bankaccount.services.db.DatabaseAccess;
 import com.philippejung.bankaccount.view.column.BooleanColumn;
 import com.philippejung.bankaccount.view.column.CategoryColumn;
 import com.philippejung.bankaccount.view.column.TypeColumn;
@@ -14,12 +13,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.*;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.util.converter.DefaultStringConverter;
-import sun.applet.Main;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,6 +39,8 @@ public class ImportController implements Initializable {
     private TextField filePath;
     @FXML
     private Button fileBrowse;
+    @FXML
+    private Button importData;
     @FXML
     private TableView<TransactionDTO> importTable;
     @FXML
@@ -65,15 +67,23 @@ public class ImportController implements Initializable {
         commentColumn.setCellFactory(
                 TextFieldTableCell.forTableColumn(new DefaultStringConverter())
         );
+        fileBrowse.setDisable(true);
+        filePath.setDisable(true);
+        importData.setDisable(true);
     }
 
     public void onButtonFileBrowseClicked(ActionEvent actionEvent) {
-        chooseOneFile();
-        onButtonReadFileClicked(null);
-        onAnalyzeDataButtonClicked(null);
+        if (chooseOneFile()) {
+            onButtonReadFileClicked(null);
+            onAnalyzeDataButtonClicked(null);
+        }
     }
 
-    private void chooseOneFile() {
+    /**
+     * Open file chooser dialog.
+     * @return true if a file has really been chosen.
+     */
+    private boolean chooseOneFile() {
         final FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisissez le fichier à importer...");
         fileChooser.setInitialDirectory(
@@ -81,22 +91,36 @@ public class ImportController implements Initializable {
         );
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("CSV", "*.csv"),
+                new FileChooser.ExtensionFilter("QIF", "*.qif"),
                 new FileChooser.ExtensionFilter("All files", "*.*"));
         File file = fileChooser.showOpenDialog(fileBrowse.getScene().getWindow());
         if (file != null) {
             try {
                 filePath.setText(file.getCanonicalPath());
+                return true;
             } catch (IOException e) {
                 filePath.setText("Erreur");
             }
         }
+        return false;
     }
 
     public void onButtonReadFileClicked(ActionEvent actionEvent) {
-        //String targetAccount = accountList.getSelectionModel().getSelectedItem();
-        FileImporter fileImporter = new FileImporter("lbp");
-        fileImporter.importFile(filePath.getText());
-        importTable.setItems(FXCollections.observableArrayList(fileImporter.getAllImportedMovements()));
+        AccountDTO intoAccount = accountList.getSelectionModel().getSelectedItem();
+        FileImporter fileImporter = new FileImporter(intoAccount.getImporterFormat());
+        FileInputStream file = null;
+        try {
+            file = new FileInputStream(filePath.getText());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (file!=null) {
+            fileImporter.importFile(file);
+            importTable.setItems(FXCollections.observableArrayList(fileImporter.getAllImportedMovements()));
+            try {
+                file.close();
+            } catch (IOException ignored) {}
+        }
     }
 
     public void onButtonImportDataClicked(ActionEvent actionEvent) {
@@ -105,6 +129,7 @@ public class ImportController implements Initializable {
         for (TransactionDTO dto : importTable.getItems()) {
             dto.setAccount(intoAccount);
             dto.writeToDB();
+            intoAccount.addTransaction(dto);
         }
         MainApp.getData().getDbAccess().commitTransaction();
         MainApp.getMainController().closeImportTab();
@@ -116,4 +141,12 @@ public class ImportController implements Initializable {
         transactionClassifier.setClassifiers(MainApp.getData().getAllClassifiers());
         transactionClassifier.classify();
     }
+
+    public void onAccountListAction(ActionEvent actionEvent) {
+        Boolean disabled = accountList.getSelectionModel().isEmpty();
+        fileBrowse.setDisable(disabled);
+        filePath.setDisable(disabled);
+        importData.setDisable(disabled);
+    }
 }
+
