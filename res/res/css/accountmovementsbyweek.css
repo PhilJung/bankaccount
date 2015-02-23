@@ -1,0 +1,34 @@
+.vbox {
+    -fx-border-color: #d0d0d0;
+    -fx-border-width: 1px;
+    -fx-background: #ffffff;
+}
+
+#chart {
+}
+
+#chart .chart {
+}
+
+#chart .chart-content {
+}
+
+#chart .chart-title {
+  -fx-text-fill: #4682b4;
+  -fx-font-size: 1em;
+}
+
+#chart .axis-label {
+  -fx-text-fill: #4682b4;
+}
+
+#chart .chart-legend {
+}
+
+#chart .chart-legend-item-symbol {
+   -fx-background-radius: 0;
+}
+
+#chart .chart-legend-item {
+    -fx-text-fill: #191970;
+}

@@ -2,8 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@/res/css/accountsummary.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.AccountSummaryController">
    <children>
@@ -17,6 +16,10 @@
                <cellValueFactory><PropertyValueFactory property="balance" />
                </cellValueFactory>
             </TableColumn>
+             <TableColumn fx:id="futureBalanceColumn" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" resizable="false" styleClass="balanceColumn" text="Prévision">
+                 <cellValueFactory><PropertyValueFactory property="futureBalance" />
+                 </cellValueFactory>
+             </TableColumn>
          </columns>
          <opaqueInsets>
             <Insets />
