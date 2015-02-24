@@ -39,8 +39,7 @@ public class MainFrameController extends GenericController {
         Tab theTab = allExistingTabs.get(tabKey);
         if (theTab==null) {
             Pane newPane = loadPane(templatePath);
-            theTab = new Tab();
-            theTab.setText(title);
+            theTab = new Tab(title);
             theTab.setClosable(canClose);
             theTab.setContent(newPane);
             allExistingTabs.put(tabKey, theTab);
