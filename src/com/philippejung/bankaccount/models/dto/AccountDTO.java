@@ -11,8 +11,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
  * =================================================
@@ -22,13 +25,33 @@ import java.util.ArrayList;
  * v0 Created by philippe on 25/01/15.
  */
 public class AccountDTO extends RootDTO {
+
+    // DTO properties
     private final SimpleStringProperty name = new SimpleStringProperty();
     private final SimpleStringProperty importerFormat = new SimpleStringProperty();
     private final SimpleStringProperty accountNumber = new SimpleStringProperty();
     private final ObservableList<TransactionDTO> allTransactions = FXCollections.observableArrayList();
     private final SimpleLongProperty balance = new SimpleLongProperty();
     private final SimpleLongProperty initialBalance = new SimpleLongProperty();
+    private final SimpleLongProperty futureBalance = new SimpleLongProperty();
 
+    // Balance history: how long (days) and data. Always generates 32 points of data
+    private final static Integer FUTURE_BALANCE_NUMBER_OF_DAYS = 180;
+    private final static Integer BALANCE_HISTORY_DEPTH = 180;
+    private final XYChart.Series balanceHistorySerie = new XYChart.Series();
+
+    // Balance variation by week over the last SLOT_NUMBER_IN_BALANCE_VARIATION weeks
+    private final static Integer SLOT_NUMBER_IN_BALANCE_VARIATION = 24;
+    private final XYChart.Series balanceVariationSerie = new XYChart.Series();
+    private ConcurrentSkipListMap<Long, Long> balanceVariation = new ConcurrentSkipListMap<Long, Long>();
+    private final LocalDate balanceVariationNow = LocalDate.now();
+
+    // To disable multiple computations during initial load
+    private Boolean initialLoad = true;
+
+    /**
+     * Default constructor
+     */
     public AccountDTO() {
         super();
         setName(null);
@@ -38,11 +61,10 @@ public class AccountDTO extends RootDTO {
         setBalance(0);
     }
 
-    @Override
-    public RootDAO newDAO() {
-        return new AccountDAO();
-    }
-
+    /**
+     * Build a DTO from a DAO
+     * @param dao the dao containing data extracted from the database
+     */
     private AccountDTO(AccountDAO dao) {
         super(dao);
         setName(dao.getName());
@@ -51,6 +73,15 @@ public class AccountDTO extends RootDTO {
         setAccountNumber(dao.getAccountNumber());
     }
 
+    @Override
+    public RootDAO newDAO() {
+        return new AccountDAO();
+    }
+
+    /**
+     * Persists the current DTO into the given DAO in order to write it in database?
+     * @param dao dao to write into
+     */
     public void toDAO(RootDAO dao) {
         super.toDAO(dao);
         AccountDAO accountDAO = (AccountDAO)dao;
@@ -59,6 +90,12 @@ public class AccountDTO extends RootDTO {
         accountDAO.setInitialBalance(getInitialBalance());
         accountDAO.setImporterFormat(getImporterFormat());
     }
+
+    public SimpleLongProperty futureBalance() { return futureBalance; }
+
+    public Long getFutureBalance() { return futureBalance.get(); }
+
+    public void setFutureBalance(Long futureBalance) { this.futureBalance.set(futureBalance); }
 
     public String getAccountNumber() {
         return accountNumber.get();
@@ -86,6 +123,8 @@ public class AccountDTO extends RootDTO {
 
     public void setName(String name) {
         this.name.set(name);
+        balanceVariationSerie.setName(name);
+        balanceHistorySerie.setName(name);
     }
 
     public long getBalance() {
@@ -127,6 +166,9 @@ public class AccountDTO extends RootDTO {
         return getName();
     }
 
+    /**
+     * Loads all transactions attached to this account.
+     */
     public void loadTransactions() {
         setBalance(getInitialBalance());
         ArrayList<TransactionDAO> queryResult = MainApp.getData().getDbAccess().select(
@@ -136,41 +178,118 @@ public class AccountDTO extends RootDTO {
         for (TransactionDAO dao : queryResult) {
             addTransaction(new TransactionDTO(dao));
         }
+        initialLoad = false;
+        // Final computation of statistics, series and so on
+        populateBalanceVariationSerie();
+        populateBalanceHistorySerie();
     }
 
     /**
-     * Compute previous values of balance starting at (now) and going back by steps of 1 week.
-     * Values are the account balance at the end of the given day.
-     *
-     * @return
+     * Tells how many entire weeks are between transaction date and software launch (~now)
+     * @param transactionDate the date of the transaction
+     * @return Long number of weeks. Negative if transaction date is in the past.
      */
-    public XYChart.Series getBalanceHistoryByWeeks() {
-        XYChart.Series series = new XYChart.Series();
-        series.setName(getName());
-
-        LocalDate now = LocalDate.now();
-        LocalDate fromData = LocalDate.now().minusMonths(6);
-        Long[] values = new Long[30];
-        for (int i=0; i<30; i++) {
-            values[i] = 0L;
-        }
-        int maxSlot = 0;
-        for(TransactionDTO dto : allTransactions) {
-            if (dto.getDate().isAfter(fromData)) {
-                int slot = (int) ChronoUnit.WEEKS.between(dto.getDate(), now);
-                values[slot] += dto.getAmount();
-                if (slot>maxSlot) maxSlot = slot;
-            }
-        }
-        for (int i=maxSlot; i>=0; i--) {
-            String index = (i==0) ? "0" : ("-" + Integer.toString(i));
-            series.getData().add(new XYChart.Data(index, values[i] / 100.0));
-        }
-        return series;
+    private Long getWeekSlotForDate(LocalDate transactionDate) {
+        return ChronoUnit.WEEKS.between(balanceVariationNow, transactionDate);
     }
 
+    /**
+     * Rebuild Balance variation serie from the internal hashmap. This automatically updates all displayed graphs.
+     */
+    private void populateBalanceVariationSerie() {
+        assert balanceVariationSerie != null;
+        balanceVariationSerie.getData().remove(0, balanceVariationSerie.getData().size());
+        balanceVariation.forEach((key, value) -> {
+            balanceVariationSerie.getData().add(new XYChart.Data(Long.toString(key), value / 100.0));
+        });
+    }
+
+    /**
+     * Get a serie made of previous variations of balance week by week.
+     *
+     * @return the serie made of weekly balance variations
+     */
+    public XYChart.Series getBalanceVariationByWeeks() {
+        return balanceVariationSerie;
+    }
+
+    /**
+     * Update values of balance starting at (now) and going back by steps of 1 week.
+     * @param transaction
+     */
+    private void addTransactionToBalanceVariation(TransactionDTO transaction) {
+        Long slot = getWeekSlotForDate(transaction.getDate());
+        // Slots are from -23 to 0 (or 1 if working at midnight)
+        if (slot < -SLOT_NUMBER_IN_BALANCE_VARIATION)
+            return;
+        balanceVariation.putIfAbsent(slot, 0L);
+        balanceVariation.put(slot, balanceVariation.get(slot) + transaction.getAmount());
+    }
+
+    /**
+     * Adds a new transaction. Performs all updates of interval precomputed values.
+     * @param transaction the transaction to add.
+     */
     public void addTransaction(TransactionDTO transaction) {
+        // Add to all transactions list
         allTransactions.add(transaction);
+        // Update balance
         setBalance(getBalance() + transaction.getAmount());
+        // Update balance history
+        addTransactionToBalanceVariation(transaction);
+        // Update graph series
+        if (!initialLoad) {
+            populateBalanceVariationSerie();
+            populateBalanceHistorySerie();
+        }
+    }
+
+    private void populateBalanceHistorySerie() {
+        Long balance = getInitialBalance();
+        Double xSum = 0.0;
+        Double ySum = 0.0;
+        Double xxSum = 0.0;
+        Double xySum = 0.0;
+        int nValue = 0;
+
+
+        Long values[] = new Long[32];
+        Arrays.fill(values, 0L);
+
+        // Compute iteratively, store erasing previous balance
+        LocalDate now = LocalDate.now();
+        for (TransactionDTO transactionDTO : allTransactions) {
+            balance += transactionDTO.getAmount();
+            int age = (int) ChronoUnit.DAYS.between(transactionDTO.getDate(), now);
+            if (age < BALANCE_HISTORY_DEPTH) {
+                // For linear regression
+                xSum += age;
+                ySum += balance;
+                xySum += age*balance;
+                xxSum += age*age;
+                nValue++;
+                // For balance history
+                values[age * 32 / BALANCE_HISTORY_DEPTH] = balance;
+            }
+        }
+
+        Double divisor = ((nValue * xxSum) - (xSum * xSum));
+        Double slope = 0.0;
+        if (divisor != 0.0)
+            slope = ((nValue * xySum) - (xSum * ySum)) / divisor;
+        Double intercept = (ySum - (slope * xSum)) / nValue;
+        setFutureBalance( (long) (intercept - slope * FUTURE_BALANCE_NUMBER_OF_DAYS) );
+
+        // Now populate the serie
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd");
+        balanceHistorySerie.getData().remove(0, balanceHistorySerie.getData().size());
+        for(int i=31; i>=0; i--) {
+            String date = now.minusDays(BALANCE_HISTORY_DEPTH * i / 32).format(dateTimeFormatter);
+            balanceHistorySerie.getData().add(new XYChart.Data(date, values[i] / 100.0));
+        }
+    }
+
+    public XYChart.Series<String, Double> getBalanceHistory() {
+        return balanceHistorySerie;
     }
 }

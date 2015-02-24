@@ -32,7 +32,7 @@ public class AccountDTOTest {
         t4.setDate(now.minusDays(17));
         dto.addTransaction(t4);
         dto.setInitialBalance(0);
-        XYChart.Series series = dto.getBalanceHistoryByWeeks();
+        XYChart.Series series = dto.getBalanceVariationByWeeks();
         // Should contains three entries
         assertEquals(3, series.getData().size());
         // 14/02-20/02 should be -10
