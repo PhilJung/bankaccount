@@ -49,4 +49,20 @@ public abstract class RootDAO {
 
     protected abstract void setQueryParams(Map<String, Object> params);
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RootDAO otherDAO = (RootDAO) o;
+
+        if (!id.equals(otherDAO.id)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

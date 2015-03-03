@@ -1,8 +1,9 @@
 .idea/workspace.xml
-libs/controlsfx-8.20.8-javadoc.jar
-libs/controlsfx-8.20.8-sources.jar
-libs/controlsfx-8.20.8.jar
-libs/openjfx-dialogs-1.0.2.jar
-libs/sqlite-jdbc-3.8.7-javadoc.jar
-libs/sqlite-jdbc-3.8.7-sources.jar
-libs/sqlite-jdbc-3.8.7.jar
+lib/controlsfx-8.20.8-javadoc.jar
+lib/controlsfx-8.20.8-sources.jar
+lib/controlsfx-8.20.8.jar
+lib/openjfx-dialogs-1.0.2.jar
+lib/sqlite-jdbc-3.8.7-javadoc.jar
+lib/sqlite-jdbc-3.8.7-sources.jar
+lib/sqlite-jdbc-3.8.7.jar
+out

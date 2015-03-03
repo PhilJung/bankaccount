@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <VBox prefHeight="600.0" prefWidth="900.0" stylesheets="@/res/css/appframe.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.MainFrameController">
     <children>
-        <MenuBar>
+        <MenuBar VBox.vgrow="NEVER">
             <menus>
                 <Menu text="_Fichier">
                     <items>

@@ -155,7 +155,7 @@ public class AccountDTO extends RootDTO {
         ArrayList<AccountDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM account", AccountDAO.class);
         ArrayList<AccountDTO> retVal = new ArrayList<>();
         for(AccountDAO accountDAO : queryResult) {
-            System.out.println("Trouvé compte " + accountDAO.getName());
+            //System.out.println("Trouvé compte " + accountDAO.getName());
             retVal.add(new AccountDTO(accountDAO));
         }
         return FXCollections.observableArrayList(retVal);
@@ -176,7 +176,7 @@ public class AccountDTO extends RootDTO {
                 TransactionDAO.class
         );
         for (TransactionDAO dao : queryResult) {
-            addTransaction(new TransactionDTO(dao));
+            MainApp.getData().addTransaction(new TransactionDTO(dao), this);
         }
         initialLoad = false;
         // Final computation of statistics, series and so on

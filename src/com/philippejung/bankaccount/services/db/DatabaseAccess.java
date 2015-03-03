@@ -69,6 +69,11 @@ public class DatabaseAccess {
                     "newOtherAccountId INTEGER," +
                     "newCategoryId INTEGER, " +
                     "stopFurtherClassification INTEGER)",
+            "CREATE TABLE budget (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "month DATE," +
+                    "budget INTEGER," +
+                    "categoryId INTEGER)",
             "INSERT INTO wayOfPayment VALUES (1, 'CB Hellobank')",
             "INSERT INTO wayOfPayment VALUES (2, 'CB LBP')",
             "INSERT INTO wayOfPayment VALUES (3, 'Cheque Hellobank')",

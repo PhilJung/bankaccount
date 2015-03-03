@@ -68,7 +68,7 @@ public class CategoryDTO extends RootDTO {
         ArrayList<CategoryDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM category", CategoryDAO.class);
         ArrayList<CategoryDTO> retVal = new ArrayList<>();
         for(CategoryDAO categoryDAO : queryResult) {
-            System.out.println("Trouvé catégorie " + categoryDAO.getName());
+            //System.out.println("Trouvé catégorie " + categoryDAO.getName());
             retVal.add(new CategoryDTO(categoryDAO));
         }
         return FXCollections.observableArrayList(retVal);
@@ -83,4 +83,6 @@ public class CategoryDTO extends RootDTO {
     public String toString() {
         return getName();
     }
+
+
 }

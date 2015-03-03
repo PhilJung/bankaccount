@@ -51,7 +51,7 @@ public class WayOfPaymentDTO extends RootDTO {
         ArrayList<WayOfPaymentDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM wayOfPayment", WayOfPaymentDAO.class);
         ArrayList<WayOfPaymentDTO> retVal = new ArrayList<>();
         for(WayOfPaymentDAO wayOfPaymentDAO : queryResult) {
-            System.out.println("Trouvé moyen de paiement " + wayOfPaymentDAO.getName());
+            //System.out.println("Trouvé moyen de paiement " + wayOfPaymentDAO.getName());
             retVal.add(new WayOfPaymentDTO(wayOfPaymentDAO));
         }
         return FXCollections.observableArrayList(retVal);
