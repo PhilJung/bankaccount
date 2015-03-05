@@ -4,66 +4,75 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.ImportController">
-   <children>
-      <HBox spacing="5.0">
-         <children>
-            <Label maxHeight="1.7976931348623157E308" text="Importer dans:" HBox.hgrow="NEVER" />
-            <ComboBox fx:id="accountList" onAction="#onAccountListAction" promptText="Sélectionnez un compte..." HBox.hgrow="ALWAYS" />
-            <TextField fx:id="filePath" HBox.hgrow="ALWAYS" />
-            <Button fx:id="fileBrowse" mnemonicParsing="false" onAction="#onButtonFileBrowseClicked" text="..." HBox.hgrow="NEVER" />
-         </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </HBox>
-      <TableView fx:id="importTable" editable="true" VBox.vgrow="ALWAYS">
-        <columns>
-            <TableColumn fx:id="mustBeImportedColumn" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" resizable="false" sortable="false" text="Importer">
-                <cellValueFactory><PropertyValueFactory property="mustBeImported" />
-                </cellValueFactory>
-            </TableColumn>
-          <TableColumn minWidth="70.0" prefWidth="85.0" resizable="false" text="Date">
-             <cellValueFactory><PropertyValueFactory property="date" />
-             </cellValueFactory>
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0"
+      stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.philippejung.bankaccount.controller.ImportController">
+    <opaqueInsets>
+        <Insets/>
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+    </padding>
+    <HBox spacing="5.0">
+        <VBox.margin>
+            <Insets/>
+        </VBox.margin>
+        <Label maxHeight="1.7976931348623157E308" text="Importer dans:" HBox.hgrow="NEVER"/>
+        <ComboBox fx:id="accountList" onAction="#onAccountListAction" promptText="Sélectionnez un compte..."
+                  HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="filePath" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="fileBrowse" mnemonicParsing="false" onAction="#onButtonFileBrowseClicked" text="..."
+                HBox.hgrow="NEVER"/>
+    </HBox>
+    <TableView fx:id="importTable" editable="true" VBox.vgrow="ALWAYS">
+      <columns>
+          <TableColumn fx:id="mustBeImportedColumn" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" resizable="false"
+                       sortable="false" text="Importer">
+              <cellValueFactory>
+                  <PropertyValueFactory property="mustBeImported"/>
+              </cellValueFactory>
           </TableColumn>
-           <TableColumn fx:id="typeColumn" editable="true" prefWidth="100.0" resizable="true" text="Type">
-              <cellValueFactory><PropertyValueFactory property="type" />
+          <TableColumn minWidth="70.0" prefWidth="85.0" resizable="false" text="Date">
+              <cellValueFactory>
+                  <PropertyValueFactory property="date"/>
               </cellValueFactory>
-           </TableColumn>
-           <TableColumn fx:id="wayOfPaymentColumn" editable="true" prefWidth="120.0" text="Moyen">
-              <cellValueFactory><PropertyValueFactory property="wayOfPaymentId" />
+          </TableColumn>
+          <TableColumn fx:id="typeColumn" editable="true" prefWidth="100.0" resizable="true" text="Type">
+              <cellValueFactory>
+                  <PropertyValueFactory property="type"/>
               </cellValueFactory>
-           </TableColumn>
-            <TableColumn fx:id="categoryColumn" editable="true" minWidth="75.0" prefWidth="150.0" text="Catégorie">
-                <cellValueFactory><PropertyValueFactory property="category" />
-                </cellValueFactory>
-            </TableColumn>
-           <TableColumn editable="false" minWidth="75.0" prefWidth="75.0" styleClass="amountColumn" text="Montant">
-              <cellValueFactory><PropertyValueFactory property="amount" />
+          </TableColumn>
+          <TableColumn fx:id="wayOfPaymentColumn" editable="true" prefWidth="120.0" text="Moyen">
+              <cellValueFactory>
+                  <PropertyValueFactory property="wayOfPaymentId"/>
               </cellValueFactory>
-           </TableColumn>
-           <TableColumn editable="false" prefWidth="400.0" text="Détail">
-              <cellValueFactory><PropertyValueFactory property="detail" />
+          </TableColumn>
+          <TableColumn fx:id="categoryColumn" editable="true" minWidth="75.0" prefWidth="150.0" text="Catégorie">
+              <cellValueFactory>
+                  <PropertyValueFactory property="category"/>
               </cellValueFactory>
-           </TableColumn>
-           <TableColumn fx:id="commentColumn" editable="true" prefWidth="125.0" text="Commentaire">
-              <cellValueFactory><PropertyValueFactory property="comment" />
+          </TableColumn>
+          <TableColumn editable="false" minWidth="75.0" prefWidth="75.0" styleClass="amountColumn" text="Montant">
+              <cellValueFactory>
+                  <PropertyValueFactory property="amount"/>
               </cellValueFactory>
-           </TableColumn>
-        </columns>
-      </TableView>
-      <HBox alignment="TOP_RIGHT" spacing="5.0" VBox.vgrow="NEVER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#onAnalyzeDataButtonClicked" text="Relancer l'analyse des données" />
-            <Button mnemonicParsing="false" fx:id="importData" onAction="#onButtonImportDataClicked" text="Importer les données" />
-         </children>
-      </HBox>
-   </children>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
+          </TableColumn>
+          <TableColumn editable="false" prefWidth="400.0" text="Détail">
+              <cellValueFactory>
+                  <PropertyValueFactory property="detail"/>
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn fx:id="commentColumn" editable="true" prefWidth="125.0" text="Commentaire">
+              <cellValueFactory>
+                  <PropertyValueFactory property="comment"/>
+              </cellValueFactory>
+          </TableColumn>
+      </columns>
+    </TableView>
+    <HBox alignment="TOP_RIGHT" spacing="5.0" VBox.vgrow="NEVER">
+        <Button mnemonicParsing="false" onAction="#onAnalyzeDataButtonClicked"
+                text="Relancer l'analyse des données"/>
+        <Button mnemonicParsing="false" fx:id="importData" onAction="#onButtonImportDataClicked"
+                text="Importer les données"/>
+    </HBox>
 </VBox>

@@ -13,7 +13,11 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
- * Created by philippe on 24/02/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 24/02/15.
  */
 public class BudgetController extends GenericController implements Initializable {
     @FXML

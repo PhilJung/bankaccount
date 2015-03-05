@@ -4,83 +4,81 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.ClassifierController">
-    <children>
-        <HBox spacing="5.0" VBox.vgrow="NEVER">
-            <children>
-                <Button mnemonicParsing="false" onAction="#onNewClassifierRule" text="Nouveau" />
-                <Button mnemonicParsing="false" onAction="#onDeleteClassierRule" text="Supprimer" />
-            </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <VBox.margin>
-            <Insets bottom="5.0" top="5.0" />
-         </VBox.margin>
-        </HBox>
-        <TableView fx:id="classifierTable" editable="true" VBox.vgrow="ALWAYS">
-            <columns>
-                <TableColumn editable="true" prefWidth="75.0" text="Si ces tests sont vrais">
-                    <columns>
-                        <TableColumn fx:id="detailConditionTestColumn" editable="true" text="Test détail">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="detailConditionTest" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="detailConditionValueColumn" editable="true" text="Valeur détail">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="detailConditionValue" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="amountConditionTestColumn" editable="true" text="Test montant">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="amountConditionTest" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="amountConditionValueColumn" editable="true" text="Valeur montant">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="amountConditionValue" />
-                            </cellValueFactory>
-                        </TableColumn>
-                    </columns>
-                </TableColumn>
-                <TableColumn editable="true" prefWidth="75.0" text="Alors forcer les valeurs suivantes">
-                    <columns>
-                        <TableColumn fx:id="typeColumn" editable="true" text="Type">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="type" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="categoryColumn" editable="true" text="Catégorie">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="category" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="wayOfPaymentColumn" editable="true" text="Moyen">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="wayOfPayment" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="accountColumn" editable="true" text="Compte">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="account" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn fx:id="stopFurtherClassificationColumn" prefWidth="75.0" text="Arrêter">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="stopFurtherClassification" />
-                            </cellValueFactory>
-                        </TableColumn>
-
-                    </columns>
-                </TableColumn>
-            </columns>
-        </TableView>
-    </children>
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0"
+      stylesheets="@/res/css/import.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.philippejung.bankaccount.controller.ClassifierController">
     <opaqueInsets>
-        <Insets />
+        <Insets/>
     </opaqueInsets>
     <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
+    <HBox spacing="5.0" VBox.vgrow="NEVER">
+        <opaqueInsets>
+            <Insets/>
+        </opaqueInsets>
+        <VBox.margin>
+            <Insets bottom="5.0" top="5.0"/>
+        </VBox.margin>
+        <Button mnemonicParsing="false" onAction="#onNewClassifierRule" text="Nouveau"/>
+        <Button mnemonicParsing="false" onAction="#onDeleteClassierRule" text="Supprimer"/>
+    </HBox>
+    <TableView fx:id="classifierTable" editable="true" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn editable="true" prefWidth="75.0" text="Si ces tests sont vrais">
+                <columns>
+                    <TableColumn fx:id="detailConditionTestColumn" editable="true" text="Test détail">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="detailConditionTest"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="detailConditionValueColumn" editable="true" text="Valeur détail">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="detailConditionValue"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="amountConditionTestColumn" editable="true" text="Test montant">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="amountConditionTest"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="amountConditionValueColumn" editable="true" text="Valeur montant">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="amountConditionValue"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="Alors forcer les valeurs suivantes">
+                <columns>
+                    <TableColumn fx:id="typeColumn" editable="true" text="Type">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="type"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="categoryColumn" editable="true" text="Catégorie">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="category"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="wayOfPaymentColumn" editable="true" text="Moyen">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="wayOfPayment"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="accountColumn" editable="true" text="Compte">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="account"/>
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn fx:id="stopFurtherClassificationColumn" prefWidth="75.0" text="Arrêter">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="stopFurtherClassification"/>
+                        </cellValueFactory>
+                    </TableColumn>
+
+                </columns>
+            </TableColumn>
+        </columns>
+    </TableView>
 </VBox>

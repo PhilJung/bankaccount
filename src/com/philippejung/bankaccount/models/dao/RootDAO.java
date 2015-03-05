@@ -52,13 +52,9 @@ public abstract class RootDAO {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        //noinspection SimplifiableIfStatement
         if (o == null || getClass() != o.getClass()) return false;
-
-        RootDAO otherDAO = (RootDAO) o;
-
-        if (!id.equals(otherDAO.id)) return false;
-
-        return true;
+        return id.equals(((RootDAO) o).id);
     }
 
     @Override

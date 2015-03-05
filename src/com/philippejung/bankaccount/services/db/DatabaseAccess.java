@@ -100,6 +100,7 @@ public class DatabaseAccess {
             "INSERT INTO classifier VALUES (8, 'contains', 'DIRECTION GENERAL', '==', 1503, 2, 6, null, 7, 0)",
     };
 
+    @SuppressWarnings("SameParameterValue")
     public DatabaseAccess(String pathToDB) {
         this.pathToDB = pathToDB;
     }
@@ -132,6 +133,7 @@ public class DatabaseAccess {
         }
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     private int executeUpdate(String update) {
         int retVal = 0;
         Statement statement = null;
@@ -195,22 +197,20 @@ public class DatabaseAccess {
         }
         try {
             statement = connection.createStatement();
-            Method method = null;
-            String tableName = null;
+            Method method;
+            String tableName;
             method = objectClass.getMethod("getTableName", (Class<?>[])null);
             tableName = (String) method.invoke(retVal);
             rs = statement.executeQuery("SELECT * FROM " + tableName + " WHERE id=" + id);
             if (rs.next()) {
+                assert retVal != null;
                 retVal.readFromDB(rs);
             }
         }
-        catch (NoSuchMethodException ignored) { retVal = null; }
-        catch (InvocationTargetException ignored) { retVal = null; }
-        catch (IllegalAccessException ignored) { retVal = null; }
-        catch (SQLException exc) {
-            handleException(exc);
+        catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | SQLException ignored) {
             retVal = null;
-        } finally {
+        }
+        finally {
             if (rs!=null) try {
                 rs.close();
             } catch (SQLException ignored) {}
@@ -221,6 +221,7 @@ public class DatabaseAccess {
         return retVal;
     }
 
+    @SuppressWarnings("SameParameterValue")
     private int selectOneNumber(String request) {
         int retVal = -1;
         checkConnection();
@@ -258,6 +259,7 @@ public class DatabaseAccess {
         // Ensure path exists
         File dir = new File(pathToDB);
         if (!dir.isDirectory()) {
+            //noinspection ResultOfMethodCallIgnored
             dir.mkdirs();
         }
         try {
@@ -318,7 +320,7 @@ public class DatabaseAccess {
         Integer index = 1;
         for (Object entry : values) {
             if (entry==null) {
-                statement.setObject(index, entry);
+                statement.setObject(index, null);
             } else {
                 switch (entry.getClass().getName()) {
                     case "java.lang.String":
@@ -344,6 +346,7 @@ public class DatabaseAccess {
                         break;
                     default:
                         System.err.println("DatabaseAccess, unsupported type " + entry.getClass().getName());
+                        //noinspection ConstantConditions
                         assert (false);
                 }
             }

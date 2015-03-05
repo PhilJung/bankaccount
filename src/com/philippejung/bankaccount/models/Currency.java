@@ -3,7 +3,11 @@ package com.philippejung.bankaccount.models;
 import java.math.BigDecimal;
 
 /**
- * Created by philippe on 05/03/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 05/03/15.
  */
 public class Currency {
 
@@ -53,13 +57,9 @@ public class Currency {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        //noinspection SimplifiableIfStatement
         if (o == null || getClass() != o.getClass()) return false;
-
-        Currency currency = (Currency) o;
-
-        if (!value.equals(currency.value)) return false;
-
-        return true;
+        return value.equals(((Currency) o).value);
     }
 
     @Override

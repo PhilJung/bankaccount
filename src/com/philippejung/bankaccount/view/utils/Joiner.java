@@ -8,6 +8,7 @@ package com.philippejung.bankaccount.view.utils;
  * v0 Created by philippe on 07/02/15.
  */
 public class Joiner {
+    @SuppressWarnings({"SameParameterValue", "UnusedParameters"})
     public static <T> String join(String separator, Iterable<T> items, Boolean surroundStringWithQuotes) {
         Boolean first = true;
         StringBuilder stringBuilder = new StringBuilder();
@@ -27,6 +28,7 @@ public class Joiner {
         return stringBuilder.toString();
     }
 
+    @SuppressWarnings("SameParameterValue")
     public static <T> String join(String separator, Iterable<T> items, String substituteContentWith) {
         Boolean first = true;
         StringBuilder stringBuilder = new StringBuilder();

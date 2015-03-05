@@ -32,19 +32,19 @@ public class AccountDTO extends RootDTO {
     private final SimpleStringProperty importerFormat = new SimpleStringProperty();
     private final SimpleStringProperty accountNumber = new SimpleStringProperty();
     private final ObservableList<TransactionDTO> allTransactions = FXCollections.observableArrayList();
-    private final SimpleObjectProperty<Currency> balance = new SimpleObjectProperty<Currency>();
-    private final SimpleObjectProperty<Currency> initialBalance = new SimpleObjectProperty<Currency>();
-    private final SimpleObjectProperty<Currency> futureBalance = new SimpleObjectProperty<Currency>();
+    private final SimpleObjectProperty<Currency> balance = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Currency> initialBalance = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Currency> futureBalance = new SimpleObjectProperty<>();
 
     // Balance history: how long (days) and data. Always generates 32 points of data
     private final static Integer FUTURE_BALANCE_NUMBER_OF_DAYS = 180;
     private final static Integer BALANCE_HISTORY_DEPTH = 180;
-    private final XYChart.Series balanceHistorySerie = new XYChart.Series();
+    private final XYChart.Series<String, Double> balanceHistorySerie = new XYChart.Series<>();
 
     // Balance variation by week over the last SLOT_NUMBER_IN_BALANCE_VARIATION weeks
     private final static Integer SLOT_NUMBER_IN_BALANCE_VARIATION = 24;
-    private final XYChart.Series balanceVariationSerie = new XYChart.Series();
-    private ConcurrentSkipListMap<Long, Currency> balanceVariation = new ConcurrentSkipListMap<Long, Currency>();
+    private final XYChart.Series<String, Double> balanceVariationSerie = new XYChart.Series<>();
+    private final ConcurrentSkipListMap<Long, Currency> balanceVariation = new ConcurrentSkipListMap<>();
     private final LocalDate balanceVariationNow = LocalDate.now();
 
     // To disable multiple computations during initial load
@@ -204,9 +204,9 @@ public class AccountDTO extends RootDTO {
     private void populateBalanceVariationSerie() {
         assert balanceVariationSerie != null;
         balanceVariationSerie.getData().remove(0, balanceVariationSerie.getData().size());
-        balanceVariation.forEach((key, value) -> {
-            balanceVariationSerie.getData().add(new XYChart.Data(Long.toString(key), value.toDouble()));
-        });
+        balanceVariation.forEach(
+                (key, value) -> balanceVariationSerie.getData().add(new XYChart.Data<>(Long.toString(key), value.toDouble()))
+        );
     }
 
     /**
@@ -214,13 +214,13 @@ public class AccountDTO extends RootDTO {
      *
      * @return the serie made of weekly balance variations
      */
-    public XYChart.Series getBalanceVariationByWeeks() {
+    public XYChart.Series<String, Double> getBalanceVariationByWeeks() {
         return balanceVariationSerie;
     }
 
     /**
      * Update values of balance starting at (now) and going back by steps of 1 week.
-     * @param transaction
+     * @param transaction the transaction to add to balance
      */
     private void addTransactionToBalanceVariation(TransactionDTO transaction) {
         Long slot = getWeekSlotForDate(transaction.getDate());
@@ -290,7 +290,7 @@ public class AccountDTO extends RootDTO {
         balanceHistorySerie.getData().remove(0, balanceHistorySerie.getData().size());
         for(int i=31; i>=0; i--) {
             String date = now.minusDays(BALANCE_HISTORY_DEPTH * i / 32).format(dateTimeFormatter);
-            balanceHistorySerie.getData().add(new XYChart.Data(date, values[i] / 100.0));
+            balanceHistorySerie.getData().add(new XYChart.Data<>(date, values[i] / 100.0));
         }
     }
 

@@ -23,6 +23,7 @@ public final class AlertPopup {
      * @param header top panel of the dialog
      * @param content detail of the dialog
      */
+    @SuppressWarnings("SameParameterValue")
     public static void alert(javafx.scene.control.Alert.AlertType type, String title, String header, String content) {
         alert(type, title, header, content, null);
     }
@@ -66,7 +67,7 @@ public final class AlertPopup {
             // Set expandable Exception into the dialog pane.
             alert.getDialogPane().setExpandableContent(expContent);
             alert.setWidth(400);
-            alert.setHeight(400);;
+            alert.setHeight(400);
         }
         alert.showAndWait();
     }

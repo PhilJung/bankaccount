@@ -60,11 +60,13 @@ public class ClassifierController implements Initializable {
         classifierTable.setItems(MainApp.getData().getAllClassifiers());
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onNewClassifierRule(ActionEvent actionEvent) {
         ClassifierDTO newDTO = new ClassifierDTO();
         MainApp.getData().getAllClassifiers().add(newDTO);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onDeleteClassierRule(ActionEvent actionEvent) {
         MainApp.getData().getAllClassifiers().removeAll(classifierTable.getSelectionModel().getSelectedItems());
     }

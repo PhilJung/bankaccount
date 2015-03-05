@@ -4,7 +4,9 @@ import com.philippejung.bankaccount.view.utils.AlertPopup;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
@@ -23,10 +25,12 @@ public class MainFrameController extends GenericController {
     // All already open tabs
     private final HashMap<String, Tab> allExistingTabs = new HashMap<>();
 
+    @SuppressWarnings("UnusedParameters")
     public void onMenuFileExit(ActionEvent event) {
         Platform.exit();
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onMenuHelpAbout(ActionEvent event) {
         AlertPopup.alert(
                 Alert.AlertType.INFORMATION, "About", "About BankAccount",
@@ -48,27 +52,31 @@ public class MainFrameController extends GenericController {
         tabPane.getSelectionModel().select(theTab);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void closeTabAndDestroy(String tabKey) {
         Tab theTab = allExistingTabs.get(tabKey);
         if (theTab!=null) {
             tabPane.getTabs().removeAll(theTab);
             allExistingTabs.remove(tabKey);
-            theTab = null;
         }
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onToolbarBudget(ActionEvent event) {
         selectTabAndCreateItIfRequired("budget", "/res/fxml/budget.fxml", "Budget", true);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onToolbarImport(ActionEvent actionEvent) {
         selectTabAndCreateItIfRequired("import", "/res/fxml/import.fxml", "Importer", true);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onToolbarWelcome(ActionEvent actionEvent) {
         selectTabAndCreateItIfRequired("welcome", "/res/fxml/welcome.fxml", "Accueil", false);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onToolbarClassifier(ActionEvent actionEvent) {
         selectTabAndCreateItIfRequired("classifier", "/res/fxml/classifier.fxml", "Classement automatique", true);
     }

@@ -26,7 +26,7 @@ public class TransactionDTO extends RootDTO {
     private final SimpleObjectProperty<AccountDTO> otherAccount= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<WayOfPaymentDTO> wayOfPayment= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<CategoryDTO> category = new SimpleObjectProperty<>();
-    private final SimpleObjectProperty<Currency> amount = new SimpleObjectProperty<Currency>();
+    private final SimpleObjectProperty<Currency> amount = new SimpleObjectProperty<>();
     private final SimpleStringProperty detail= new SimpleStringProperty();
     private final SimpleStringProperty comment= new SimpleStringProperty();
 

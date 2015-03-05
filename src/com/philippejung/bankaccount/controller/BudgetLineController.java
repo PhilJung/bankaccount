@@ -11,7 +11,11 @@ import javafx.scene.control.TextField;
 import java.time.LocalDate;
 
 /**
- * Created by philippe on 05/03/15.
+ * =================================================
+ *                Bank Account
+ * =================================================
+ *
+ * v0 Created by philippe on 05/03/15.
  */
 public class BudgetLineController implements ParametrizedController {
     @FXML
@@ -67,8 +71,8 @@ public class BudgetLineController implements ParametrizedController {
 
     private CategoryDTO categoryDTO;
     private BudgetController mainController;
-    private Label[] allActuals = new Label[12];
-    private TextField[] allForecasts = new TextField[12];
+    private final Label[] allActuals = new Label[12];
+    private final TextField[] allForecasts = new TextField[12];
 
     @Override
     public void setControllerParam(Object param1, Object param2) {

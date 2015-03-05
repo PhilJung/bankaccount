@@ -72,6 +72,7 @@ public class ImportController implements Initializable {
         importData.setDisable(true);
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onButtonFileBrowseClicked(ActionEvent actionEvent) {
         if (chooseOneFile()) {
             onButtonReadFileClicked(null);
@@ -105,6 +106,7 @@ public class ImportController implements Initializable {
         return false;
     }
 
+    @SuppressWarnings({"UnusedParameters", "SameParameterValue"})
     public void onButtonReadFileClicked(ActionEvent actionEvent) {
         AccountDTO intoAccount = accountList.getSelectionModel().getSelectedItem();
         FileImporter fileImporter = new FileImporter(intoAccount.getImporterFormat());
@@ -123,6 +125,7 @@ public class ImportController implements Initializable {
         }
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onButtonImportDataClicked(ActionEvent actionEvent) {
         AccountDTO intoAccount = accountList.getSelectionModel().getSelectedItem();
         MainApp.getData().getDbAccess().beginTransaction();
@@ -135,6 +138,7 @@ public class ImportController implements Initializable {
         MainApp.getMainController().closeImportTab();
     }
 
+    @SuppressWarnings({"SameParameterValue", "UnusedParameters"})
     public void onAnalyzeDataButtonClicked(ActionEvent actionEvent) {
         TransactionClassifier transactionClassifier = new TransactionClassifier();
         transactionClassifier.setItems(importTable.getItems());
@@ -142,6 +146,7 @@ public class ImportController implements Initializable {
         transactionClassifier.classify();
     }
 
+    @SuppressWarnings("UnusedParameters")
     public void onAccountListAction(ActionEvent actionEvent) {
         Boolean disabled = accountList.getSelectionModel().isEmpty();
         fileBrowse.setDisable(disabled);
