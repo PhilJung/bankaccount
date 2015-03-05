@@ -1,10 +1,11 @@
 package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.AccountDAO;
 import com.philippejung.bankaccount.models.dao.RootDAO;
 import com.philippejung.bankaccount.models.dao.TransactionDAO;
-import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,9 +32,9 @@ public class AccountDTO extends RootDTO {
     private final SimpleStringProperty importerFormat = new SimpleStringProperty();
     private final SimpleStringProperty accountNumber = new SimpleStringProperty();
     private final ObservableList<TransactionDTO> allTransactions = FXCollections.observableArrayList();
-    private final SimpleLongProperty balance = new SimpleLongProperty();
-    private final SimpleLongProperty initialBalance = new SimpleLongProperty();
-    private final SimpleLongProperty futureBalance = new SimpleLongProperty();
+    private final SimpleObjectProperty<Currency> balance = new SimpleObjectProperty<Currency>();
+    private final SimpleObjectProperty<Currency> initialBalance = new SimpleObjectProperty<Currency>();
+    private final SimpleObjectProperty<Currency> futureBalance = new SimpleObjectProperty<Currency>();
 
     // Balance history: how long (days) and data. Always generates 32 points of data
     private final static Integer FUTURE_BALANCE_NUMBER_OF_DAYS = 180;
@@ -43,7 +44,7 @@ public class AccountDTO extends RootDTO {
     // Balance variation by week over the last SLOT_NUMBER_IN_BALANCE_VARIATION weeks
     private final static Integer SLOT_NUMBER_IN_BALANCE_VARIATION = 24;
     private final XYChart.Series balanceVariationSerie = new XYChart.Series();
-    private ConcurrentSkipListMap<Long, Long> balanceVariation = new ConcurrentSkipListMap<Long, Long>();
+    private ConcurrentSkipListMap<Long, Currency> balanceVariation = new ConcurrentSkipListMap<Long, Currency>();
     private final LocalDate balanceVariationNow = LocalDate.now();
 
     // To disable multiple computations during initial load
@@ -55,10 +56,10 @@ public class AccountDTO extends RootDTO {
     public AccountDTO() {
         super();
         setName(null);
-        setInitialBalance(0);
+        setInitialBalance(Currency.zero());
         setImporterFormat(null);
         setAccountNumber(null);
-        setBalance(0);
+        setBalance(Currency.zero());
     }
 
     /**
@@ -91,11 +92,11 @@ public class AccountDTO extends RootDTO {
         accountDAO.setImporterFormat(getImporterFormat());
     }
 
-    public SimpleLongProperty futureBalance() { return futureBalance; }
+    public SimpleObjectProperty<Currency> futureBalance() { return futureBalance; }
 
-    public Long getFutureBalance() { return futureBalance.get(); }
+    public Currency getFutureBalance() { return futureBalance.get(); }
 
-    public void setFutureBalance(Long futureBalance) { this.futureBalance.set(futureBalance); }
+    public void setFutureBalance(Currency futureBalance) { this.futureBalance.set(futureBalance); }
 
     public String getAccountNumber() {
         return accountNumber.get();
@@ -127,27 +128,27 @@ public class AccountDTO extends RootDTO {
         balanceHistorySerie.setName(name);
     }
 
-    public long getBalance() {
+    public Currency getBalance() {
         return balance.get();
     }
 
-    public SimpleLongProperty balanceProperty() {
+    public SimpleObjectProperty<Currency> balanceProperty() {
         return balance;
     }
 
-    public void setBalance(long balance) {
+    public void setBalance(Currency balance) {
         this.balance.set(balance);
     }
 
-    public Long getInitialBalance() {
+    public Currency getInitialBalance() {
         return initialBalance.get();
     }
 
-    public SimpleLongProperty initialBalanceProperty() {
+    public SimpleObjectProperty<Currency> initialBalanceProperty() {
         return initialBalance;
     }
 
-    public void setInitialBalance(long initialBalance) {
+    public void setInitialBalance(Currency initialBalance) {
         this.initialBalance.set(initialBalance);
     }
 
@@ -178,6 +179,10 @@ public class AccountDTO extends RootDTO {
         for (TransactionDAO dao : queryResult) {
             MainApp.getData().addTransaction(new TransactionDTO(dao), this);
         }
+        initialLoadComplete();
+    }
+
+    public void initialLoadComplete() {
         initialLoad = false;
         // Final computation of statistics, series and so on
         populateBalanceVariationSerie();
@@ -200,7 +205,7 @@ public class AccountDTO extends RootDTO {
         assert balanceVariationSerie != null;
         balanceVariationSerie.getData().remove(0, balanceVariationSerie.getData().size());
         balanceVariation.forEach((key, value) -> {
-            balanceVariationSerie.getData().add(new XYChart.Data(Long.toString(key), value / 100.0));
+            balanceVariationSerie.getData().add(new XYChart.Data(Long.toString(key), value.toDouble()));
         });
     }
 
@@ -222,8 +227,8 @@ public class AccountDTO extends RootDTO {
         // Slots are from -23 to 0 (or 1 if working at midnight)
         if (slot < -SLOT_NUMBER_IN_BALANCE_VARIATION)
             return;
-        balanceVariation.putIfAbsent(slot, 0L);
-        balanceVariation.put(slot, balanceVariation.get(slot) + transaction.getAmount());
+        balanceVariation.putIfAbsent(slot, Currency.zero());
+        balanceVariation.get(slot).add(transaction.getAmount());
     }
 
     /**
@@ -234,7 +239,7 @@ public class AccountDTO extends RootDTO {
         // Add to all transactions list
         allTransactions.add(transaction);
         // Update balance
-        setBalance(getBalance() + transaction.getAmount());
+        getBalance().add(transaction.getAmount());
         // Update balance history
         addTransactionToBalanceVariation(transaction);
         // Update graph series
@@ -245,7 +250,7 @@ public class AccountDTO extends RootDTO {
     }
 
     private void populateBalanceHistorySerie() {
-        Long balance = getInitialBalance();
+        Long balance = getInitialBalance().toLong();
         Double xSum = 0.0;
         Double ySum = 0.0;
         Double xxSum = 0.0;
@@ -259,7 +264,7 @@ public class AccountDTO extends RootDTO {
         // Compute iteratively, store erasing previous balance
         LocalDate now = LocalDate.now();
         for (TransactionDTO transactionDTO : allTransactions) {
-            balance += transactionDTO.getAmount();
+            balance += transactionDTO.getAmount().toLong();
             int age = (int) ChronoUnit.DAYS.between(transactionDTO.getDate(), now);
             if (age < BALANCE_HISTORY_DEPTH) {
                 // For linear regression
@@ -278,7 +283,7 @@ public class AccountDTO extends RootDTO {
         if (divisor != 0.0)
             slope = ((nValue * xySum) - (xSum * ySum)) / divisor;
         Double intercept = (ySum - (slope * xSum)) / nValue;
-        setFutureBalance( (long) (intercept - slope * FUTURE_BALANCE_NUMBER_OF_DAYS) );
+        setFutureBalance( new Currency((long) (intercept - slope * FUTURE_BALANCE_NUMBER_OF_DAYS)) );
 
         // Now populate the serie
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd");

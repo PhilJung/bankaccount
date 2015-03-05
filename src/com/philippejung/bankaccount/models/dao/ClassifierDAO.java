@@ -1,6 +1,7 @@
 package com.philippejung.bankaccount.models.dao;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
 
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ public class ClassifierDAO extends RootDAO {
     private String detailConditionTest;
     private String detailConditionValue;
     private String amountConditionTest;
-    private Long amountConditionValue;
+    private Currency amountConditionValue;
     private Integer newTypeId;
     private Long newWayOfPaymentId;
     private Long newOtherAccountId;
@@ -52,11 +53,11 @@ public class ClassifierDAO extends RootDAO {
         this.amountConditionTest = amountConditionTest;
     }
 
-    public Long getAmountConditionValue() {
+    public Currency getAmountConditionValue() {
         return amountConditionValue;
     }
 
-    public void setAmountConditionValue(Long amountConditionValue) {
+    public void setAmountConditionValue(Currency amountConditionValue) {
         this.amountConditionValue = amountConditionValue;
     }
 
@@ -105,7 +106,7 @@ public class ClassifierDAO extends RootDAO {
         this.setDetailConditionTest(rs.getString("detailConditionTest"));
         this.setDetailConditionValue(rs.getString("detailConditionValue"));
         this.setAmountConditionTest(rs.getString("amountConditionTest"));
-        this.setAmountConditionValue(rs.getLong("amountConditionValue"));
+        this.setAmountConditionValue(new Currency(rs.getLong("amountConditionValue")));
         this.setNewTypeId(rs.getInt("newTypeId"));
         this.setNewWayOfPaymentId(rs.getLong("newWayOfPaymentId"));
         this.setNewOtherAccountId(rs.getLong("newOtherAccountId"));

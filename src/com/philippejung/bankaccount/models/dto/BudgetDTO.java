@@ -2,17 +2,15 @@ package com.philippejung.bankaccount.models.dto;
 
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.BudgetDAO;
 import com.philippejung.bankaccount.models.dao.RootDAO;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * =================================================
@@ -24,15 +22,15 @@ import java.util.HashMap;
 public class BudgetDTO extends RootDTO {
     private final SimpleObjectProperty<LocalDate> month = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<CategoryDTO> category = new SimpleObjectProperty<>();
-    private final SimpleLongProperty budget = new SimpleLongProperty();
-    private final SimpleLongProperty realisedValue = new SimpleLongProperty();
+    private final SimpleObjectProperty<Currency> budget = new SimpleObjectProperty<>();
+    private final SimpleObjectProperty<Currency> realisedValue = new SimpleObjectProperty<>();
 
     public BudgetDTO() {
         super();
         setMonth(LocalDate.MIN);
-        setBudget(0);
+        setBudget(Currency.zero());
         setCategory(null);
-        setRealisedValue(0);
+        setRealisedValue(Currency.zero());
     }
 
     private BudgetDTO(BudgetDAO dao) {
@@ -40,6 +38,7 @@ public class BudgetDTO extends RootDTO {
         setMonth(dao.getMonth().toLocalDate());
         setCategory(MainApp.getData().getCategoryById(dao.getCategoryId()));
         setBudget(dao.getBudget());
+        setRealisedValue(Currency.zero());
     }
 
     public void toDAO(RootDAO dao) {
@@ -74,27 +73,27 @@ public class BudgetDTO extends RootDTO {
         this.category.set(category);
     }
 
-    public long getBudget() {
+    public Currency getBudget() {
         return budget.get();
     }
 
-    public SimpleLongProperty budgetProperty() {
+    public SimpleObjectProperty<Currency> budgetProperty() {
         return budget;
     }
 
-    public void setBudget(long budget) {
+    public void setBudget(Currency budget) {
         this.budget.set(budget);
     }
 
-    public long getRealisedValue() {
+    public Currency getRealisedValue() {
         return realisedValue.get();
     }
 
-    public SimpleLongProperty realisedValueProperty() {
+    public SimpleObjectProperty<Currency> realisedValueProperty() {
         return realisedValue;
     }
 
-    public void setRealisedValue(long realisedValue) {
+    public void setRealisedValue(Currency realisedValue) {
         this.realisedValue.set(realisedValue);
     }
 
@@ -122,6 +121,6 @@ public class BudgetDTO extends RootDTO {
     }
 
     public void addTransaction(TransactionDTO transaction) {
-        setRealisedValue(getRealisedValue() + transaction.getAmount());
+        getRealisedValue().add(transaction.getAmount());
     }
 }

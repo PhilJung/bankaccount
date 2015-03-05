@@ -1,5 +1,6 @@
 package com.philippejung.bankaccount.services.db;
 
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.RootDAO;
 import com.philippejung.bankaccount.view.utils.AlertPopup;
 import com.philippejung.bankaccount.view.utils.Joiner;
@@ -196,7 +197,7 @@ public class DatabaseAccess {
             statement = connection.createStatement();
             Method method = null;
             String tableName = null;
-            method = objectClass.getMethod("getTableName", null);
+            method = objectClass.getMethod("getTableName", (Class<?>[])null);
             tableName = (String) method.invoke(retVal);
             rs = statement.executeQuery("SELECT * FROM " + tableName + " WHERE id=" + id);
             if (rs.next()) {
@@ -337,6 +338,9 @@ public class DatabaseAccess {
                         break;
                     case "java.sql.Date":
                         statement.setDate(index, (Date) entry);
+                        break;
+                    case "com.philippejung.bankaccount.models.Currency":
+                        statement.setLong(index, ((Currency)entry).toLong());
                         break;
                     default:
                         System.err.println("DatabaseAccess, unsupported type " + entry.getClass().getName());

@@ -1,6 +1,7 @@
 package com.philippejung.bankaccount.models.dao;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
 
 import java.sql.ResultSet;
@@ -18,21 +19,21 @@ public class AccountDAO extends RootDAO {
     private String name;
     private String accountNumber;
     private String importerFormat;
-    private Long initialBalance;
+    private Currency initialBalance;
 
     public AccountDAO() {
         super();
         setName("Undefined");
         setAccountNumber(null);
         setImporterFormat(null);
-        setInitialBalance(0L);
+        setInitialBalance(Currency.zero());
     }
 
     public void readFromDB(ResultSet rs) throws SQLException {
         super.readFromDB(rs);
         this.name = rs.getString("name");
         this.accountNumber = rs.getString("accountNumber");
-        this.initialBalance = rs.getLong("initialBalance");
+        this.initialBalance = new Currency(rs.getLong("initialBalance"));
         this.importerFormat = rs.getString("importerFormat");
     }
 
@@ -52,11 +53,11 @@ public class AccountDAO extends RootDAO {
         this.accountNumber = accountNumber;
     }
 
-    public Long getInitialBalance() {
+    public Currency getInitialBalance() {
         return initialBalance;
     }
 
-    public void setInitialBalance(Long initialBalance) {
+    public void setInitialBalance(Currency initialBalance) {
         this.initialBalance = initialBalance;
     }
 

@@ -1,5 +1,6 @@
 package com.philippejung.bankaccount.services.classifier;
 
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.ClassifierDTO;
 import com.philippejung.bankaccount.models.dto.TransactionDTO;
 import com.philippejung.bankaccount.models.dto.TypeOfTransaction;
@@ -64,15 +65,15 @@ public class ClassifierService {
         return false;
     }
 
-    private boolean isVerifiedAmount(String amountConditionTest, long amountConditionValue, long amount) {
+    private boolean isVerifiedAmount(String amountConditionTest, Currency amountConditionValue, Currency amount) {
         if (amountConditionTest==null) return true;
         switch (amountConditionTest) {
-            case "==": return amount == amountConditionValue;
-            case "!=": return amount != amountConditionValue;
-            case ">": return amount > amountConditionValue;
-            case ">=": return amount >= amountConditionValue;
-            case "<": return amount < amountConditionValue;
-            case "<=": return amount <= amountConditionValue;
+            case "==": return amount.toLong() == amountConditionValue.toLong();
+            case "!=": return amount.toLong() != amountConditionValue.toLong();
+            case ">": return amount.toLong() > amountConditionValue.toLong();
+            case ">=": return amount.toLong() >= amountConditionValue.toLong();
+            case "<": return amount.toLong() < amountConditionValue.toLong();
+            case "<=": return amount.toLong() <= amountConditionValue.toLong();
         }
         // Not implemented operator => false
         return false;

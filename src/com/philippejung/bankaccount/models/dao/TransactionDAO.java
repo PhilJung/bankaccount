@@ -2,6 +2,7 @@ package com.philippejung.bankaccount.models.dao;
 
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
 
 import java.sql.Date;
@@ -23,7 +24,7 @@ public class TransactionDAO extends RootDAO {
     private Long otherAccountId;
     private Long otherTransactionId;
     private Long wayOfPaymentId;
-    private Long amount;
+    private Currency amount;
     private String detail;
     private String comment;
     private Long categoryId;
@@ -40,7 +41,7 @@ public class TransactionDAO extends RootDAO {
         this.otherAccountId = rs.getLong("otherAccountId");
         this.otherTransactionId = rs.getLong("otherTransactionId");
         this.wayOfPaymentId = rs.getLong("wayOfPaymentId");
-        this.amount = rs.getLong("amount");
+        this.amount = new Currency(rs.getLong("amount"));
         this.detail = rs.getString("detail");
         this.comment = rs.getString("comment");
         this.categoryId = rs.getLong("categoryId");
@@ -94,11 +95,11 @@ public class TransactionDAO extends RootDAO {
         this.wayOfPaymentId = wayOfPaymentId;
     }
 
-    public Long getAmount() {
+    public Currency getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Currency amount) {
         this.amount = amount;
     }
 

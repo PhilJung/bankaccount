@@ -1,11 +1,12 @@
 package com.philippejung.bankaccount.models;
 
 import com.philippejung.bankaccount.models.dto.*;
-import com.philippejung.bankaccount.services.db.DatabaseAccess;
 import com.philippejung.bankaccount.models.preferences.AppPreferences;
+import com.philippejung.bankaccount.services.db.DatabaseAccess;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 /**
  * =================================================
@@ -20,7 +21,7 @@ public class AppData {
     private ObservableList<WayOfPaymentDTO> allWaysOfPayment;
     private ObservableList<ClassifierDTO> allClassifiers;
     private ObservableList<CategoryDTO> allCategories;
-    private ObservableList<BudgetDTO> allBudgets;
+    private HashMap<LocalDate, HashMap<Long, BudgetDTO>> allBudgets;
     private AppPreferences preferences;
 
     public void init() {
@@ -50,7 +51,17 @@ public class AppData {
     }
 
     private void readAllBudgets() {
-        allBudgets = BudgetDTO.getAll();
+        allBudgets = new HashMap<>();
+        for(BudgetDTO budgetDTO : BudgetDTO.getAll()) {
+            addBudget(budgetDTO);
+        }
+    }
+
+    private void addBudget(BudgetDTO budgetDTO) {
+        LocalDate month = budgetDTO.getMonth();
+        if (!allBudgets.containsKey(month))
+            allBudgets.put(month, new HashMap<>());
+        allBudgets.get(month).put(budgetDTO.getCategory().getId(), budgetDTO);
     }
 
     private void readAllWaysOfPayment() {
@@ -75,7 +86,7 @@ public class AppData {
         return allAccounts;
     }
 
-    public ObservableList<BudgetDTO> getAllBudgets() {
+    public HashMap<LocalDate, HashMap<Long, BudgetDTO>> getAllBudgets() {
         return allBudgets;
     }
 
@@ -143,36 +154,31 @@ public class AppData {
         return null;
     }
 
-    public BudgetDTO getBudgetById(Long budgetId) {
-        if (budgetId == -1) return null;
-        for (BudgetDTO dto : getAllBudgets()) {
-            if (dto.getId().equals(budgetId))
-                return dto;
-        }
-        return null;
-    }
-
     public BudgetDTO getBudgetByDateAndCategory(LocalDate date, CategoryDTO category) {
+        if (category==null)
+            return null;
         LocalDate month = BudgetDTO.monthForDate(date);
-        for (BudgetDTO dto : getAllBudgets()) {
-            if (category.equals(dto.getCategory()) && month.equals(dto.getMonth()))
-                return dto;
+        BudgetDTO dto = null;
+        if (allBudgets.containsKey(month)) {
+            dto = allBudgets.get(month).get(category.getId());
         }
-        // Not found, create one
-        BudgetDTO newBudget = new BudgetDTO();
-        newBudget.setMonth(month);
-        newBudget.setCategory(category);
-        newBudget.setBudget(0);
-        newBudget.writeToDB();
-        // Adds it to internal list and returns
-        getAllBudgets().add(newBudget);
-        return newBudget;
+        if (dto==null) {
+            // Not found, create one
+            dto = new BudgetDTO();
+            dto.setMonth(month);
+            dto.setCategory(category);
+            dto.setBudget(Currency.zero());
+            dto.writeToDB();
+            addBudget(dto);
+        }
+        return dto;
     }
 
     public void addTransaction(TransactionDTO transaction, AccountDTO account) {
         account.addTransaction(transaction);
         BudgetDTO budgetDTO = getBudgetByDateAndCategory(transaction.getDate(), transaction.getCategory());
-        budgetDTO.addTransaction(transaction);
+        if (budgetDTO!=null)
+            budgetDTO.addTransaction(transaction);
     }
 
 }

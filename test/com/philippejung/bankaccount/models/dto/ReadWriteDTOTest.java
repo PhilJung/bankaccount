@@ -1,5 +1,6 @@
 package com.philippejung.bankaccount.models.dto;
 
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.AccountDAO;
 import com.philippejung.bankaccount.models.dao.CategoryDAO;
 import com.philippejung.bankaccount.models.dao.TransactionDAO;
@@ -33,7 +34,7 @@ public class ReadWriteDTOTest {
         AccountDTO accountDTO = new AccountDTO();
         accountDTO.setName("account");
         accountDTO.setAccountNumber("0000");
-        accountDTO.setInitialBalance(2345);
+        accountDTO.setInitialBalance(new Currency(2345L));
         accountDTO.setImporterFormat("lbp");
         accountDTO.writeToDB(dbAccess);
         accountId = accountDTO.getId();
@@ -51,7 +52,7 @@ public class ReadWriteDTOTest {
         assertNotEquals(-1L, (long) wayOfPaymentId);
         TransactionDTO transactionDTO = new TransactionDTO();
         transactionDTO.setAccount(accountDTO);
-        transactionDTO.setAmount(-1234);
+        transactionDTO.setAmount(new Currency(-1234L));
         transactionDTO.setCategory(categoryDTO);
         transactionDTO.setComment("Comment");
         transactionDTO.setDate(now);
@@ -66,7 +67,7 @@ public class ReadWriteDTOTest {
     private void readFromDB() throws Exception {
         TransactionDAO transactionDAO = TransactionDAO.byId(transactionId, dbAccess);
         assertEquals(accountId, (long) transactionDAO.getAccountId());
-        assertEquals(-1234L, (long) transactionDAO.getAmount());
+        assertEquals(new Currency(-1234L), transactionDAO.getAmount());
         assertEquals(categoryId, (long) transactionDAO.getCategoryId());
         assertEquals("Comment", transactionDAO.getComment());
         assertEquals(now, transactionDAO.getDate().toLocalDate());
@@ -78,7 +79,7 @@ public class ReadWriteDTOTest {
         AccountDAO accountDAO = AccountDAO.byId(accountId, dbAccess);
         assertEquals("account", accountDAO.getName());
         assertEquals("0000", accountDAO.getAccountNumber());
-        assertEquals(2345L, (long) accountDAO.getInitialBalance());
+        assertEquals(new Currency(2345L), accountDAO.getInitialBalance());
         assertEquals("lbp", accountDAO.getImporterFormat());
 
         CategoryDAO categoryDAO = CategoryDAO.byId(categoryId, dbAccess);

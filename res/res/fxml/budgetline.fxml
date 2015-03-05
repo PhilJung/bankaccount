@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane fx:id="gridPane" styleClass="gridclass" stylesheets="/res/css/budgetline.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.BudgetLineController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="200.0" minWidth="10.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+    </rowConstraints>
+    <padding>
+        <Insets bottom="1.0" left="5.0" right="5.0" top="1.0" />
+    </padding>
+    <children>
+        <Label fx:id="categoryLabel" text="Label" GridPane.rowSpan="2147483647">
+         <GridPane.margin>
+            <Insets right="5.0" />
+         </GridPane.margin></Label>
+        <TextField fx:id="forecast0" alignment="CENTER_RIGHT" GridPane.columnIndex="1" />
+        <Label fx:id="actual0" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+         <padding>
+            <Insets right="5.0" />
+         </padding></Label>
+        <TextField fx:id="forecast1" GridPane.columnIndex="2" />
+        <Label fx:id="actual1" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast2" GridPane.columnIndex="3" />
+        <Label fx:id="actual2" text="Label" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast3" GridPane.columnIndex="4" />
+        <Label fx:id="actual3" text="Label" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast4" GridPane.columnIndex="5" />
+        <Label fx:id="actual4" text="Label" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast5" GridPane.columnIndex="6" />
+        <Label fx:id="actual5" text="Label" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast6" GridPane.columnIndex="7" />
+        <Label fx:id="actual6" text="Label" GridPane.columnIndex="7" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast7" GridPane.columnIndex="8" />
+        <Label fx:id="actual7" text="Label" GridPane.columnIndex="8" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast8" GridPane.columnIndex="9" />
+        <Label fx:id="actual8" text="Label" GridPane.columnIndex="9" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast9" GridPane.columnIndex="10" />
+        <Label fx:id="actual9" text="Label" GridPane.columnIndex="10" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast10" GridPane.columnIndex="11" />
+        <Label fx:id="actual10" text="Label" GridPane.columnIndex="11" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <TextField fx:id="forecast11" GridPane.columnIndex="12" />
+        <Label fx:id="actual11" text="Label" GridPane.columnIndex="12" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+    </children>
+</GridPane>

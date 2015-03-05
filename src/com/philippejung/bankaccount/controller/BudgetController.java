@@ -1,35 +1,36 @@
 package com.philippejung.bankaccount.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.dto.CategoryDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
  * Created by philippe on 24/02/15.
  */
-public class BudgetController implements Initializable {
+public class BudgetController extends GenericController implements Initializable {
     @FXML
-    private TableView budgetTable = null;
-
-    private TableColumn[] valueColumns = new TableColumn[12];
+    private VBox budgetVBox;
+    private LocalDate startDate;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        createTableStructure();
+        startDate = LocalDate.now().withDayOfMonth(1).minusMonths(12);
+        for(CategoryDTO categoryDTO : MainApp.getData().getAllCategories()) {
+            Pane newPane = loadPane("/res/fxml/budgetline.fxml", categoryDTO, this);
+            budgetVBox.getChildren().add(newPane);
+            VBox.setVgrow(newPane, Priority.NEVER);
+        }
     }
 
-    private void createTableStructure() {
-        for (int month= 0; month<12; month++) {
-            valueColumns[month] = new TableColumn("M" + Integer.toString(month));
-        }
-        budgetTable.getColumns().addAll(valueColumns);
+    public LocalDate getStartDate() {
+        return startDate;
     }
 }

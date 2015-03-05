@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.TableView?>
-
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" stylesheets="@/res/css/budget.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.BudgetController">
+<VBox spacing="5.0" stylesheets="@/res/css/budget.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.BudgetController">
     <children>
-      <ToolBar prefHeight="40.0" prefWidth="200.0">
-        <items>
-          <Button mnemonicParsing="false" text="Button" />
-        </items>
-      </ToolBar>
-        <TableView fx:id="budgetTable" VBox.vgrow="ALWAYS">
-            <columns>
-            <TableColumn fx:id="categoryColumn" editable="false" text="Catégorie">
-                <cellValueFactory>
-                    <PropertyValueFactory property="category" />
-                </cellValueFactory>
-            </TableColumn>
-            </columns>
-        </TableView>
-        <HBox VBox.vgrow="ALWAYS">
+        <HBox VBox.vgrow="NEVER">
             <children>
-                <Button mnemonicParsing="false" text="Button" />
+                <Button mnemonicParsing="false" text="Button" HBox.hgrow="NEVER" />
             </children>
         </HBox>
+      <ScrollPane VBox.vgrow="ALWAYS">
+         <content>
+            <VBox fx:id="budgetVBox" />
+         </content>
+      </ScrollPane>
     </children>
 </VBox>

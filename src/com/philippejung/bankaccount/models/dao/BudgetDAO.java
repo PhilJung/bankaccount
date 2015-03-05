@@ -1,6 +1,7 @@
 package com.philippejung.bankaccount.models.dao;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
 
 import java.sql.Date;
@@ -18,7 +19,7 @@ import java.util.Map;
 public class BudgetDAO extends RootDAO {
     private Date month; // YYYYMM
     private Long categoryId;
-    private Long budget;
+    private Currency budget;
 
     public BudgetDAO() {
         super();
@@ -40,11 +41,11 @@ public class BudgetDAO extends RootDAO {
         this.categoryId = categoryId;
     }
 
-    public Long getBudget() {
+    public Currency getBudget() {
         return budget;
     }
 
-    public void setBudget(Long budget) {
+    public void setBudget(Currency budget) {
         this.budget = budget;
     }
 
@@ -52,7 +53,7 @@ public class BudgetDAO extends RootDAO {
         super.readFromDB(rs);
         this.month = rs.getDate("month");
         this.categoryId = rs.getLong("categoryId");
-        this.budget = rs.getLong("budget");
+        this.budget = new Currency(rs.getLong("budget"));
     }
 
     @Override

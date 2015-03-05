@@ -1,10 +1,10 @@
 package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.ClassifierDAO;
 import com.philippejung.bankaccount.models.dao.RootDAO;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -23,7 +23,7 @@ public class ClassifierDTO extends RootDTO {
     private final SimpleStringProperty detailConditionTest = new SimpleStringProperty ();
     private final SimpleStringProperty detailConditionValue = new SimpleStringProperty ();
     private final SimpleStringProperty amountConditionTest = new SimpleStringProperty ();
-    private final SimpleLongProperty amountConditionValue = new SimpleLongProperty ();
+    private final SimpleObjectProperty<Currency> amountConditionValue = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<TypeOfTransaction> type = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<WayOfPaymentDTO> wayOfPayment = new SimpleObjectProperty<>();
     private final SimpleObjectProperty<AccountDTO> account = new SimpleObjectProperty<>();
@@ -35,7 +35,7 @@ public class ClassifierDTO extends RootDTO {
         setDetailConditionTest(null);
         setDetailConditionValue(null);
         setAmountConditionTest(null);
-        setAmountConditionValue(0);
+        setAmountConditionValue(Currency.zero());
         setType(TypeOfTransaction.NONE);
         setWayOfPayment(null);
         setAccount(null);
@@ -106,15 +106,15 @@ public class ClassifierDTO extends RootDTO {
         this.amountConditionTest.set(amountConditionTest);
     }
 
-    public Long getAmountConditionValue() {
+    public Currency getAmountConditionValue() {
         return amountConditionValue.get();
     }
 
-    public SimpleLongProperty amountConditionValueProperty() {
+    public SimpleObjectProperty<Currency> amountConditionValueProperty() {
         return amountConditionValue;
     }
 
-    public void setAmountConditionValue(long amountConditionValue) {
+    public void setAmountConditionValue(Currency amountConditionValue) {
         this.amountConditionValue.set(amountConditionValue);
     }
 

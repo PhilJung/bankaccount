@@ -1,5 +1,6 @@
 package com.philippejung.bankaccount.services;
 
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.TransactionDTO;
 import com.philippejung.bankaccount.view.utils.AlertPopup;
 import javafx.application.Platform;
@@ -15,7 +16,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -178,13 +178,13 @@ public class FileImporter {
             return regexpMatcher.group(index);
         }
 
-        public Long getAmount() {
+        public Currency getAmount() {
             assert(regexpMatcher!=null);
             if (indexOfAmountInRegexp==null) return null;
             int index = Integer.parseInt(indexOfAmountInRegexp);
-            BigDecimal bigDecimalAmount = new BigDecimal(regexpMatcher.group(index).replace(',', '.'));
             // Amounts are internally stocked as amount x 100
-            return bigDecimalAmount.multiply(new BigDecimal(100)).longValue();
+            return Currency.fromString(regexpMatcher.group(index));
+
         }
 
         public String getComment() {

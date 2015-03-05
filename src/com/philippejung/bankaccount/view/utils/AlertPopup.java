@@ -65,6 +65,8 @@ public final class AlertPopup {
 
             // Set expandable Exception into the dialog pane.
             alert.getDialogPane().setExpandableContent(expContent);
+            alert.setWidth(400);
+            alert.setHeight(400);;
         }
         alert.showAndWait();
     }

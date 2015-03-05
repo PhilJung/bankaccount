@@ -1,10 +1,10 @@
 package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.RootDAO;
 import com.philippejung.bankaccount.models.dao.TransactionDAO;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -26,7 +26,7 @@ public class TransactionDTO extends RootDTO {
     private final SimpleObjectProperty<AccountDTO> otherAccount= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<WayOfPaymentDTO> wayOfPayment= new SimpleObjectProperty<>();
     private final SimpleObjectProperty<CategoryDTO> category = new SimpleObjectProperty<>();
-    private final SimpleLongProperty amount = new SimpleLongProperty();
+    private final SimpleObjectProperty<Currency> amount = new SimpleObjectProperty<Currency>();
     private final SimpleStringProperty detail= new SimpleStringProperty();
     private final SimpleStringProperty comment= new SimpleStringProperty();
 
@@ -38,7 +38,7 @@ public class TransactionDTO extends RootDTO {
         setAccount(null);
         setOtherAccount(null);
         setWayOfPayment(null);
-        setAmount(0L);
+        setAmount(Currency.zero());
         setDetail(null);
         setComment(null);
         setCategory(null);
@@ -144,15 +144,15 @@ public class TransactionDTO extends RootDTO {
         this.wayOfPayment.set(wayOfPayment);
     }
 
-    public Long getAmount() {
+    public Currency getAmount() {
         return amount.get();
     }
 
-    public SimpleLongProperty amountProperty() {
+    public SimpleObjectProperty<Currency> amountProperty() {
         return amount;
     }
 
-    public void setAmount(long amount) {
+    public void setAmount(Currency amount) {
         this.amount.set(amount);
     }
 

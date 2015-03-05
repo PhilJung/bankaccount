@@ -1,5 +1,6 @@
 package com.philippejung.bankaccount.services;
 
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.TransactionDTO;
 import org.junit.Test;
 
@@ -22,8 +23,8 @@ public class FileImporterTest {
         importer.importFile(is);
         ArrayList<TransactionDTO> allTrans = importer.getAllImportedMovements();
         assertEquals(2, allTrans.size());
-        assertEquals(-11025L, (long) allTrans.get(0).getAmount());
-        assertEquals(100000L, (long) allTrans.get(1).getAmount());
+        assertEquals(new Currency(-11025L), allTrans.get(0).getAmount());
+        assertEquals(new Currency(100000L), allTrans.get(1).getAmount());
         assertEquals(LocalDate.of(2015,1,23), allTrans.get(0).getDate());
         assertEquals(LocalDate.of(2015,1,16), allTrans.get(1).getDate());
         assertEquals("PRELEVEMENT DE XXXXX : DU TEXTE IDENT : FR1234567", allTrans.get(0).getDetail());

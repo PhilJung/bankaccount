@@ -1,0 +1,24 @@
+.gridclass {
+    -fx-border-style: none, none, solid, none;
+    -fx-border-color: #000000 #000000 #707070 #000000 ;
+    -fx-border-width: 0px 0px 1px 0px;
+}
+
+.text-field {
+    -fx-border-radius: 0;
+    -fx-alignment: CENTER-RIGHT;
+}
+
+.overBudget {
+    -fx-font-size: 1em;
+    -fx-text-fill: #800000;
+    -fx-alignment: CENTER-RIGHT;
+    -fx-label-padding: 0 5 0 0;
+}
+
+.underBudget {
+    -fx-font-size: 1em;
+    -fx-text-fill: #008000;
+    -fx-alignment: CENTER-RIGHT;
+    -fx-label-padding: 0 5 0 0;
+}
