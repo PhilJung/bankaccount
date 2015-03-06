@@ -59,8 +59,11 @@ public class MainApp extends Application {
         FXMLLoader rootLoader = new FXMLLoader(getClass().getResource("/res/fxml/appframe.fxml"));
         VBox rootLayout = rootLoader.load();
         setMainController(rootLoader.getController());
-        primaryStage.setScene(new Scene(rootLayout, 900, 875));
+        primaryStage.setScene(new Scene(rootLayout, 1200, 875));
         primaryStage.show();
+
+        // Add the status bar
+//        getMainController().addStatusBar(rootLayout);
 
         // Now load the first tab
         getMainController().selectTabAndCreateItIfRequired("welcome", "/res/fxml/welcome.fxml", "Accueil", false);

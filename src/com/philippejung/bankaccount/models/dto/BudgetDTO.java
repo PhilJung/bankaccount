@@ -6,6 +6,7 @@ import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.BudgetDAO;
 import com.philippejung.bankaccount.models.dao.RootDAO;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -83,6 +84,16 @@ public class BudgetDTO extends RootDTO {
 
     public void setBudget(Currency budget) {
         this.budget.set(budget);
+        if (budget!=null) {
+            budget.valueProperty().addListener(
+            (ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
+                        if (oldValue != newValue) {
+                            System.out.println("Saving " + this.toString());
+                            writeToDB();
+                        }
+                    }
+            );
+        }
     }
 
     public Currency getRealisedValue() {
@@ -101,6 +112,7 @@ public class BudgetDTO extends RootDTO {
         ArrayList<BudgetDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM budget", BudgetDAO.class);
         ArrayList<BudgetDTO> retVal = new ArrayList<>();
         for(BudgetDAO budgetDAO : queryResult) {
+            // Budget DTO are autosaved
             retVal.add(new BudgetDTO(budgetDAO));
         }
         return FXCollections.observableArrayList(retVal);
@@ -121,6 +133,6 @@ public class BudgetDTO extends RootDTO {
     }
 
     public void addTransaction(TransactionDTO transaction) {
-        getRealisedValue().add(transaction.getAmount());
+        getRealisedValue().setValue(getRealisedValue().plus(transaction.getAmount()));
     }
 }

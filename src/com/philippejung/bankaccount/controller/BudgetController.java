@@ -2,6 +2,8 @@ package com.philippejung.bankaccount.controller;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dto.CategoryDTO;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
@@ -22,19 +24,59 @@ import java.util.ResourceBundle;
 public class BudgetController extends GenericController implements Initializable {
     @FXML
     private VBox budgetVBox;
-    private LocalDate startDate;
+    private SimpleObjectProperty<LocalDate> startDate = new SimpleObjectProperty<>();
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        startDate = LocalDate.now().withDayOfMonth(1).minusMonths(12);
-        for(CategoryDTO categoryDTO : MainApp.getData().getAllCategories()) {
-            Pane newPane = loadPane("/res/fxml/budgetline.fxml", categoryDTO, this);
-            budgetVBox.getChildren().add(newPane);
-            VBox.setVgrow(newPane, Priority.NEVER);
-        }
+    public SimpleObjectProperty<LocalDate> startDateProperty() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate.set(startDate);
     }
 
     public LocalDate getStartDate() {
-        return startDate;
+        return startDate.get();
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        MainApp.getMainController().setProgress(0);
+        int nbTotal = MainApp.getData().getAllCategories().size() + 1;
+        int cpteur = 0;
+        Pane newPane = loadPane("/res/fxml/budgetheaderline.fxml", this);
+        budgetVBox.getChildren().add(newPane);
+        VBox.setVgrow(newPane, Priority.NEVER);
+        cpteur++;
+        MainApp.getMainController().setProgress( (double) cpteur / (double) nbTotal);
+        for(CategoryDTO categoryDTO : MainApp.getData().getAllCategories()) {
+            newPane = loadPane("/res/fxml/budgetline.fxml", categoryDTO, this);
+            budgetVBox.getChildren().add(newPane);
+            VBox.setVgrow(newPane, Priority.NEVER);
+            cpteur++;
+            MainApp.getMainController().setProgress( (double) cpteur / (double) nbTotal);
+        }
+        setStartDate(LocalDate.now().withDayOfMonth(1).minusMonths(12));
+        MainApp.getMainController().setProgress( (double) cpteur / (double) nbTotal);
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void onPreviousYear(ActionEvent actionEvent) {
+        setStartDate(getStartDate().minusYears(1));
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void onPreviousMonth(ActionEvent actionEvent) {
+        setStartDate(getStartDate().minusMonths(1));
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void onNextYear(ActionEvent actionEvent) {
+        setStartDate(getStartDate().plusYears(1));
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void onNextMonth(ActionEvent actionEvent) {
+        setStartDate(getStartDate().plusMonths(1));
+    }
+
 }

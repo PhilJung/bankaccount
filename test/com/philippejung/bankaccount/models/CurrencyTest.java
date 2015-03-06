@@ -53,11 +53,11 @@ public class CurrencyTest {
     public void testAdd() throws Exception {
         Currency c = Currency.zero();
         assertEquals(0, c.toLong());
-        c.add(new Currency(100L));
+        c.setValue(c.plus(new Currency(100L)));
         assertEquals(100L, c.toLong());
-        c.add(new Currency(100L));
+        c.setValue(c.plus(new Currency(100L)));
         assertEquals(200L, c.toLong());
-        c.add(new Currency(-50L));
+        c.setValue(c.plus(new Currency(-50L)));
         assertEquals(150L, c.toLong());
     }
 

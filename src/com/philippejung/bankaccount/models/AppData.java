@@ -1,5 +1,6 @@
 package com.philippejung.bankaccount.models;
 
+import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dto.*;
 import com.philippejung.bankaccount.models.preferences.AppPreferences;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
@@ -28,11 +29,17 @@ public class AppData {
         preferences = new AppPreferences();
         preferences.loadPreferences();
         dbAccess = new DatabaseAccess("/home/philippe/.bankaccount/");
+        MainApp.getMainController().setProgress(0.05);
         readAllWaysOfPayment();
+        MainApp.getMainController().setProgress(0.1);
         readAllCategories();
+        MainApp.getMainController().setProgress(0.2);
         readAllBudgets();
+        MainApp.getMainController().setProgress(0.3);
         readAllAccounts();
+        MainApp.getMainController().setProgress(0.9);
         readAllClassifiers();
+        MainApp.getMainController().setProgress(1);
     }
 
     public AppPreferences getPreferences() {
@@ -45,8 +52,12 @@ public class AppData {
 
     private void readAllAccounts() {
         allAccounts = AccountDTO.getAll();
+        int nbAccounts = allAccounts.size();
+        int cur = 0;
         for(AccountDTO accountDTO : allAccounts) {
             accountDTO.loadTransactions();
+            cur++;
+            MainApp.getMainController().setProgress(0.3 + 0.6 * cur / nbAccounts);
         }
     }
 

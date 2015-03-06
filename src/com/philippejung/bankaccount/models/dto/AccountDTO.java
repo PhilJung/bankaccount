@@ -153,7 +153,7 @@ public class AccountDTO extends RootDTO {
     }
 
     public static ObservableList<AccountDTO> getAll() {
-        ArrayList<AccountDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM account", AccountDAO.class);
+        ArrayList<AccountDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM account ORDER BY name", AccountDAO.class);
         ArrayList<AccountDTO> retVal = new ArrayList<>();
         for(AccountDAO accountDAO : queryResult) {
             //System.out.println("Trouvé compte " + accountDAO.getName());
@@ -228,7 +228,7 @@ public class AccountDTO extends RootDTO {
         if (slot < -SLOT_NUMBER_IN_BALANCE_VARIATION)
             return;
         balanceVariation.putIfAbsent(slot, Currency.zero());
-        balanceVariation.get(slot).add(transaction.getAmount());
+        balanceVariation.get(slot).setValue(balanceVariation.get(slot).plus(transaction.getAmount()));
     }
 
     /**
@@ -239,7 +239,7 @@ public class AccountDTO extends RootDTO {
         // Add to all transactions list
         allTransactions.add(transaction);
         // Update balance
-        getBalance().add(transaction.getAmount());
+        getBalance().setValue(getBalance().plus(transaction.getAmount()));
         // Update balance history
         addTransactionToBalanceVariation(transaction);
         // Update graph series

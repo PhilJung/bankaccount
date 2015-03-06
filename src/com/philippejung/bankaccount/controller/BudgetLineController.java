@@ -4,9 +4,12 @@ import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.BudgetDTO;
 import com.philippejung.bankaccount.models.dto.CategoryDTO;
+import com.philippejung.bankaccount.view.utils.CurrencyTextField;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.time.LocalDate;
 
@@ -19,29 +22,29 @@ import java.time.LocalDate;
  */
 public class BudgetLineController implements ParametrizedController {
     @FXML
-    private TextField forecast0;
+    private CurrencyTextField forecast0;
     @FXML
-    private TextField forecast1;
+    private CurrencyTextField forecast1;
     @FXML
-    private TextField forecast2;
+    private CurrencyTextField forecast2;
     @FXML
-    private TextField forecast3;
+    private CurrencyTextField forecast3;
     @FXML
-    private TextField forecast4;
+    private CurrencyTextField forecast4;
     @FXML
-    private TextField forecast5;
+    private CurrencyTextField forecast5;
     @FXML
-    private TextField forecast6;
+    private CurrencyTextField forecast6;
     @FXML
-    private TextField forecast7;
+    private CurrencyTextField forecast7;
     @FXML
-    private TextField forecast8;
+    private CurrencyTextField forecast8;
     @FXML
-    private TextField forecast9;
+    private CurrencyTextField forecast9;
     @FXML
-    private TextField forecast10;
+    private CurrencyTextField forecast10;
     @FXML
-    private TextField forecast11;
+    private CurrencyTextField forecast11;
     @FXML
     private Label actual0;
     @FXML
@@ -72,7 +75,10 @@ public class BudgetLineController implements ParametrizedController {
     private CategoryDTO categoryDTO;
     private BudgetController mainController;
     private final Label[] allActuals = new Label[12];
-    private final TextField[] allForecasts = new TextField[12];
+    private final CurrencyTextField[] allForecasts = new CurrencyTextField[12];
+
+    private final static Image expenseIcon = new Image(BudgetLineController.class.getResourceAsStream("/res/icons/expense.png"));
+    private final static Image incomeIcon = new Image(BudgetLineController.class.getResourceAsStream("/res/icons/income.png"));
 
     @Override
     public void setControllerParam(Object param1, Object param2) {
@@ -106,28 +112,40 @@ public class BudgetLineController implements ParametrizedController {
         allForecasts[10] = forecast10;
         allForecasts[11] = forecast11;
 
-        setValues();
+        mainController.startDateProperty().addListener(
+                (ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) -> {
+                    setValues(newValue);
+                }
+        );
     }
 
-    private void setValues() {
+    private void setValues(LocalDate startDate) {
         categoryLabel.setText(categoryDTO.getName());
-        LocalDate start = mainController.getStartDate();
-        Currency realised;
-        Currency budget;
-        BudgetDTO dto;
+        categoryLabel.setGraphic(new ImageView(categoryDTO.getExpense() ? expenseIcon : incomeIcon));
         for (int i=0; i<12; i++) {
-            dto = MainApp.getData().getBudgetByDateAndCategory(start.plusMonths(i), categoryDTO);
-            budget = dto.getBudget();
-            realised = dto.getRealisedValue();
-            allActuals[i].setText(realised.toString());
-            allForecasts[i].setText(budget.toString());
-            if (budget.toLong() >= realised.toLong()) {
-                allActuals[i].getStyleClass().remove("overBudget");
-                allActuals[i].getStyleClass().add("underBudget");
-            } else {
-                allActuals[i].getStyleClass().remove("underBudget");
-                allActuals[i].getStyleClass().add("overBudget");
-            }
+            setValuesForColumn(startDate, i);
+        }
+    }
+
+    private void setValuesForColumn(LocalDate startDate, int i) {
+        BudgetDTO dto;
+        Currency budget;
+        Currency realised;
+        dto = MainApp.getData().getBudgetByDateAndCategory(startDate.plusMonths(i), categoryDTO);
+        budget = dto.getBudget();
+        realised = dto.getRealisedValue();
+        allActuals[i].setText(realised.toString());
+        allForecasts[i].setAmount(budget);
+        long b = Math.abs(budget.toLong());
+        long r = Math.abs(realised.toLong());
+        Boolean ok =  categoryDTO.getExpense() && (b>=r)
+                ||   !categoryDTO.getExpense() && (r>=b);
+        if (ok) {
+            allActuals[i].getStyleClass().remove("overBudget");
+            allActuals[i].getStyleClass().add("underBudget");
+        } else {
+            allActuals[i].getStyleClass().remove("underBudget");
+            allActuals[i].getStyleClass().add("overBudget");
         }
     }
 }

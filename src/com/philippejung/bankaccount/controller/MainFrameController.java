@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
+import org.controlsfx.control.StatusBar;
 
 import java.util.HashMap;
 
@@ -21,6 +22,9 @@ import java.util.HashMap;
 public class MainFrameController extends GenericController {
     @FXML
     private TabPane tabPane;
+
+    @FXML
+    private StatusBar statusBar;
 
     // All already open tabs
     private final HashMap<String, Tab> allExistingTabs = new HashMap<>();
@@ -83,5 +87,10 @@ public class MainFrameController extends GenericController {
 
     public void closeImportTab() {
         closeTabAndDestroy("import");
+    }
+
+    public void setProgress(double progress) {
+        if (statusBar != null)
+            statusBar.setProgress(progress);
     }
 }

@@ -52,7 +52,7 @@ public final class AlertPopup {
 
             TextArea textArea = new TextArea(exceptionText);
             textArea.setEditable(false);
-            textArea.setWrapText(true);
+            textArea.setWrapText(false);
 
             textArea.setMaxWidth(Double.MAX_VALUE);
             textArea.setMaxHeight(Double.MAX_VALUE);

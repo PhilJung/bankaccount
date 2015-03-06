@@ -1,5 +1,7 @@
 package com.philippejung.bankaccount.models;
 
+import javafx.beans.property.SimpleLongProperty;
+
 import java.math.BigDecimal;
 
 /**
@@ -11,14 +13,14 @@ import java.math.BigDecimal;
  */
 public class Currency {
 
-    private Long value;
+    private SimpleLongProperty value = new SimpleLongProperty();
 
     public Currency(Currency other) {
-        this.value = other.toLong();
+        setValue(other);
     }
 
     public Currency(Long value) {
-        this.value = value;
+        setValue(value);
     }
 
     public static Currency zero() {
@@ -30,13 +32,30 @@ public class Currency {
         return new Currency(bigDecimalAmount.multiply(new BigDecimal(100)).longValue());
     }
 
-    public void add(Currency other) {
-        this.value += other.value;
+    public Currency plus(Currency other) {
+        return new Currency(this.toLong() + other.toLong());
+    }
+
+    public Long getValue() {
+        return value.get();
+    }
+
+    public SimpleLongProperty valueProperty() {
+        return value;
+    }
+
+    private void setValue(long value) {
+        this.value.set(value);
+    }
+
+    public void setValue(Currency other) {
+        setValue(other.toLong());
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        long value = getValue();
         if (value<0) sb.append("-");
         sb.append(Long.toString(Math.abs(value) / 100));
         sb.append('.');
@@ -47,11 +66,11 @@ public class Currency {
     }
 
     public long toLong() {
-        return value;
+        return getValue();
     }
 
     public double toDouble() {
-        return (double)value / 100.0;
+        return (double)getValue() / 100.0;
     }
 
     @Override
@@ -59,7 +78,7 @@ public class Currency {
         if (this == o) return true;
         //noinspection SimplifiableIfStatement
         if (o == null || getClass() != o.getClass()) return false;
-        return value.equals(((Currency) o).value);
+        return getValue().equals(((Currency) o).getValue());
     }
 
     @Override

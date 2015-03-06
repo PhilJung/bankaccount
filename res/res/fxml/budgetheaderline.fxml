@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane styleClass="gridclass" stylesheets="/res/css/budgetheaderline.css" xmlns="http://javafx.com/javafx/8"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.philippejung.bankaccount.controller.BudgetHeaderLineController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="200.0" minWidth="10.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+        <ColumnConstraints hgrow="NEVER" maxWidth="100.0" minWidth="10.0" prefWidth="70.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
+    </rowConstraints>
+    <padding>
+        <Insets bottom="1.0" left="5.0" right="5.0" top="1.0"/>
+    </padding>
+    <Label fx:id="categoryLabel" text="Label">
+        <GridPane.margin>
+            <Insets right="5.0"/>
+        </GridPane.margin>
+    </Label>
+    <Label fx:id="date0" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date1" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date2" text="Label" GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date3" text="Label" GridPane.columnIndex="4" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date4" text="Label" GridPane.columnIndex="5" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date5" text="Label" GridPane.columnIndex="6" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date6" text="Label" GridPane.columnIndex="7" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date7" text="Label" GridPane.columnIndex="8" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date8" text="Label" GridPane.columnIndex="9" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date9" text="Label" GridPane.columnIndex="10" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date10" text="Label" GridPane.columnIndex="11" GridPane.halignment="RIGHT"/>
+    <Label fx:id="date11" text="Label" GridPane.columnIndex="12" GridPane.halignment="RIGHT"/>
+</GridPane>

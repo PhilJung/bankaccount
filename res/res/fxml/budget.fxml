@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="5.0" stylesheets="@/res/css/budget.css" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.BudgetController">
-    <HBox VBox.vgrow="NEVER">
-        <Button mnemonicParsing="false" text="Button" HBox.hgrow="NEVER"/>
-    </HBox>
-    <ScrollPane VBox.vgrow="ALWAYS">
-        <VBox fx:id="budgetVBox"/>
-    </ScrollPane>
+<VBox fillWidth="true" spacing="5.0" stylesheets="@/res/css/budget.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.BudgetController">
+   <children>
+          <HBox alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+             <children>
+                    <Button mnemonicParsing="false" onAction="#onPreviousYear" text="&lt;&lt;" HBox.hgrow="NEVER" />
+            <Button mnemonicParsing="false" onAction="#onPreviousMonth" text="&lt;" />
+            <Label fx:id="startDateLabel" text="01/2015" />
+            <Button onAction="#onNextMonth" mnemonicParsing="false" text="&gt;" />
+            <Button onAction="#onNextYear" mnemonicParsing="false" text="&gt;&gt;" />
+             </children>
+            <padding>
+               <Insets left="5.0" right="5.0" top="5.0" />
+            </padding>
+          </HBox>
+          <ScrollPane VBox.vgrow="ALWAYS">
+             <content>
+                 <VBox fx:id="budgetVBox" />
+             </content>
+          </ScrollPane>
+   </children>
 </VBox>
