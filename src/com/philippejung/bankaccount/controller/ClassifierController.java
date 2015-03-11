@@ -31,7 +31,7 @@ public class ClassifierController implements Initializable {
     @FXML
     private TableColumn<ClassifierDTO, String> amountConditionTestColumn;
     @FXML
-    private TableColumn<ClassifierDTO, Double> amountConditionValueColumn;
+    private TableColumn<ClassifierDTO, Long> amountConditionValueColumn;
     @FXML
     private TableColumn<ClassifierDTO, TypeOfTransaction> typeColumn;
     @FXML

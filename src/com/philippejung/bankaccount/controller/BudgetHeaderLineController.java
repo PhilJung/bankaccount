@@ -1,6 +1,7 @@
 package com.philippejung.bankaccount.controller;
 
 import com.philippejung.bankaccount.view.utils.CurrencyTextField;
+import com.sun.javafx.binding.StringFormatter;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -72,8 +73,7 @@ public class BudgetHeaderLineController implements ParametrizedController {
         categoryLabel.setText("");
         for (int i = 0; i < 12; i++) {
             LocalDate theDate = startDate.plusMonths(i);
-            String label = Integer.toString(theDate.getMonthValue()) + "/" + Integer.toString(theDate.getYear());
-            allDates[i].setText(label);
+            allDates[i].setText(String.format("%02d/%04d", theDate.getMonthValue(), theDate.getYear()));
         }
     }
 }

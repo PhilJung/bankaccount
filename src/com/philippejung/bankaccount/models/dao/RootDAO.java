@@ -1,7 +1,9 @@
 package com.philippejung.bankaccount.models.dao;
 
+import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -61,4 +63,16 @@ public abstract class RootDAO {
     public int hashCode() {
         return id.hashCode();
     }
+
+    public void restore(String path, DatabaseAccess dbAccess) {
+        File file = new File(path + getTableName() + ".csv");
+        dbAccess.truncateTable(DatabaseAccess dbAccess);
+
+
+    }
+
+    private void truncateTable() {
+
+    }
+
 }

@@ -31,7 +31,11 @@ public class BudgetController extends GenericController implements Initializable
     }
 
     public void setStartDate(LocalDate startDate) {
+        // When setting startDate, listeners may generate new objects in database. Do it inside a single transaction
+        MainApp.getData().getDbAccess().beginTransaction();
         this.startDate.set(startDate);
+        // Framework is allowed to write new objects into database
+        MainApp.getData().getDbAccess().commitTransaction();
     }
 
     public LocalDate getStartDate() {
@@ -41,6 +45,8 @@ public class BudgetController extends GenericController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MainApp.getMainController().setProgress(0);
+        // In case we need to create new objects in database, all will be written at once
+        MainApp.getData().getDbAccess().beginTransaction();
         int nbTotal = MainApp.getData().getAllCategories().size() + 1;
         int cpteur = 0;
         Pane newPane = loadPane("/res/fxml/budgetheaderline.fxml", this);
@@ -55,6 +61,9 @@ public class BudgetController extends GenericController implements Initializable
             cpteur++;
             MainApp.getMainController().setProgress( (double) cpteur / (double) nbTotal);
         }
+        // In case we need to create new objects in database, all will be written now
+        MainApp.getData().getDbAccess().commitTransaction();
+        // In case we need to create new objects in database, all will be written at once
         setStartDate(LocalDate.now().withDayOfMonth(1).minusMonths(12));
         MainApp.getMainController().setProgress( (double) cpteur / (double) nbTotal);
     }

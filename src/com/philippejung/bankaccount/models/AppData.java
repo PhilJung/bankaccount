@@ -28,7 +28,7 @@ public class AppData {
     public void init() {
         preferences = new AppPreferences();
         preferences.loadPreferences();
-        dbAccess = new DatabaseAccess("/home/philippe/.bankaccount/");
+        dbAccess = new DatabaseAccess(preferences.getDatabasePath());
         MainApp.getMainController().setProgress(0.05);
         readAllWaysOfPayment();
         MainApp.getMainController().setProgress(0.1);

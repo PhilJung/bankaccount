@@ -1,0 +1,150 @@
+"Test","Value","Test","Amount","Type","Way"," null","Cat","Stop"
+"contains","1.2.3","null",0,"null","null","null",,0
+"startsWith","ACHAT CB ","null",0,2,1,"null","null",0
+"contains","ADEPEM","null",0,,,"null",,0
+"contains","AGRAF","null",0,"null","null","null",,0
+"contains","ALLIANZ","null",0,,,"null",,0
+"startsWith","AMAZON","null",0,,,"null",,0
+"contains","APRR","null",0,"null","null","null",,0
+"contains","ARCADES DES NA","null",0,"null","null","null",,0
+"contains","AUCHAN","null",0,"null","null","null",,0
+"contains","AUTOBACS","null",0,,,"null",,0
+"contains","AXA","null",0,"null","null","null",,0
+"contains","BACHELARD","null",0,,,"null",,0
+"contains","BAIE DE CHINE","null",0,"null","null","null",,0
+"contains","BAY DALONG","null",0,,,"null",,0
+"contains","BAY SUSHI COLLEGIEN CA","null",0,,,"null",,0
+"startsWith","BAYARD PRESSE","null",0,,,"null",,0
+"contains","BESSON CHAUSSU","null",0,,,"null",,0
+"contains","BRICORAMA","null",0,,,"null",,0
+"contains","BRIOCHE DOREE","null",0,"null","null","null",,0
+"contains","BRUIT DS CUISI","null",0,,,"null",,0
+"contains","CARREFDAC","null",0,,,"null",,0
+"contains","CARREFOUR COLL","null",0,"null","null","null",,0
+"contains","CARREFOUR NOIS","null",0,"null","null","null",,0
+"contains","CARREFOURMARKE","null",0,"null","null","null",,0
+"contains","CASINOCARB","null",0,"null","null","null",,0
+"contains","CASTORAMA SERRIS CARTE","null",0,,,"null",,0
+"contains","CINEMA","null",0,,,"null",,0
+"contains","CLOS DU CHATEA","null",0,,,"null",,0
+"contains","COFIROUTE","null",0,"null","null","null",,0
+"contains","COOP LAIT YENNE","null",0,,,"null",,0
+"startsWith","CORA","null",0,,,"null",,0
+"contains","CORMERAIS","null",0,"null","null","null",,0
+"startsWith","COTISATION TRIMESTRIELLE DE LA FORMULE DE","null",0,,,"null",,0
+"equals","COTISATION TRIMESTRIELLE DE VOTRE FORMULE DE COMPT","null",0,,,"null",,0
+"contains","DARTY","null",0,,,"null",,0
+"contains","DE DRFIP PARIS TRESOR","null",0,,,"null",,0
+"contains","DECATHLON","null",0,,,"null",,0
+"contains","DENTISTE","null",0,,,"null",,0
+"contains","DESCARTES ECOL","null",0,,,"null",,0
+"contains","DIRECTION GENERAL ES FINANCES PUBL","==",103,"null","null","null",,0
+"contains","DIRECTION GENERAL ES FINANCES PUBL","==",1503,"null","null","null",,0
+"contains","DIRECTION GENERAL ES FINANCES PUBL","==",90,"null","null","null",,0
+"contains","DIRECTION REGIONALE FINANCES","null",0,,,"null",,0
+"contains","DOLCE ITALIA","null",0,"null","null","null",,0
+"contains","DPAM","null",0,"null","null","null",,0
+"contains","DR BLIN","null",0,,,"null",,0
+"contains","DR LE BOZEC","null",0,,,"null",,0
+"contains","DR POURAGEAUX","null",0,,,"null",,0
+"contains","DR RENAUD GILLE","null",0,,,"null",,0
+"contains","DR VITRICE SEBE","null",0,,,"null",,0
+"contains","DU BRUIT DANS","null",0,"null","null","null",,0
+"startsWith","ECHEANCE PRET","null",0,"null","null","null",,0
+"contains","EDF","null",0,"null","null","null",,0
+"startsWith","EFFIA","null",0,,,"null",,0
+"contains","EL RANCHO","null",0,"null","null","null",,0
+"contains","ELRES","null",0,"null","null","null",,0
+"contains","ESO CHAMPS SUR MA","null",0,,,"null",,0
+"contains","ESSO","null",0,"null","null","null",,0
+"startsWith","ETAM","null",0,,,"null",,0
+"contains","FAMILY","null",0,"null","null","null",,0
+"contains","FDJ","null",0,"null","null","null",,0
+"contains","FILIA-MAIF","null",0,,,"null",,0
+"contains","FLAM S","null",0,"null","null","null",,0
+"contains","FNAC","null",0,,,"null",,0
+"contains","FRANCAISE JEUX","null",0,,,"null",,0
+"contains","FRANCE BILLET","null",0,,,"null",,0
+"contains","FRANCE MENAGE PARIS","null",0,,,"null",,0
+"contains","FREE MOBILE","null",0,"null","null","null",,0
+"contains","Free Telecom","null",0,"null","null","null",,0
+"contains","GAL.LAFAYETTE","null",0,,,"null",,0
+"contains","GAUMONT DISNEY CHESSY","null",0,,,"null",,0
+"contains","GEMO","null",0,,,"null",,0
+"contains","GROSBILL","null",0,"null","null","null",,0
+"contains","GROUPAMA","null",0,"null","null","null",,0
+"contains","HALLE O CHAUSS","null",0,,,"null",,0
+"contains","HANDICAP INTERN","null",0,"null","null","null",,0
+"contains","HARMONIE MUTUEL","null",0,"null","null","null",,0
+"contains","HST COMPAGNIE","null",0,"null","null","null",,0
+"startsWith","IDA RETOUCHE","null",0,,,"null",,0
+"startsWith","INTERETS ACQUIS","null",0,,,"null",,0
+"contains","IRRIJARDIN","null",0,,,"null",,0
+"contains","JACQUELINE RIU","null",0,,,"null",,0
+"contains","JRRESTAURATION GUERMAN","null",0,,,"null",,0
+"contains","KIABI","null",0,,,"null",,0
+"contains","KING JOUET","null",0,,,"null",,0
+"contains","L ARROSOIR","null",0,"null","null","null",,0
+"contains","LA FERME BRIAR","null",0,,,"null",,0
+"contains","LA POSTE","null",0,,,"null",,0
+"contains","LA TARENTELLE","null",0,,,"null",,0
+"contains","LE MENHIR","null",0,,,"null",,0
+"contains","LE PETIT MAGOT","null",0,,,"null",,0
+"contains","LE THAI","null",0,"null","null","null",,0
+"contains","LEROY MERLIN","null",0,,,"null",,0
+"contains","MAGASIN NICOLAS FERRIE","null",0,,,"null",,0
+"contains","MEDECINS SANS F","null",0,"null","null","null",,0
+"contains","MINIMUM FORFAITAIRE TRIMESTRIEL D UTILISATION DU D","null",0,,,"null",,0
+"contains","MINIT","null",0,,,"null",,0
+"contains","MONTAIGNE","null",0,"null","null","null",,0
+"contains","MOUS YOUHAME","null",0,,,"null",,0
+"contains","Navigo Annuel","null",0,"null","null","null",,0
+"contains","NESLEAUTOCONTR","null",0,,,"null",,0
+"contains","NESPRESSO","null",0,,,"null",,0
+"contains","NORAUTO","null",0,"null","null","null",,0
+"contains","Norrsken Finance ","null",0,"null","null","null",,0
+"contains","PARNASSE-MAIF","null",0,"null","null","null",,0
+"contains","PAUL","null",0,"null","null","null",,0
+"contains","PAYPAL","null",0,,,"null",,0
+"contains","PHARMACIE","null",0,,,"null",,0
+"contains","PHIE DE LA GAR","null",0,,,"null",,0
+"contains","PHILIPPE DE BU","null",0,,,"null",,0
+"contains","PIZZA","null",0,,,"null",,0
+"contains","PIZZERIA DI RO","null",0,"null","null","null",,0
+"contains","POINT P","null",0,"null","null","null",,0
+"startsWith","PRELEVEMENT DE ","null",0,2,4,"null","null",0
+"contains","PRESSING","null",0,,,"null",,0
+"contains","RATP","null",0,,,"null",,0
+"contains","REL.NOISYLEGRA","null",0,,,"null",,0
+"contains","RESTAURANT CHE","null",0,"null","null","null",,0
+"contains","RESTAURATION GUERMAN","null",0,,,"null",,0
+"contains","RETOUR A SAIGON NOISY","null",0,,,"null",,0
+"contains","RETRAIT DAB","null",0,,,"null",,0
+"contains","SANEF","null",0,"null","null","null",,0
+"contains","SARL FLEURS DE","null",0,,,"null",,0
+"contains","SARL PIL POIL","null",0,,,"null",,0
+"contains","SERGENT MAJOR","null",0,,,"null",,0
+"contains","SERV A LA PERS","null",0,"null","null","null",,0
+"contains","SFR","null",0,"null","null","null",,0
+"contains","SNC BOULANGER","null",0,"null","null","null",,0
+"contains","STATION AVIA","null",0,,,"null",,0
+"contains","SUSHI NOISIEL","null",0,"null","null","null",,0
+"contains","TELEREGLEMENT DE SFDE","null",0,,,"null",,0
+"contains","TRUFFAUT COUTEVROULT","null",0,,,"null",,0
+"contains","UGC BORNES","null",0,,,"null",,0
+"contains","UGC MARNE","null",0,"null","null","null",,0
+"contains","UNION MUTUALIST","null",0,"null","null","null",,0
+"contains","UR  AUVERGNE","null",0,,,"null",,0
+"startsWith","URBIS PARK","null",0,,,"null",,0
+"contains","URSSAF","=="," 156.58","null","null","null",,0
+"contains","URSSAF D AUVERGNE","null",0,"null","null","null",,0
+"contains","VIADUC DE MILL","null",0,,,"null",,0
+"contains","VINCIPARK","null",0,,,"null",,0
+"contains","VINCPARK","null",0,,,"null",,0
+"contains","VIREMENT DE C.A.F","null",0,,,"null",,0
+"contains","VIREMENT DE CAF","null",0,,,"null",,0
+"contains","VIREMENT DE DRFIP PARIS TRESOR P","null",0,,,"null",,0
+"contains","VIREMENT DE RGF MFP","null",0,,,"null",,0
+"contains","VIREMENT POUR TERRENERGIE COMPTE","null",0,,,"null",,0
+"contains","VIRGIN","null",0,"null","null","null",,0
+"contains","ZOE KIDS","null",0,"null","null","null",,0

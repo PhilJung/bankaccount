@@ -9,6 +9,9 @@
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.philippejung.bankaccount.controller.MainFrameController">
     <MenuBar VBox.vgrow="NEVER">
         <Menu text="_Fichier">
+            <MenuItem onAction="#onMenuFileBackup" text="_Sauvegarder"/>
+            <MenuItem onAction="#onMenuFileRestore" text="_Restaurer"/>
+            <SeparatorMenuItem />
             <MenuItem onAction="#onMenuFileExit" text="_Quitter"/>
         </Menu>
         <Menu text="_Aide">
@@ -60,13 +63,4 @@
     <TabPane fx:id="tabPane" tabClosingPolicy="ALL_TABS" VBox.vgrow="ALWAYS">
     </TabPane>
     <StatusBar></StatusBar>
-<!--
-    <HBox id="statusBar" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
-        <padding>
-            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
-        </padding>
-        <Pane HBox.hgrow="ALWAYS"/>
-        <Label text="Label" HBox.hgrow="ALWAYS"/>
-    </HBox>
--->
 </VBox>

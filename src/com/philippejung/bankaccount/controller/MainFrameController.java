@@ -1,5 +1,8 @@
 package com.philippejung.bankaccount.controller;
 
+import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.dao.ClassifierDAO;
+import com.philippejung.bankaccount.models.dto.*;
 import com.philippejung.bankaccount.view.utils.AlertPopup;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -10,6 +13,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
 import org.controlsfx.control.StatusBar;
 
+import java.io.File;
 import java.util.HashMap;
 
 /**
@@ -92,5 +96,32 @@ public class MainFrameController extends GenericController {
     public void setProgress(double progress) {
         if (statusBar != null)
             statusBar.setProgress(progress);
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void onMenuFileBackup(ActionEvent actionEvent) {
+        // Open backup folder
+        File dir = new File(MainApp.getData().getPreferences().getDatabasePath() + "/tmp");
+        if (!dir.isDirectory()) {
+            //noinspection ResultOfMethodCallIgnored
+            dir.mkdirs();
+        }
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void onMenuFileRestore(ActionEvent actionEvent) {
+        // Open backup folder
+        String backupPath = MainApp.getData().getPreferences().getBackupPath();
+        File dir = new File(backupPath);
+        if (!dir.isDirectory()) {
+            //noinspection ResultOfMethodCallIgnored
+            dir.mkdirs();
+        }
+
+        WayOfPaymentDTO.restore(backupPath);
+        CategoryDTO.restore(backupPath);
+        BudgetDTO.restore(backupPath);
+        AccountDTO.restore(backupPath);
+        ClassifierDTO.restore(backupPath);
     }
 }

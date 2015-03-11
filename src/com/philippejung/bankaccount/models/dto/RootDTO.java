@@ -2,8 +2,12 @@ package com.philippejung.bankaccount.models.dto;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dao.RootDAO;
+import com.philippejung.bankaccount.models.preferences.AppPreferences;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
 import javafx.beans.property.SimpleLongProperty;
+import sun.applet.Main;
+
+import java.io.File;
 
 /**
  * =================================================

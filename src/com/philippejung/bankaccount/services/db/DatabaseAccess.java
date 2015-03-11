@@ -75,12 +75,10 @@ public class DatabaseAccess {
                     "month DATE," +
                     "budget INTEGER," +
                     "categoryId INTEGER)",
-            "INSERT INTO wayOfPayment VALUES (1, 'CB Hellobank')",
-            "INSERT INTO wayOfPayment VALUES (2, 'CB LBP')",
-            "INSERT INTO wayOfPayment VALUES (3, 'Cheque Hellobank')",
-            "INSERT INTO wayOfPayment VALUES (4, 'Cheque LBP')",
-            "INSERT INTO wayOfPayment VALUES (5, 'Paypal')",
-            "INSERT INTO wayOfPayment VALUES (6, 'Prélèvement LBP')",
+            "INSERT INTO wayOfPayment VALUES (1, 'CB')",
+            "INSERT INTO wayOfPayment VALUES (2, 'Cheque')",
+            "INSERT INTO wayOfPayment VALUES (3, 'Paypal')",
+            "INSERT INTO wayOfPayment VALUES (4, 'Prélèvement')",
             "INSERT INTO account VALUES (1, 'Compte courant La Banque Postale', 0.0, 'lbp', '0000');",
             "INSERT INTO account VALUES (2, 'Compte courant Hellobank', 0.0, 'lbp', '0000');",
             "INSERT INTO category VALUES (1, 'Salaire', 0)",
@@ -96,8 +94,8 @@ public class DatabaseAccess {
             "INSERT INTO classifier VALUES (4, 'startsWith', 'VIREMENT POUR', null, 0, 3, null, null, null, 0)",
             "INSERT INTO classifier VALUES (5, 'startsWith', 'VIREMENT DE', null, 0, 4, null, null, null, 0)",
             "INSERT INTO classifier VALUES (6, 'contains', 'VIREMENT DE DRFIP', null, 0, 1, null, null, 1, 0)",
-            "INSERT INTO classifier VALUES (7, 'contains', 'FREE MOBILE', null, 0, 2, 6, null, 6, 0)",
-            "INSERT INTO classifier VALUES (8, 'contains', 'DIRECTION GENERAL', '==', 1503, 2, 6, null, 7, 0)",
+            "INSERT INTO classifier VALUES (7, 'contains', 'FREE MOBILE', null, 0, 2, 4, null, 6, 0)",
+            "INSERT INTO classifier VALUES (8, 'contains', 'DIRECTION GENERAL', '==', 1503, 2, 4, null, 7, 0)",
     };
 
     @SuppressWarnings("SameParameterValue")
