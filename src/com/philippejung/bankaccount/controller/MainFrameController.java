@@ -91,6 +91,11 @@ public class MainFrameController extends GenericController {
         selectTabAndCreateItIfRequired("classifier", "/res/fxml/classifier.fxml", "Classement automatique", true);
     }
 
+    @SuppressWarnings("UnusedParameters")
+    public void onToolbarCategory(ActionEvent actionEvent) {
+        selectTabAndCreateItIfRequired("category", "/res/fxml/category.fxml", "Catégories", true);
+    }
+
     public void closeImportTab() {
         closeTabAndDestroy("import");
     }
@@ -122,5 +127,4 @@ public class MainFrameController extends GenericController {
 
         MainApp.getData().restore(backupPath);
     }
-
 }

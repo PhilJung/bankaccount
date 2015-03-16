@@ -1,6 +1,9 @@
 package com.philippejung.bankaccount.models;
 
+import com.philippejung.bankaccount.view.utils.AlertPopup;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleLongProperty;
+import javafx.scene.control.Alert;
 
 import java.math.BigDecimal;
 
@@ -30,7 +33,16 @@ public class Currency {
     public static Currency fromString(String realValue) {
         if (realValue==null || realValue.isEmpty())
             return Currency.zero();
-        BigDecimal bigDecimalAmount = new BigDecimal(realValue.replace(',', '.'));
+        BigDecimal bigDecimalAmount = null;
+        try {
+            bigDecimalAmount = new BigDecimal(realValue.replace(',', '.'));
+        } catch (NumberFormatException exc) {
+            AlertPopup.alert(
+                    Alert.AlertType.ERROR, "Error", "NumberFormatException.",
+                    "The following currency value cannot be parsed: " + realValue, exc
+            );
+            Platform.exit();
+        }
         return new Currency(bigDecimalAmount.multiply(new BigDecimal(100)).longValue());
     }
 
