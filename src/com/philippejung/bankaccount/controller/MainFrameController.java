@@ -1,8 +1,10 @@
 package com.philippejung.bankaccount.controller;
 
 import com.philippejung.bankaccount.main.MainApp;
-import com.philippejung.bankaccount.models.dao.ClassifierDAO;
+import com.philippejung.bankaccount.models.dao.*;
 import com.philippejung.bankaccount.models.dto.*;
+import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.file.CSVReader;
 import com.philippejung.bankaccount.view.utils.AlertPopup;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -118,10 +120,7 @@ public class MainFrameController extends GenericController {
             dir.mkdirs();
         }
 
-        WayOfPaymentDTO.restore(backupPath);
-        CategoryDTO.restore(backupPath);
-        BudgetDTO.restore(backupPath);
-        AccountDTO.restore(backupPath);
-        ClassifierDTO.restore(backupPath);
+        MainApp.getData().restore(backupPath);
     }
+
 }

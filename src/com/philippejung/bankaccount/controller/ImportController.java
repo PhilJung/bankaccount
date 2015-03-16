@@ -2,7 +2,7 @@ package com.philippejung.bankaccount.controller;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dto.*;
-import com.philippejung.bankaccount.services.FileImporter;
+import com.philippejung.bankaccount.services.file.FileImporter;
 import com.philippejung.bankaccount.services.classifier.TransactionClassifier;
 import com.philippejung.bankaccount.view.column.BooleanColumn;
 import com.philippejung.bankaccount.view.column.CategoryColumn;

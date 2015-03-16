@@ -3,6 +3,7 @@ package com.philippejung.bankaccount.models.dao;
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.file.CSVReader;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -17,6 +18,8 @@ import java.util.Map;
  * v0 Created by philippe on 25/01/15.
  */
 public class BudgetDAO extends RootDAO {
+    private final static String TABLE_NAME = "budget";
+
     private Date month; // YYYYMM
     private Long categoryId;
     private Currency budget;
@@ -58,7 +61,7 @@ public class BudgetDAO extends RootDAO {
 
     @Override
     public String getTableName() {
-        return "budget";
+        return TABLE_NAME;
     }
 
     @Override
@@ -74,5 +77,17 @@ public class BudgetDAO extends RootDAO {
 
     public static BudgetDAO byId(long id, DatabaseAccess dbAccess) {
         return dbAccess.findById(id, BudgetDAO.class);
+    }
+
+    public static void truncateTable(DatabaseAccess dbAccess) {
+        dbAccess.truncateTable(TABLE_NAME);
+    }
+
+    @Override
+    public void readFromCSV(CSVReader reader) {
+        super.readFromCSV(reader);
+        setMonth(reader.getDate(1));
+        setCategoryId(reader.getLong(2));
+        setBudget(Currency.fromString(reader.getString(3)));
     }
 }

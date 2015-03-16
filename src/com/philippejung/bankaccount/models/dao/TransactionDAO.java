@@ -4,6 +4,7 @@ package com.philippejung.bankaccount.models.dao;
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.file.CSVReader;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -18,6 +19,8 @@ import java.util.Map;
  * v0 Created by philippe on 25/01/15.
  */
 public class TransactionDAO extends RootDAO {
+    private final static String TABLE_NAME = "[transaction]";
+
     private Date date;
     private Integer type;
     private Long accountId;
@@ -129,7 +132,7 @@ public class TransactionDAO extends RootDAO {
 
     @Override
     public String getTableName() {
-        return "[transaction]";
+        return TABLE_NAME;
     }
 
     @Override
@@ -152,5 +155,24 @@ public class TransactionDAO extends RootDAO {
 
     public static TransactionDAO byId(long id, DatabaseAccess dbAccess) {
         return dbAccess.findById(id, TransactionDAO.class);
+    }
+
+    public static void truncateTable(DatabaseAccess dbAccess) {
+        dbAccess.truncateTable(TABLE_NAME);
+    }
+
+    @Override
+    public void readFromCSV(CSVReader reader) {
+        super.readFromCSV(reader);
+        this.date = reader.getDate(1);
+        this.type = reader.getInt(2);
+        this.accountId = reader.getLong(3);
+        this.otherAccountId = reader.getLong(4);
+        this.otherTransactionId = reader.getLong(5);
+        this.wayOfPaymentId = reader.getLong(6);
+        this.amount = Currency.fromString(reader.getString(7));
+        this.detail = reader.getString(8);
+        this.comment = reader.getString(9);
+        this.categoryId = reader.getLong(10);
     }
 }

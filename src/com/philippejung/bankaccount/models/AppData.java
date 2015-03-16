@@ -1,6 +1,7 @@
 package com.philippejung.bankaccount.models;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.dao.*;
 import com.philippejung.bankaccount.models.dto.*;
 import com.philippejung.bankaccount.models.preferences.AppPreferences;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
@@ -190,6 +191,27 @@ public class AppData {
         BudgetDTO budgetDTO = getBudgetByDateAndCategory(transaction.getDate(), transaction.getCategory());
         if (budgetDTO!=null)
             budgetDTO.addTransaction(transaction);
+    }
+
+    public void restore(String backupPath) {
+        DatabaseAccess dbAccess = getDbAccess();
+        dbAccess.beginTransaction();
+        ClassifierDAO.truncateTable(dbAccess);
+        TransactionDAO.truncateTable(dbAccess);
+        AccountDAO.truncateTable(dbAccess);
+        BudgetDAO.truncateTable(dbAccess);
+        CategoryDAO.truncateTable(dbAccess);
+        WayOfPaymentDAO.truncateTable(dbAccess);
+        dbAccess.commitTransaction();
+
+        dbAccess.beginTransaction();
+        WayOfPaymentDAO.restore(backupPath + "WayOfPayment.csv", dbAccess, WayOfPaymentDAO.class);
+        CategoryDAO.restore(backupPath + "Category.csv", dbAccess, CategoryDAO.class);
+        BudgetDAO.restore(backupPath + "Budget.csv", dbAccess, BudgetDAO.class);
+        AccountDAO.restore(backupPath + "Account.csv", dbAccess, AccountDAO.class);
+        ClassifierDAO.restore(backupPath + "Classifier.csv", dbAccess, ClassifierDAO.class);
+        TransactionDAO.restore(backupPath + "Transaction.csv", dbAccess, TransactionDAO.class);
+        dbAccess.commitTransaction();
     }
 
 }

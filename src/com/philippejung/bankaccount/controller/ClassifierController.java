@@ -1,6 +1,7 @@
 package com.philippejung.bankaccount.controller;
 
 import com.philippejung.bankaccount.main.MainApp;
+import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.*;
 import com.philippejung.bankaccount.view.column.*;
 import javafx.event.ActionEvent;
@@ -31,7 +32,7 @@ public class ClassifierController implements Initializable {
     @FXML
     private TableColumn<ClassifierDTO, String> amountConditionTestColumn;
     @FXML
-    private TableColumn<ClassifierDTO, Long> amountConditionValueColumn;
+    private TableColumn<ClassifierDTO, Currency> amountConditionValueColumn;
     @FXML
     private TableColumn<ClassifierDTO, TypeOfTransaction> typeColumn;
     @FXML

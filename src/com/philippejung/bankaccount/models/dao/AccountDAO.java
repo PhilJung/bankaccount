@@ -3,6 +3,7 @@ package com.philippejung.bankaccount.models.dao;
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.file.CSVReader;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,8 @@ import java.util.Map;
  * v0 Created by philippe on 25/01/15.
  */
 public class AccountDAO extends RootDAO {
+    private final static String TABLE_NAME = "Account";
+
     private String name;
     private String accountNumber;
     private String importerFormat;
@@ -71,7 +74,7 @@ public class AccountDAO extends RootDAO {
 
     @Override
     public String getTableName() {
-        return "Account";
+        return TABLE_NAME;
     }
 
     @Override
@@ -88,5 +91,18 @@ public class AccountDAO extends RootDAO {
 
     public static AccountDAO byId(long id, DatabaseAccess dbAccess) {
         return dbAccess.findById(id, AccountDAO.class);
+    }
+
+    public static void truncateTable(DatabaseAccess dbAccess) {
+        dbAccess.truncateTable(TABLE_NAME);
+    }
+
+    @Override
+    public void readFromCSV(CSVReader reader) {
+        super.readFromCSV(reader);
+        setName(reader.getString(1));
+        setAccountNumber(reader.getString(2));
+        setInitialBalance(Currency.fromString(reader.getString(3)));
+        setImporterFormat(reader.getString(4));
     }
 }

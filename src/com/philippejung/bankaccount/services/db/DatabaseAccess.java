@@ -397,4 +397,8 @@ public class DatabaseAccess {
             handleException(exc);
         }
     }
+
+    public void truncateTable(String tableName) {
+        executeUpdate("DELETE FROM " + tableName);
+    }
 }

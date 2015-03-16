@@ -28,6 +28,8 @@ public class Currency {
     }
 
     public static Currency fromString(String realValue) {
+        if (realValue==null || realValue.isEmpty())
+            return Currency.zero();
         BigDecimal bigDecimalAmount = new BigDecimal(realValue.replace(',', '.'));
         return new Currency(bigDecimalAmount.multiply(new BigDecimal(100)).longValue());
     }

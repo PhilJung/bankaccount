@@ -1,7 +1,8 @@
-package com.philippejung.bankaccount.services;
+package com.philippejung.bankaccount.services.file;
 
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.TransactionDTO;
+import com.philippejung.bankaccount.services.file.FileImporter;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

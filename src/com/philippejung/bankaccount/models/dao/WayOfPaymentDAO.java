@@ -2,6 +2,7 @@ package com.philippejung.bankaccount.models.dao;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.file.CSVReader;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,8 @@ import java.util.Map;
  * v0 Created by philippe on 29/01/15.
  */
 public class WayOfPaymentDAO extends RootDAO {
+    private final static String TABLE_NAME = "WayOfPayment";
+
     private String name = null;
 
     public WayOfPaymentDAO() {
@@ -30,12 +33,12 @@ public class WayOfPaymentDAO extends RootDAO {
 
     public void readFromDB(ResultSet rs) throws SQLException {
         super.readFromDB(rs);
-        this.name = rs.getString("name");
+        setName(rs.getString("name"));
     }
 
     @Override
     public String getTableName() {
-        return "WayOfPayment";
+        return TABLE_NAME;
     }
 
     @Override
@@ -51,5 +54,13 @@ public class WayOfPaymentDAO extends RootDAO {
         return dbAccess.findById(id, WayOfPaymentDAO.class);
     }
 
+    public static void truncateTable(DatabaseAccess dbAccess) {
+        dbAccess.truncateTable(TABLE_NAME);
+    }
 
+    @Override
+    public void readFromCSV(CSVReader reader) {
+        super.readFromCSV(reader);
+        setName(reader.getString(1));
+    }
 }

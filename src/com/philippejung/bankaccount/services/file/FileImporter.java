@@ -1,4 +1,4 @@
-package com.philippejung.bankaccount.services;
+package com.philippejung.bankaccount.services.file;
 
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.TransactionDTO;

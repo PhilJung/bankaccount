@@ -1,9 +1,9 @@
 package com.philippejung.bankaccount.models.dao;
 
-import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.file.CSVReader;
 
-import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -35,8 +35,17 @@ public abstract class RootDAO {
     }
 
     public Long writeToDB(DatabaseAccess dbAccess) {
+        return writeToDB(dbAccess, false);
+    }
+
+    public Long writeToDB(DatabaseAccess dbAccess, Boolean forceInsertWithId) {
         Map<String, Object> params = new HashMap<>();
         setQueryParams(params);
+        if (forceInsertWithId && getId() != -1L) {
+            params.put("id", getId());
+            dbAccess.insert(getTableName(), params);
+            return null;
+        }
         if (getId() == -1L) {
             Long id = dbAccess.insert(getTableName(), params);
             setId(id);
@@ -64,15 +73,29 @@ public abstract class RootDAO {
         return id.hashCode();
     }
 
-    public void restore(String path, DatabaseAccess dbAccess) {
-        File file = new File(path + getTableName() + ".csv");
-        dbAccess.truncateTable(DatabaseAccess dbAccess);
-
-
+    public static <T extends RootDAO> void restore(String path, DatabaseAccess dbAccess, Class<T> objectClass) {
+        T retVal = null;
+        CSVReader reader;
+        try {
+            reader = new CSVReader(path, ",", "\"");
+        } catch (IOException e) {
+            // File not found, exit
+            return;
+        }
+        while (reader.hasNext()) {
+            reader.next();
+            try {
+                retVal = objectClass.newInstance();
+            } catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+            retVal.readFromCSV(reader);
+            retVal.writeToDB(dbAccess, true);
+        }
     }
 
-    private void truncateTable() {
-
+    public void readFromCSV(CSVReader reader) {
+        Long loadedId = reader.getLong(0);
+        setId( loadedId == null ? -1L : loadedId);
     }
-
 }
