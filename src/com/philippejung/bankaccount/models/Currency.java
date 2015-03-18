@@ -1,6 +1,6 @@
 package com.philippejung.bankaccount.models;
 
-import com.philippejung.bankaccount.view.utils.AlertPopup;
+import com.philippejung.bankaccount.view.popup.AlertPopup;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.scene.control.Alert;

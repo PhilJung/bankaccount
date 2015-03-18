@@ -2,8 +2,7 @@ package com.philippejung.bankaccount.services.db;
 
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.RootDAO;
-import com.philippejung.bankaccount.view.utils.AlertPopup;
-import com.philippejung.bankaccount.view.utils.Joiner;
+import com.philippejung.bankaccount.view.popup.AlertPopup;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
@@ -14,6 +13,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * =================================================
@@ -159,9 +159,10 @@ public class DatabaseAccess {
         try {
             statement = connection.createStatement();
             rs = statement.executeQuery(selector);
+            ResultSetWithNull resultSetWithNull = new ResultSetWithNull(rs);
             while (rs.next()) {
                 T obj = objectClass.newInstance();
-                obj.readFromDB(rs);
+                obj.readFromDB(resultSetWithNull);
                 retVal.add(obj);
             }
         } catch (SQLException exc) {
@@ -200,9 +201,10 @@ public class DatabaseAccess {
             method = objectClass.getMethod("getTableName", (Class<?>[])null);
             tableName = (String) method.invoke(retVal);
             rs = statement.executeQuery("SELECT * FROM " + tableName + " WHERE id=" + id);
+            ResultSetWithNull resultSetWithNull = new ResultSetWithNull(rs);
             if (rs.next()) {
                 assert retVal != null;
-                retVal.readFromDB(rs);
+                retVal.readFromDB(resultSetWithNull);
             }
         }
         catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | SQLException ignored) {
@@ -279,13 +281,34 @@ public class DatabaseAccess {
         connection = null;
     }
 
+    private String fieldsList(Set<String> fieldNames) {
+        StringBuilder list = new StringBuilder("");
+        Boolean first = true;
+        for (String name : fieldNames) {
+            if (!first) list.append(",");
+            list.append(name);
+            first = false;
+        }
+        return list.toString();
+    }
+
+    private String nQuestionMarks(int number) {
+        StringBuilder request = new StringBuilder("");
+        for (int i = 0; i<number; i++) {
+            if (i>0) request.append(",");
+            request.append("?");
+        }
+        return request.toString();
+    }
+
+
     public Long insert(String tableName, Map<String, Object> fieldValues) {
         Long newId = -1L;
         String request =
                 "INSERT INTO " + tableName + " (" +
-                        Joiner.join(",", fieldValues.keySet(), false) +
+                        fieldsList(fieldValues.keySet()) +
                         ") VALUES (" +
-                        Joiner.join(",", fieldValues.values(), "?") +
+                        nQuestionMarks(fieldValues.size()) +
                         ")";
         PreparedStatement statement = null;
         checkConnection();
@@ -352,12 +375,24 @@ public class DatabaseAccess {
         }
     }
 
+    private String fieldEqualsQuestionMarkRequest(Set<String> fieldNames) {
+        StringBuilder request = new StringBuilder("");
+        Boolean first = true;
+        for (String name : fieldNames) {
+            if (!first) request.append(",");
+            request.append(name).append("=?");
+            first = false;
+        }
+        return request.toString();
+    }
+
     public void update(String tableName, Long id, Map<String, Object> fieldValues) {
         String request =
                 "UPDATE " + tableName + " SET " +
-                        Joiner.join("=?,", fieldValues.keySet(), false) +
+                        fieldEqualsQuestionMarkRequest(fieldValues.keySet()) +
                         "=? WHERE id=" +
                         Long.toString(id);
+        System.out.println(request);
         PreparedStatement statement = null;
         checkConnection();
         try {

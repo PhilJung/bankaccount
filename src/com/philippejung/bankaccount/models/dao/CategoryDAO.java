@@ -2,10 +2,12 @@ package com.philippejung.bankaccount.models.dao;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.db.ResultSetWithNull;
 import com.philippejung.bankaccount.services.file.CSVReader;
+import com.philippejung.bankaccount.services.file.CSVWriter;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -28,6 +30,10 @@ public class CategoryDAO extends RootDAO {
         setExpense(false);
     }
 
+    public static ArrayList<CategoryDAO> getAll() {
+        return MainApp.getData().getDbAccess().select("SELECT * FROM " + TABLE_NAME + " ORDER BY name", CategoryDAO.class);
+    }
+
     public String getName() {
         return name;
     }
@@ -44,7 +50,7 @@ public class CategoryDAO extends RootDAO {
         this.expense = expense;
     }
 
-    public void readFromDB(ResultSet rs) throws SQLException {
+    public void readFromDB(ResultSetWithNull rs) throws SQLException {
         super.readFromDB(rs);
         this.name = rs.getString("name");
         this.expense = rs.getBoolean("isexpense");
@@ -80,4 +86,18 @@ public class CategoryDAO extends RootDAO {
         setExpense(reader.getBoolean(2));
     }
 
+    @Override
+    public void writeToCSV(CSVWriter writer) {
+        super.writeToCSV(writer);
+        writer.writeString(getName());
+        writer.writeBoolean(isExpense());
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryDAO{" +
+                "name='" + name + '\'' +
+                ", expense=" + expense +
+                '}';
+    }
 }

@@ -1,4 +1,4 @@
-package com.philippejung.bankaccount.view.utils;
+package com.philippejung.bankaccount.view.textfield;
 
 import com.philippejung.bankaccount.models.Currency;
 import javafx.beans.property.SimpleObjectProperty;

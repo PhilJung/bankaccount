@@ -1,11 +1,7 @@
 package com.philippejung.bankaccount.controller;
 
 import com.philippejung.bankaccount.main.MainApp;
-import com.philippejung.bankaccount.models.dao.*;
-import com.philippejung.bankaccount.models.dto.*;
-import com.philippejung.bankaccount.services.db.DatabaseAccess;
-import com.philippejung.bankaccount.services.file.CSVReader;
-import com.philippejung.bankaccount.view.utils.AlertPopup;
+import com.philippejung.bankaccount.view.popup.AlertPopup;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -108,11 +104,13 @@ public class MainFrameController extends GenericController {
     @SuppressWarnings("UnusedParameters")
     public void onMenuFileBackup(ActionEvent actionEvent) {
         // Open backup folder
-        File dir = new File(MainApp.getData().getPreferences().getDatabasePath() + "/tmp");
+        String backupPath = MainApp.getData().getPreferences().getBackupPath();
+        File dir = new File(backupPath);
         if (!dir.isDirectory()) {
             //noinspection ResultOfMethodCallIgnored
             dir.mkdirs();
         }
+        MainApp.getData().backup(backupPath);
     }
 
     @SuppressWarnings("UnusedParameters")
@@ -121,8 +119,7 @@ public class MainFrameController extends GenericController {
         String backupPath = MainApp.getData().getPreferences().getBackupPath();
         File dir = new File(backupPath);
         if (!dir.isDirectory()) {
-            //noinspection ResultOfMethodCallIgnored
-            dir.mkdirs();
+            // Folder does not exists so nothing to restore
         }
 
         MainApp.getData().restore(backupPath);

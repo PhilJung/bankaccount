@@ -140,6 +140,7 @@ public class AppData {
     }
 
     public AccountDTO getAccountById(Long accountId) {
+        assert accountId != null;
         if (accountId == -1) return null;
         for (AccountDTO dto : getAllAccounts()) {
             if (dto.getId().equals(accountId))
@@ -149,6 +150,7 @@ public class AppData {
     }
 
     public WayOfPaymentDTO getWayOfPaymentById(Long wayOfPaymentId) {
+        assert wayOfPaymentId != null;
         if (wayOfPaymentId == -1) return null;
         for (WayOfPaymentDTO dto : getAllWaysOfPayment()) {
             if (dto.getId().equals(wayOfPaymentId))
@@ -158,6 +160,7 @@ public class AppData {
     }
 
     public CategoryDTO getCategoryById(Long categoryId) {
+        assert categoryId != null;
         if (categoryId == -1) return null;
         for (CategoryDTO dto : getAllCategories()) {
             if (dto.getId().equals(categoryId))
@@ -214,4 +217,12 @@ public class AppData {
         dbAccess.commitTransaction();
     }
 
+    public void backup(String backupPath) {
+        WayOfPaymentDAO.backup(backupPath + "WayOfPayment.csv", WayOfPaymentDAO.getAll());
+        CategoryDAO.backup(backupPath + "Category.csv", CategoryDAO.getAll());
+        BudgetDAO.backup(backupPath + "Budget.csv", BudgetDAO.getAll());
+        AccountDAO.backup(backupPath + "Account.csv", AccountDAO.getAll());
+        ClassifierDAO.backup(backupPath + "Classifier.csv", ClassifierDAO.getAll());
+        TransactionDAO.backup(backupPath + "Transaction.csv", TransactionDAO.getAll());
+    }
 }

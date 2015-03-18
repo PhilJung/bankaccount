@@ -2,10 +2,12 @@ package com.philippejung.bankaccount.models.dao;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.db.ResultSetWithNull;
 import com.philippejung.bankaccount.services.file.CSVReader;
+import com.philippejung.bankaccount.services.file.CSVWriter;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -23,6 +25,10 @@ public class WayOfPaymentDAO extends RootDAO {
     public WayOfPaymentDAO() {
     }
 
+    public static ArrayList<WayOfPaymentDAO> getAll() {
+        return MainApp.getData().getDbAccess().select("SELECT * FROM " + TABLE_NAME, WayOfPaymentDAO.class);
+    }
+
     public String getName() {
         return name;
     }
@@ -31,7 +37,7 @@ public class WayOfPaymentDAO extends RootDAO {
         this.name = name;
     }
 
-    public void readFromDB(ResultSet rs) throws SQLException {
+    public void readFromDB(ResultSetWithNull rs) throws SQLException {
         super.readFromDB(rs);
         setName(rs.getString("name"));
     }
@@ -62,5 +68,18 @@ public class WayOfPaymentDAO extends RootDAO {
     public void readFromCSV(CSVReader reader) {
         super.readFromCSV(reader);
         setName(reader.getString(1));
+    }
+
+    @Override
+    public void writeToCSV(CSVWriter writer) {
+        super.writeToCSV(writer);
+        writer.writeString(getName());
+    }
+
+    @Override
+    public String toString() {
+        return "WayOfPaymentDAO{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

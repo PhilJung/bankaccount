@@ -3,7 +3,7 @@ package com.philippejung.bankaccount.controller;
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.*;
-import com.philippejung.bankaccount.view.column.*;
+import com.philippejung.bankaccount.view.tablecolumn.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,10 +53,10 @@ public class ClassifierController implements Initializable {
         DetailConditionValueColumn.inject(detailConditionValueColumn);
         AmountConditionTestColumn.inject(amountConditionTestColumn);
         AmountConditionValueColumn.inject(amountConditionValueColumn);
-        TypeColumn.inject(typeColumn);
-        CategoryColumn.inject(categoryColumn);
-        WayOfPaymentColumn.inject(wayOfPaymentColumn);
-        AccountColumn.inject(accountColumn);
+        TypeColumn.inject(typeColumn, true);
+        CategoryColumn.inject(categoryColumn, true);
+        WayOfPaymentColumn.inject(wayOfPaymentColumn, true);
+        AccountColumn.inject(accountColumn, true);
         BooleanColumn.inject(stopFurtherClassificationColumn, "stopFurtherClassification");
         classifierTable.setItems(MainApp.getData().getAllClassifiers());
     }

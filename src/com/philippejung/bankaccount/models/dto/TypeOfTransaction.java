@@ -20,7 +20,8 @@ public enum TypeOfTransaction {
         this.value = value;
     }
 
-    public static TypeOfTransaction fromInt(int value) {
+    public static TypeOfTransaction fromInt(Integer value) {
+        if (value==null) return NONE;
         switch (value) {
             case 1: return INCOME;
             case 2: return EXPENSE;

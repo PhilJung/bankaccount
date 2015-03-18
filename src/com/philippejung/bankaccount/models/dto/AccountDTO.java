@@ -153,7 +153,7 @@ public class AccountDTO extends RootDTO {
     }
 
     public static ObservableList<AccountDTO> getAll() {
-        ArrayList<AccountDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM account ORDER BY name", AccountDAO.class);
+        ArrayList<AccountDAO> queryResult = AccountDAO.getAll();
         ArrayList<AccountDTO> retVal = new ArrayList<>();
         for(AccountDAO accountDAO : queryResult) {
             //System.out.println("Trouvé compte " + accountDAO.getName());

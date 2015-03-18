@@ -4,6 +4,10 @@ import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.ClassifierDAO;
 import com.philippejung.bankaccount.models.dao.RootDAO;
+import com.philippejung.bankaccount.models.interfaces.AccountPropertyProvider;
+import com.philippejung.bankaccount.models.interfaces.CategoryPropertyProvider;
+import com.philippejung.bankaccount.models.interfaces.TypePropertyProvider;
+import com.philippejung.bankaccount.models.interfaces.WayOfPaymentPropertyProvider;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,7 +23,7 @@ import java.util.ArrayList;
  *
  * v0 Created by philippe on 30/01/15.
  */
-public class ClassifierDTO extends RootDTO {
+public class ClassifierDTO extends RootDTO implements CategoryPropertyProvider, AccountPropertyProvider, TypePropertyProvider, WayOfPaymentPropertyProvider {
     private final SimpleStringProperty detailConditionTest = new SimpleStringProperty ();
     private final SimpleStringProperty detailConditionValue = new SimpleStringProperty ();
     private final SimpleStringProperty amountConditionTest = new SimpleStringProperty ();
@@ -179,7 +183,7 @@ public class ClassifierDTO extends RootDTO {
     }
 
     public static ObservableList<ClassifierDTO> getAll() {
-        ArrayList<ClassifierDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM classifier", ClassifierDAO.class);
+        ArrayList<ClassifierDAO> queryResult = ClassifierDAO.getAll();
         ArrayList<ClassifierDTO> retVal = new ArrayList<>();
         for(ClassifierDAO classifierDAO : queryResult) {
             retVal.add(new ClassifierDTO(classifierDAO));

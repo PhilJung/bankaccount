@@ -1,5 +1,7 @@
 package com.philippejung.bankaccount.services.file;
 
+import com.philippejung.bankaccount.models.Currency;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -145,5 +147,15 @@ public class CSVReader {
         if (currentLine.get(index).equalsIgnoreCase("true")) return true;
         if (currentLine.get(index).equalsIgnoreCase("false")) return false;
         return null;
+    }
+
+    public Currency getCurrency(int index) {
+        return Currency.fromString(getString(index));
+    }
+
+    public Long getId(int index) {
+        if (index >= currentLine.size()) return null;
+        if (currentLine.get(index).isEmpty()) return -1L;
+        return Long.valueOf(currentLine.get(index));
     }
 }

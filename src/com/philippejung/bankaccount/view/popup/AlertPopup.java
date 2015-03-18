@@ -1,4 +1,4 @@
-package com.philippejung.bankaccount.view.utils;
+package com.philippejung.bankaccount.view.popup;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;

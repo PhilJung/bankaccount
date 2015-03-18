@@ -2,12 +2,12 @@ package com.philippejung.bankaccount.controller;
 
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dto.*;
-import com.philippejung.bankaccount.services.file.FileImporter;
 import com.philippejung.bankaccount.services.classifier.TransactionClassifier;
-import com.philippejung.bankaccount.view.column.BooleanColumn;
-import com.philippejung.bankaccount.view.column.CategoryColumn;
-import com.philippejung.bankaccount.view.column.TypeColumn;
-import com.philippejung.bankaccount.view.column.WayOfPaymentColumn;
+import com.philippejung.bankaccount.services.file.FileImporter;
+import com.philippejung.bankaccount.view.tablecolumn.BooleanColumn;
+import com.philippejung.bankaccount.view.tablecolumn.CategoryColumn;
+import com.philippejung.bankaccount.view.tablecolumn.TypeColumn;
+import com.philippejung.bankaccount.view.tablecolumn.WayOfPaymentColumn;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,11 +59,11 @@ public class ImportController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accountList.setItems(MainApp.getData().getAllAccounts());
-        TypeColumn.inject(typeColumn);
+        TypeColumn.inject(typeColumn, false);
         // Must be imported : checkbox
         BooleanColumn.inject(mustBeImportedColumn, "mustBeImported");
-        WayOfPaymentColumn.inject(wayOfPaymentColumn);
-        CategoryColumn.inject(categoryColumn);
+        WayOfPaymentColumn.inject(wayOfPaymentColumn, false);
+        CategoryColumn.inject(categoryColumn, false);
         commentColumn.setCellFactory(
                 TextFieldTableCell.forTableColumn(new DefaultStringConverter())
         );

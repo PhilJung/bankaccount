@@ -1,6 +1,6 @@
 package com.philippejung.bankaccount.controller;
 
-import com.philippejung.bankaccount.view.utils.AlertPopup;
+import com.philippejung.bankaccount.view.popup.AlertPopup;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;

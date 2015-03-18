@@ -1,6 +1,5 @@
 package com.philippejung.bankaccount.models.dto;
 
-import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dao.RootDAO;
 import com.philippejung.bankaccount.models.dao.WayOfPaymentDAO;
 import javafx.beans.property.SimpleStringProperty;
@@ -48,7 +47,7 @@ public class WayOfPaymentDTO extends RootDTO {
     }
 
     public static ObservableList<WayOfPaymentDTO> getAll() {
-        ArrayList<WayOfPaymentDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM wayOfPayment", WayOfPaymentDAO.class);
+        ArrayList<WayOfPaymentDAO> queryResult = WayOfPaymentDAO.getAll();
         ArrayList<WayOfPaymentDTO> retVal = new ArrayList<>();
         for(WayOfPaymentDAO wayOfPaymentDAO : queryResult) {
             //System.out.println("Trouvé moyen de paiement " + wayOfPaymentDAO.getName());

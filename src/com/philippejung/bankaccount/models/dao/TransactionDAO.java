@@ -4,11 +4,13 @@ package com.philippejung.bankaccount.models.dao;
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.db.ResultSetWithNull;
 import com.philippejung.bankaccount.services.file.CSVReader;
+import com.philippejung.bankaccount.services.file.CSVWriter;
 
 import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -36,19 +38,24 @@ public class TransactionDAO extends RootDAO {
         super();
     }
 
-    public void readFromDB(ResultSet rs) throws SQLException {
+    public void readFromDB(ResultSetWithNull rs) throws SQLException {
         super.readFromDB(rs);
-        this.date = rs.getDate("date");
-        this.type = rs.getInt("type");
-        this.accountId = rs.getLong("accountId");
-        this.otherAccountId = rs.getLong("otherAccountId");
-        this.otherTransactionId = rs.getLong("otherTransactionId");
-        this.wayOfPaymentId = rs.getLong("wayOfPaymentId");
-        this.amount = new Currency(rs.getLong("amount"));
-        this.detail = rs.getString("detail");
-        this.comment = rs.getString("comment");
-        this.categoryId = rs.getLong("categoryId");
+        setDate(rs.getDate("date"));
+        setType(rs.getInt("type"));
+        setAccountId(rs.getId("accountId"));
+        setOtherAccountId(rs.getId("otherAccountId"));
+        setOtherTransactionId(rs.getId("otherTransactionId"));
+        setWayOfPaymentId(rs.getId("wayOfPaymentId"));
+        setAmount(rs.getCurrency("amount"));
+        setDetail(rs.getString("detail"));
+        setComment(rs.getString("comment"));
+        setCategoryId(rs.getId("categoryId"));
     }
+
+    public static ArrayList<TransactionDAO> getAll() {
+        return MainApp.getData().getDbAccess().select("SELECT * FROM " + TABLE_NAME + " ORDER BY date, accountId", TransactionDAO.class);
+    }
+
 
     public Date getDate() {
         return date;
@@ -164,15 +171,39 @@ public class TransactionDAO extends RootDAO {
     @Override
     public void readFromCSV(CSVReader reader) {
         super.readFromCSV(reader);
-        this.date = reader.getDate(1);
-        this.type = reader.getInt(2);
-        this.accountId = reader.getLong(3);
-        this.otherAccountId = reader.getLong(4);
-        this.otherTransactionId = reader.getLong(5);
-        this.wayOfPaymentId = reader.getLong(6);
-        this.amount = Currency.fromString(reader.getString(7));
-        this.detail = reader.getString(8);
-        this.comment = reader.getString(9);
-        this.categoryId = reader.getLong(10);
+        setDate(reader.getDate(1));
+        setType(reader.getInt(2));
+        setAccountId(reader.getId(3));
+        setOtherAccountId(reader.getId(4));
+        setOtherTransactionId(reader.getId(5));
+        setWayOfPaymentId(reader.getId(6));
+        setAmount(reader.getCurrency(7));
+        setDetail(reader.getString(8));
+        setComment(reader.getString(9));
+        setCategoryId(reader.getId(10));
+    }
+
+    @Override
+    public void writeToCSV(CSVWriter writer) {
+        super.writeToCSV(writer);
+        writer.writeDate(getDate());
+        writer.writeInt(getType());
+        writer.writeId(getAccountId());
+        writer.writeId(getOtherAccountId());
+        writer.writeId(getOtherTransactionId());
+        writer.writeId(getWayOfPaymentId());
+        writer.writeCurrency(getAmount());
+        writer.writeString(getDetail());
+        writer.writeString(getComment());
+        writer.writeId(getCategoryId());
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionDAO{" +
+                "date=" + date +
+                ", detail='" + detail + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.philippejung.bankaccount.view.column;
+package com.philippejung.bankaccount.view.tablecolumn;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;

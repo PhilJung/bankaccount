@@ -3,10 +3,12 @@ package com.philippejung.bankaccount.models.dao;
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.db.ResultSetWithNull;
 import com.philippejung.bankaccount.services.file.CSVReader;
+import com.philippejung.bankaccount.services.file.CSVWriter;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -30,6 +32,10 @@ public class ClassifierDAO extends RootDAO {
     private Boolean stopFurtherClassification;
 
     public ClassifierDAO() {
+    }
+
+    public static ArrayList<ClassifierDAO> getAll() {
+        return MainApp.getData().getDbAccess().select("SELECT * FROM " + TABLE_NAME, ClassifierDAO.class);
     }
 
     public String getDetailConditionTest() {
@@ -104,16 +110,16 @@ public class ClassifierDAO extends RootDAO {
         this.stopFurtherClassification = stopFurtherClassification;
     }
 
-    public void readFromDB(ResultSet rs) throws SQLException {
+    public void readFromDB(ResultSetWithNull rs) throws SQLException {
         super.readFromDB(rs);
         setDetailConditionTest(rs.getString("detailConditionTest"));
         setDetailConditionValue(rs.getString("detailConditionValue"));
         setAmountConditionTest(rs.getString("amountConditionTest"));
-        setAmountConditionValue(new Currency(rs.getLong("amountConditionValue")));
+        setAmountConditionValue(rs.getCurrency("amountConditionValue"));
         setNewTypeId(rs.getInt("newTypeId"));
-        setNewWayOfPaymentId(rs.getLong("newWayOfPaymentId"));
-        setNewOtherAccountId(rs.getLong("newOtherAccountId"));
-        setNewCategoryId(rs.getLong("newCategoryId"));
+        setNewWayOfPaymentId(rs.getId("newWayOfPaymentId"));
+        setNewOtherAccountId(rs.getId("newOtherAccountId"));
+        setNewCategoryId(rs.getId("newCategoryId"));
         setStopFurtherClassification(rs.getBoolean("stopFurtherClassification"));
     }
 
@@ -153,11 +159,35 @@ public class ClassifierDAO extends RootDAO {
         setDetailConditionTest(reader.getString(1));
         setDetailConditionValue(reader.getString(2));
         setAmountConditionTest(reader.getString(3));
-        setAmountConditionValue(Currency.fromString(reader.getString(4)));
+        setAmountConditionValue(reader.getCurrency(4));
         setNewTypeId(reader.getInt(5));
-        setNewWayOfPaymentId(reader.getLong(6));
-        setNewOtherAccountId(reader.getLong(7));
-        setNewCategoryId(reader.getLong(8));
+        setNewWayOfPaymentId(reader.getId(6));
+        setNewOtherAccountId(reader.getId(7));
+        setNewCategoryId(reader.getId(8));
         setStopFurtherClassification(reader.getBoolean(9));
+    }
+
+    @Override
+    public void writeToCSV(CSVWriter writer) {
+        super.writeToCSV(writer);
+        writer.writeString(getDetailConditionTest());
+        writer.writeString(getDetailConditionValue());
+        writer.writeString(getAmountConditionTest());
+        writer.writeCurrency(getAmountConditionValue());
+        writer.writeInt(getNewTypeId());
+        writer.writeId(getNewWayOfPaymentId());
+        writer.writeId(getNewOtherAccountId());
+        writer.writeId(getNewCategoryId());
+        writer.writeBoolean(getStopFurtherClassification());
+    }
+
+    @Override
+    public String toString() {
+        return "ClassifierDAO{" +
+                "detailConditionTest='" + detailConditionTest + '\'' +
+                ", detailConditionValue='" + detailConditionValue + '\'' +
+                ", amountConditionTest='" + amountConditionTest + '\'' +
+                ", amountConditionValue=" + amountConditionValue +
+                '}';
     }
 }

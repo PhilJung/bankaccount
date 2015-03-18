@@ -109,7 +109,7 @@ public class BudgetDTO extends RootDTO {
     }
 
     public static ObservableList<BudgetDTO> getAll() {
-        ArrayList<BudgetDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM budget", BudgetDAO.class);
+        ArrayList<BudgetDAO> queryResult = BudgetDAO.getAll();
         ArrayList<BudgetDTO> retVal = new ArrayList<>();
         for(BudgetDAO budgetDAO : queryResult) {
             // Budget DTO are autosaved

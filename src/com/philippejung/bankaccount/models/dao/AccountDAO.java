@@ -3,10 +3,12 @@ package com.philippejung.bankaccount.models.dao;
 import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.services.db.DatabaseAccess;
+import com.philippejung.bankaccount.services.db.ResultSetWithNull;
 import com.philippejung.bankaccount.services.file.CSVReader;
+import com.philippejung.bankaccount.services.file.CSVWriter;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -32,11 +34,15 @@ public class AccountDAO extends RootDAO {
         setInitialBalance(Currency.zero());
     }
 
-    public void readFromDB(ResultSet rs) throws SQLException {
+    public static ArrayList<AccountDAO> getAll() {
+        return MainApp.getData().getDbAccess().select("SELECT * FROM " + TABLE_NAME + " ORDER BY name", AccountDAO.class);
+    }
+
+    public void readFromDB(ResultSetWithNull rs) throws SQLException {
         super.readFromDB(rs);
         this.name = rs.getString("name");
         this.accountNumber = rs.getString("accountNumber");
-        this.initialBalance = new Currency(rs.getLong("initialBalance"));
+        this.initialBalance = rs.getCurrency("initialBalance");
         this.importerFormat = rs.getString("importerFormat");
     }
 
@@ -102,7 +108,23 @@ public class AccountDAO extends RootDAO {
         super.readFromCSV(reader);
         setName(reader.getString(1));
         setAccountNumber(reader.getString(2));
-        setInitialBalance(Currency.fromString(reader.getString(3)));
+        setInitialBalance(reader.getCurrency(3));
         setImporterFormat(reader.getString(4));
+    }
+
+    @Override
+    public void writeToCSV(CSVWriter writer) {
+        super.writeToCSV(writer);
+        writer.writeString(getName());
+        writer.writeString(getAccountNumber());
+        writer.writeCurrency(getInitialBalance());
+        writer.writeString(getImporterFormat());
+    }
+
+    @Override
+    public String toString() {
+        return "AccountDAO{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

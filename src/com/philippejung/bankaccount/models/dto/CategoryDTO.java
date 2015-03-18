@@ -1,6 +1,5 @@
 package com.philippejung.bankaccount.models.dto;
 
-import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.dao.CategoryDAO;
 import com.philippejung.bankaccount.models.dao.RootDAO;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -65,7 +64,7 @@ public class CategoryDTO extends RootDTO {
     }
 
     public static ObservableList<CategoryDTO> getAll() {
-        ArrayList<CategoryDAO> queryResult = MainApp.getData().getDbAccess().select("SELECT * FROM category ORDER BY name", CategoryDAO.class);
+        ArrayList<CategoryDAO> queryResult = CategoryDAO.getAll();
         ArrayList<CategoryDTO> retVal = new ArrayList<>();
         for(CategoryDAO categoryDAO : queryResult) {
             //System.out.println("Trouvé catégorie " + categoryDAO.getName());

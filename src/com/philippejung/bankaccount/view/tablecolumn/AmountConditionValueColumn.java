@@ -1,7 +1,7 @@
-package com.philippejung.bankaccount.view.column;
+package com.philippejung.bankaccount.view.tablecolumn;
 
 import com.philippejung.bankaccount.models.Currency;
-import com.philippejung.bankaccount.view.utils.ObjectStringConverter;
+import com.philippejung.bankaccount.utils.utils.ObjectStringConverter;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;

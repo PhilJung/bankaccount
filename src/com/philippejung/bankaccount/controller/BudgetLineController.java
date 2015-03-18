@@ -4,7 +4,7 @@ import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.BudgetDTO;
 import com.philippejung.bankaccount.models.dto.CategoryDTO;
-import com.philippejung.bankaccount.view.utils.CurrencyTextField;
+import com.philippejung.bankaccount.view.textfield.CurrencyTextField;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

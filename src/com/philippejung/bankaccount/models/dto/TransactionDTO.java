@@ -4,6 +4,9 @@ import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dao.RootDAO;
 import com.philippejung.bankaccount.models.dao.TransactionDAO;
+import com.philippejung.bankaccount.models.interfaces.CategoryPropertyProvider;
+import com.philippejung.bankaccount.models.interfaces.TypePropertyProvider;
+import com.philippejung.bankaccount.models.interfaces.WayOfPaymentPropertyProvider;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,7 +20,7 @@ import java.time.LocalDate;
  *
  * v0 Created by philippe on 28/01/15.
  */
-public class TransactionDTO extends RootDTO {
+public class TransactionDTO extends RootDTO implements CategoryPropertyProvider, TypePropertyProvider, WayOfPaymentPropertyProvider {
 
     private final SimpleBooleanProperty mustBeImported = new SimpleBooleanProperty(true);
     private final SimpleObjectProperty<LocalDate> date = new SimpleObjectProperty<>();

@@ -1,7 +1,6 @@
 package com.philippejung.bankaccount.controller;
 
-import com.philippejung.bankaccount.view.utils.CurrencyTextField;
-import com.sun.javafx.binding.StringFormatter;
+import com.philippejung.bankaccount.view.textfield.CurrencyTextField;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

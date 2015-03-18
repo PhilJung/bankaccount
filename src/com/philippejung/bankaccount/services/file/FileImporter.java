@@ -2,7 +2,7 @@ package com.philippejung.bankaccount.services.file;
 
 import com.philippejung.bankaccount.models.Currency;
 import com.philippejung.bankaccount.models.dto.TransactionDTO;
-import com.philippejung.bankaccount.view.utils.AlertPopup;
+import com.philippejung.bankaccount.view.popup.AlertPopup;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.w3c.dom.Document;

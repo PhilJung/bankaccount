@@ -1,4 +1,4 @@
-package com.philippejung.bankaccount.view.utils;
+package com.philippejung.bankaccount.utils.utils;
 
 import javafx.util.StringConverter;
 
