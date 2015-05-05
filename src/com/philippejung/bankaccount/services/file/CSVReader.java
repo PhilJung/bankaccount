@@ -144,8 +144,9 @@ public class CSVReader {
 
     public Boolean getBoolean(int index) {
         if (index >= currentLine.size()) return null;
-        if (currentLine.get(index).equalsIgnoreCase("true")) return true;
-        if (currentLine.get(index).equalsIgnoreCase("false")) return false;
+        String str = currentLine.get(index);
+        if (str.equalsIgnoreCase("true") || str.equals("1")) return true;
+        if (str.equalsIgnoreCase("false") || str.equals("0")) return false;
         return null;
     }
 

@@ -4,6 +4,8 @@ import com.philippejung.bankaccount.main.MainApp;
 import com.philippejung.bankaccount.view.popup.AlertPopup;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
@@ -52,6 +54,7 @@ public class MainFrameController extends GenericController {
             theTab = new Tab(title);
             theTab.setClosable(canClose);
             theTab.setContent(newPane);
+            theTab.setOnClosed(event -> allExistingTabs.remove(tabKey));
             allExistingTabs.put(tabKey, theTab);
             tabPane.getTabs().add(theTab);
         }

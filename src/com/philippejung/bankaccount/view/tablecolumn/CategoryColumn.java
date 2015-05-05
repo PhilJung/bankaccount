@@ -5,8 +5,9 @@ import com.philippejung.bankaccount.models.dto.CategoryDTO;
 import com.philippejung.bankaccount.models.dto.RootDTO;
 import com.philippejung.bankaccount.models.interfaces.CategoryPropertyProvider;
 import com.philippejung.bankaccount.utils.utils.ObjectStringConverter;
+import com.philippejung.bankaccount.utils.utils.SearchableComboBoxTableCell;
+import javafx.event.EventHandler;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -20,13 +21,17 @@ public final class CategoryColumn {
 
     public static <S extends RootDTO & CategoryPropertyProvider> void inject(TableColumn<S, CategoryDTO> tc, Boolean autoSave) {
         tc.setCellFactory(
-                ComboBoxTableCell.forTableColumn(
-                        new ObjectStringConverter<>(), MainApp.getData().getAllCategories()
-                )
+                param -> new SearchableComboBoxTableCell<>(new ObjectStringConverter<>(), MainApp.getData().getAllCategories())
         );
         tc.setCellValueFactory(
                 new PropertyValueFactory<>("category")
         );
+//        tc.setOnEditStart(new EventHandler<TableColumn.CellEditEvent<S, CategoryDTO>>() {
+//            @Override
+//            public void handle(TableColumn.CellEditEvent<S, CategoryDTO> event) {
+//
+//            }
+//        });
         if (autoSave) {
             tc.setOnEditCommit(
                     (TableColumn.CellEditEvent<S, CategoryDTO> event) -> {

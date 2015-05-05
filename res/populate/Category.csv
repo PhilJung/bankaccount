@@ -1,52 +1,52 @@
-372,Alimentation,0
+372,Alimentation,1
 417,Allocations familiales,0
-373,Assurance maison,0
-375,Assurance vie,0
-374,Assurance véhicules,0
-376,Bricolage / Equipement de la maison,0
+373,Assurance maison,1
+375,Assurance vie,1
+374,Assurance véhicules,1
+376,Bricolage / Equipement de la maison,1
 418,Cadeaux,0
-377,Cantines,0
-378,Chauffage,0
-379,Coiffeur,0
-380,Cotisation retraite,0
-381,Divers dépenses,0
+377,Cantines,1
+378,Chauffage,1
+379,Coiffeur,1
+380,Cotisation retraite,1
+381,Divers dépenses,1
 419,Divers recette,0
-382,Dons/cadeaux,0
-383,Eau,0
-384,Electricité,0
-385,Electro-ménager,0
-386,Entretien voitures,0
-387,Essence,0
-388,Exceptionnel hors budget,0
+382,Dons/cadeaux,1
+383,Eau,1
+384,Electricité,1
+385,Electro-ménager,1
+386,Entretien voitures,1
+387,Essence,1
+388,Exceptionnel hors budget,1
 420,Exceptionnel hors budget,0
-389,Fleurs,0
-390,Frais de banque,0
-391,Frais professionnel,0
-392,Française des jeux,0
-393,Garde des enfants,0
-394,Habillement,0
-395,Hygiène et Beauté,0
-396,Impôts sur le revenu,0
-397,Inconnu,0
-398,Intérêt d'emprunt,0
-399,Loisirs,0
-400,Mariage,0
-401,Meubles,0
-404,Mutuelle,0
-402,Médecin,0
-403,Ménage,0
-405,Pharmacie,0
-406,Piscine,0
-407,Remboursement d'emprunt,0
+389,Fleurs,1
+390,Frais de banque,1
+391,Frais professionnel,1
+392,Française des jeux,1
+393,Garde des enfants,1
+394,Habillement,1
+395,Hygiène et Beauté,1
+396,Impôts sur le revenu,1
+397,Inconnu,1
+398,Intérêt d'emprunt,1
+399,Loisirs,1
+400,Mariage,1
+401,Meubles,1
+404,Mutuelle,1
+402,Médecin,1
+403,Ménage,1
+405,Pharmacie,1
+406,Piscine,1
+407,Remboursement d'emprunt,1
 421,Remboursements mutuelle,0
-408,Restaurant,0
-409,Retrait espèces,0
+408,Restaurant,1
+409,Retrait espèces,1
 422,Salaires,0
-410,Santé,0
-411,Taxe d'habitation,0
-412,Taxe foncière,0
-414,Transport,0
-413,Téléphone,0
-415,Vins,0
-423,Virement externes,0
-416,Voyages,0
+410,Santé,1
+411,Taxe d'habitation,1
+412,Taxe foncière,1
+414,Transport,1
+413,Téléphone,1
+415,Vins,1
+423,Virement externes,1
+416,Voyages,1
